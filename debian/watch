@@ -1,0 +1,3 @@
+version=3
+
+http://hal.freedesktop.org/releases/PolicyKit-(.*)\.tar\.gz

@@ -1,0 +1,8 @@
+01_pam_polkit.patch
+02_dbus_policy.patch
+03_consolekit0.3-api.patch
+04_entry_leak.patch
+05_manpage_typo_fix.patch
+06_no_inotify_or_path_max.patch
+ubuntu-admin-group.patch
+polkit-deadlock.patch -p0

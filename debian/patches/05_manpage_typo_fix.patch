@@ -1,0 +1,26 @@
+diff --git a/doc/html/polkit-auth.1.html b/doc/html/polkit-auth.1.html
+index 969b5f9..0f74bd5 100644
+--- a/doc/html/polkit-auth.1.html
++++ b/doc/html/polkit-auth.1.html
+@@ -172,7 +172,7 @@
+ <a name="polkit-auth-constraints"></a><h2>CONSTRAINTS</h2>
+ <p>
+       One can put one or more <span class="emphasis"><em>constraints</em></span> on an
+-      authorization. They are used to limit where the authrorization
++      authorization. They are used to limit where the authorization
+       applies. Presently the following constraints are supported
+ 
+       </p>
+diff --git a/doc/man/polkit-auth.xml b/doc/man/polkit-auth.xml
+index 8a4735f..a1cceeb 100644
+--- a/doc/man/polkit-auth.xml
++++ b/doc/man/polkit-auth.xml
+@@ -183,7 +183,7 @@
+     <title>CONSTRAINTS</title> 
+     <para>
+       One can put one or more <emphasis>constraints</emphasis> on an
+-      authorization. They are used to limit where the authrorization
++      authorization. They are used to limit where the authorization
+       applies. Presently the following constraints are supported
+ 
+       <variablelist>

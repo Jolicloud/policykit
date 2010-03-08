@@ -1,0 +1,3 @@
+debian/tmp/usr/lib/libpolkit.{so,a}
+debian/tmp/usr/lib/pkgconfig/polkit.pc
+debian/tmp/usr/include/PolicyKit/polkit/

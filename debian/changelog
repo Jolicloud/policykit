@@ -1,0 +1,145 @@
+policykit (0.9-4ubuntu1) karmic; urgency=low
+
+  * Merge from debian unstable, remaining changes:
+    - ubuntu-admin-group.patch: Change PolicyKit.conf to use 'admin' as
+      administrator group, instead of the 'root' user. Also grant all
+      permissions to root, since root is not in the admin group and is already
+      almighty anyway. This unbreaks running tools like g-s-t as root.
+    - polkit-deadlock.patch: Fix deadlock when PAM_TEXT_INFO is used.
+      (LP #35437)
+  * Tag polkit-deadlock.patch.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 22 Jun 2009 09:00:36 +0200
+
+policykit (0.9-4) unstable; urgency=low
+
+  * Add support for /var/run being a tmpfs. (Closes: #532101)
+    - Create /var/run/PolicyKit dynamically on boot by using an init script.
+      Original patch by Martin Pitt, thanks. Updated patch to only run the
+      init script in runlevel S at priority 75.
+    - Do no longer ship /var/run/PolicyKit in the package itself.
+  * debian/control
+    - Bump Standards-Version to 3.8.1.
+  * debian/patches/04_entry_leak.patch
+    - Plug a memory leak. Patch pulled from Fedora.
+  * debian/patches/05_manpage_typo_fix.patch
+    - Fix a small typo in the polkit-auth man page. (Closes: #523565)
+  * debian/patches/06_no_inotify_or_path_max.patch
+    - Add support for systems which don't support inotify (like hurd) and
+      don't use PATH_MAX unconditionally, instead use dynamically growing
+      buffers. (Closes: #521756)
+      Patch by Samuel Thibault, thanks.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 18 Jun 2009 09:55:34 +0200
+
+policykit (0.9-3) unstable; urgency=low
+
+  * Switch patch management system to quilt.
+  * debian/control
+    - Wrap Build-Depends.
+    - Demote Recommends: policykit-gnome to Suggests. (Closes: #513758)
+    - Bump Build-Depends on debhelper to (>= 7).
+  * debian/compat
+    - Bump debhelper compat level to 7.
+  * debian/rules
+    - Include debhelper.mk before any other files as recommended by the cdbs
+      documentation.
+  * debian/patches/03_consolekit0.3-api.patch
+    - Try both the ConsoleKit 0.3 and the older 0.2 API, to work with either.
+      Patch pulled from Ubuntu.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 18 Feb 2009 17:25:52 +0100
+
+policykit (0.9-2) unstable; urgency=high
+
+  [ Simon McVittie ]
+  * Add patch committed in Fedora (although not upstream) by the upstream
+    maintainer, to allow PolicyKit to be used when CVE-2008-4311 has
+    been fixed in dbus-daemon. (Closes: #510646)
+
+  [ Michael Biebl ]
+  * debian/control
+    - Add ${misc:Depends} to all binary packages.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 07 Jan 2009 18:18:56 +0100
+
+policykit (0.9-1) unstable; urgency=low
+
+  * New upstream release. 
+  * debian/control
+    - Bump Standards-Version to 3.8.0. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 03 Aug 2008 10:53:11 +0200
+
+policykit (0.8-2) unstable; urgency=low
+
+  * Add symbols files for libpolkit2, libpolkit-grant2 and libpolkit-dbus2. 
+  * debian/policykit.postinst
+    - Set correct permissions for all files. (Closes: #482064)
+    - Define a small helper function to apply the permissions. This makes it
+      more concise and readable.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 23 May 2008 04:33:48 +0200
+
+policykit (0.8-1) unstable; urgency=medium
+
+  * New upstream release.
+    - SECURITY - CVE-2008-1658:
+      Fixes format string vulnerability in the grant helper. (Closes: #476615)
+  * debian/control
+    - Add Build-Depends on pkg-config.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 18 Apr 2008 01:39:08 +0200
+
+policykit (0.7-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 11 Jan 2008 01:02:59 +0100
+
+policykit (0.7-1) experimental; urgency=low
+
+  * New upstream release. (Closes: #455874)
+  * debian/control
+    - Bump Standards-Version to 3.7.3. No further changes required.
+    - Add Build-Depends on libdbus-glib-1-dev (>= 0.73).
+    - Change Homepage URL to http://hal.freedesktop.org/docs/PolicyKit/.
+      (Closes: #446504)
+    - Improve package description. (Closes: #446554)
+  * debian/copyright
+    - All code is now licensed under the MIT/X11 license. Update the copyright
+      notice accordingly.
+  * debian/policykit.dirs
+    - Add the directory /var/lib/PolicyKit-public.
+  * debian/policykit.install
+    - Install the D-Bus config and service files for the PolicyKit system
+      service.
+    - Install /var/lib/misc/PolicyKit.reload.
+  * debian/rules
+    - Fix the permissions of /var/lib/misc/PolicyKit.reload.
+  * debian/policykit.postinst
+    - Use dpkg-statoverride to check for local modifications before setting
+      the SUID/SGID bits.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 20 Dec 2007 18:01:38 +0100
+
+policykit (0.6-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/control
+    - Use new "Homepage:" field to specify the upstream URL.
+    - The Vcs-* fields are now officially supported, so remove the XS- prefix.  
+    - Add a Recommends: policykit-gnome to the policykit package.
+    - Enable SELinux support by adding a Build-Depends on libselinux1-dev for
+      all supported platforms.
+  * debian/policykit.postinst
+    - Install polkit-grant-helper-pam with the correct permissions.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 03 Nov 2007 00:02:33 +0100
+
+policykit (0.5-1) experimental; urgency=low
+
+  * Initial release. (Closes: #397087)
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 02 Oct 2007 22:38:04 +0200
+

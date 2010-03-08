@@ -1,0 +1,9 @@
+debian/tmp/etc/pam.d/
+debian/tmp/etc/dbus-1/
+debian/tmp/etc/PolicyKit/
+debian/tmp/usr/bin/*
+debian/tmp/usr/lib/policykit/*
+debian/tmp/usr/share/man/
+debian/tmp/usr/share/PolicyKit/
+debian/tmp/usr/share/dbus-1/
+debian/tmp/var/lib/misc/PolicyKit.reload

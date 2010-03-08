@@ -1,0 +1,16 @@
+libpolkit-grant.so.2 libpolkit-grant2 #MINVER#
+ _polkit_authorization_db_auth_file_add@Base 0.7
+ polkit_authorization_db_add_entry_always@Base 0.7
+ polkit_authorization_db_add_entry_process@Base 0.7
+ polkit_authorization_db_add_entry_process_one_shot@Base 0.7
+ polkit_authorization_db_add_entry_session@Base 0.7
+ polkit_authorization_db_grant_negative_to_uid@Base 0.7
+ polkit_authorization_db_grant_to_uid@Base 0.7
+ polkit_grant_cancel_auth@Base 0.7
+ polkit_grant_child_func@Base 0.7
+ polkit_grant_initiate_auth@Base 0.7
+ polkit_grant_io_func@Base 0.7
+ polkit_grant_new@Base 0.7
+ polkit_grant_ref@Base 0.7
+ polkit_grant_set_functions@Base 0.7
+ polkit_grant_unref@Base 0.7

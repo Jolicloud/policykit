@@ -1,0 +1,33 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          policykit
+# Required-Start:    $local_fs
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Create PolicyKit runtime directories
+# Description:       Create directories which PolicyKit needs at runtime,
+#                    such as /var/run/PolicyKit
+### END INIT INFO
+
+# Author: Martin Pitt <martin.pitt@ubuntu.com>
+
+RUNDIR=/var/run/PolicyKit
+
+case "$1" in
+  start)
+	if ! [ -d $RUNDIR ]; then
+		mkdir -p $RUNDIR
+		chown root:polkituser $RUNDIR
+		chmod 770 $RUNDIR
+	fi
+	;;
+  stop|restart|force-reload)
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|force-reload}" >&2
+	exit 3
+	;;
+esac
+
+:

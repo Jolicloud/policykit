@@ -1,0 +1,274 @@
+# Add support for platforms which don't support inotify and don't make
+# unconditional use of PATH_MAX. Instead grow the buffers as needed.
+# Debian bug#521756
+Index: policykit-0.9/src/polkit-dbus/polkit-read-auth-helper.c
+===================================================================
+--- policykit-0.9.orig/src/polkit-dbus/polkit-read-auth-helper.c	2008-05-30 23:24:44.000000000 +0200
++++ policykit-0.9/src/polkit-dbus/polkit-read-auth-helper.c	2009-06-18 09:44:31.000000000 +0200
+@@ -190,8 +190,8 @@
+                 uid_t uid;
+                 size_t name_len;
+                 char *filename;
+-                char username[PATH_MAX];
+-                char path[PATH_MAX];
++                char *username;
++                char path[strlen(root) + 1 + strlen(d->d_name) + 1];
+                 static const char suffix[] = ".auths";
+                 struct passwd *pw;
+                 struct stat statbuf;
+@@ -199,10 +199,7 @@
+                 if (d->d_name == NULL)
+                         continue;
+ 
+-                if (snprintf (path, sizeof (path), "%s/%s", root, d->d_name) >= (int) sizeof (path)) {
+-                        fprintf (stderr, "polkit-read-auth-helper: string was truncated (1)\n");
+-                        goto out;
+-                }
++                sprintf (path, "%s/%s", root, d->d_name);
+ 
+                 if (stat (path, &statbuf) != 0) {
+                         fprintf (stderr, "polkit-read-auth-helper: cannot stat %s: %m\n", path);
+@@ -240,8 +237,9 @@
+                         fprintf (stderr, "polkit-read-auth-helper: file name '%s' is malformed (2)\n", filename);
+                         continue;
+                 }
+-                if (n - m > sizeof (username) - 1) {
+-                        fprintf (stderr, "polkit-read-auth-helper: file name '%s' is malformed (3)\n", filename);
++                username = kit_malloc (n - m + 1);
++                if (!username) {
++                        fprintf (stderr, "polkit-read-auth-helper: out of memory\n");
+                         continue;
+                 }
+                 strncpy (username, filename + m, n - m);
+@@ -250,8 +248,10 @@
+                 pw = kit_getpwnam (username);
+                 if (pw == NULL) {
+                         fprintf (stderr, "polkit-read-auth-helper: cannot look up uid for username %s\n", username);
++                        free(username);
+                         continue;
+                 }
++                free(username);
+                 uid = pw->pw_uid;
+                 
+                 if (!dump_auths_from_file (path, uid))
+Index: policykit-0.9/src/polkit-dbus/polkit-resolve-exe-helper.c
+===================================================================
+--- policykit-0.9.orig/src/polkit-dbus/polkit-resolve-exe-helper.c	2008-05-30 23:24:44.000000000 +0200
++++ policykit-0.9/src/polkit-dbus/polkit-resolve-exe-helper.c	2009-06-18 09:44:31.000000000 +0200
+@@ -58,7 +58,6 @@
+ 
+ #ifdef HAVE_SOLARIS
+ #define LOG_AUTHPRIV	(10<<3)
+-#define PATH_MAX	1024
+ #endif
+ 
+ int
+@@ -73,7 +72,8 @@
+         gid_t egid;
+         struct group *group;
+         int n;
+-        char buf[PATH_MAX];
++        char *buf;
++        ssize_t allocated;
+         polkit_bool_t is_setgid_polkit;
+ 
+         ret = 1;
+@@ -151,14 +151,25 @@
+                 }
+         }
+ 
+-        n = polkit_sysdeps_get_exe_for_pid (requesting_info_for_pid, buf, sizeof (buf));
+-        if (n == -1 || n >= (int) sizeof (buf)) {
+-                fprintf (stderr, "polkit-resolve-exe-helper: Cannot resolve link for pid %d\n", 
+-                         requesting_info_for_pid);
+-                goto out;
++        allocated = 128;
++        while (1) {
++                buf = malloc(allocated);
++
++                n = polkit_sysdeps_get_exe_for_pid (requesting_info_for_pid, buf, allocated);
++                if (n == -1) {
++                        fprintf (stderr, "polkit-resolve-exe-helper: Cannot resolve link for pid %d\n", 
++                                 requesting_info_for_pid);
++                        free(buf);
++                        goto out;
++                }
++                if (n < allocated)
++                        break;
++                free(buf);
++                allocated *= 2;
+         }
+ 
+         printf ("%s", buf);
++        free(buf);
+ 
+         ret = 0;
+ 
+Index: policykit-0.9/src/polkit/polkit-authorization-constraint.c
+===================================================================
+--- policykit-0.9.orig/src/polkit/polkit-authorization-constraint.c	2008-05-30 23:24:44.000000000 +0200
++++ policykit-0.9/src/polkit/polkit-authorization-constraint.c	2009-06-18 09:44:31.000000000 +0200
+@@ -256,7 +256,6 @@
+         int n;
+         pid_t pid;
+         char *selinux_context;
+-        char buf[PATH_MAX];
+         polkit_bool_t ret;
+         PolKitSession *session;
+ 
+@@ -278,19 +277,33 @@
+ 
+         case POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE:
+                 if (polkit_caller_get_pid (caller, &pid)) {
++                        int allocated = 128;
++                        char *buf;
++
++retry:
++                        if (!(buf = kit_malloc(allocated)))
++                                break;
+ 
+                         /* we may be running unprivileged.. so optionally use the helper. Requires the calling
+                          * process (this one) to have the org.freedesktop.policykit.read authorization.
+                          *
+                          * An example of this is HAL (running as user 'haldaemon').
+                          */
+-                        n = polkit_sysdeps_get_exe_for_pid_with_helper (pid, buf, sizeof (buf));
++                        n = polkit_sysdeps_get_exe_for_pid_with_helper (pid, buf, allocated);
++
++                        if (n >= allocated) {
++                                kit_free(buf);
++                                allocated *= 2;
++                                goto retry;
++                        }
+ 
+-                        if (n != -1 && n < (int) sizeof (buf)) {
++                        if (n != -1) {
+                                 if (strcmp (authc->data.exe.path, buf) == 0) {
+                                         ret = TRUE;
+                                 }
+                         }
++
++                        kit_free(buf);
+                 }
+ 
+                 break;
+@@ -584,7 +597,6 @@
+         polkit_bool_t is_local;
+         polkit_bool_t is_active;
+         PolKitSession *session;
+-        char path[PATH_MAX];
+         int n;
+ 
+         kit_return_val_if_fail (caller != NULL, 0);
+@@ -613,6 +625,13 @@
+ 
+         /* constrain to callers program */
+         if (polkit_caller_get_pid (caller, &pid)) {
++                int allocated = 128;
++                char *path;
++
++retry:
++                if (!(path = kit_malloc(allocated)))
++                        goto oom;
++
+                 /* So the program to receive a constraint may besetuid root... so we may need some
+                  * help to get the exepath.. Therefore use _with_helper().
+                  *
+@@ -621,8 +640,15 @@
+                  *
+                  * An example of this is pulseaudio...
+                  */
+-                n = polkit_sysdeps_get_exe_for_pid_with_helper (pid, path, sizeof (path));
+-                if (n != -1 && n < (int) sizeof (path)) {
++                n = polkit_sysdeps_get_exe_for_pid_with_helper (pid, path, allocated);
++
++                if (n >= allocated) {
++                        kit_free(path);
++                        allocated *= 2;
++                        goto retry;
++                }
++
++                if (n != -1) {
+                         PolKitAuthorizationConstraint *c;
+ 
+                         c = polkit_authorization_constraint_get_require_exe (path);
+@@ -634,6 +660,8 @@
+ 
+                         ret++;
+                 }
++
++                kit_free(path);
+         }
+ 
+         /* constrain to callers SELinux context */
+Index: policykit-0.9/src/polkit/polkit-context.c
+===================================================================
+--- policykit-0.9.orig/src/polkit/polkit-context.c	2008-05-30 23:24:44.000000000 +0200
++++ policykit-0.9/src/polkit/polkit-context.c	2009-06-18 09:44:31.000000000 +0200
+@@ -308,7 +308,7 @@
+ 			goto error;
+ 		}
+ 	}
+-#else
++#elif defined(HAVE_INOTIFY)
+         if (pk_context->io_add_watch_func != NULL) {
+                 pk_context->inotify_fd = inotify_init ();
+                 if (pk_context->inotify_fd < 0) {
+@@ -571,7 +571,7 @@
+ 			polkit_debug ("failed to read kqueue event: %s", strerror (errno));
+ 		}
+ 	}
+-#else
++#elif defined(HAVE_INOTIFY)
+         if (fd == pk_context->inotify_fd) {
+ /* size of the event structure, not counting name */
+ #define EVENT_SIZE  (sizeof (struct inotify_event))
+Index: policykit-0.9/tools/polkit-auth.c
+===================================================================
+--- policykit-0.9.orig/tools/polkit-auth.c	2008-05-30 23:24:44.000000000 +0200
++++ policykit-0.9/tools/polkit-auth.c	2009-06-18 09:44:31.000000000 +0200
+@@ -527,7 +527,6 @@
+                 polkit_uint64_t pid_start_time;
+                 PolKitAction *pk_action;
+                 PolKitResult pk_result;
+-                char exe[PATH_MAX];
+ 
+                 printf ("%s\n", action_id);
+ 
+@@ -539,17 +538,33 @@
+ 
+                 switch (polkit_authorization_get_scope (auth)) {
+                 case POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT:
+-                case POLKIT_AUTHORIZATION_SCOPE_PROCESS:
++                case POLKIT_AUTHORIZATION_SCOPE_PROCESS: {
++                        char *exe;
++                        int allocated = 128, len;
+                         polkit_authorization_scope_process_get_pid (auth, &pid, &pid_start_time);
+-                        if (polkit_sysdeps_get_exe_for_pid (pid, exe, sizeof (exe)) == -1)
+-                                strncpy (exe, "unknown", sizeof (exe));
++retry:
++                        exe = malloc (allocated);
++                        len = polkit_sysdeps_get_exe_for_pid (pid, exe, allocated);
++
++                        if (len >= allocated) {
++                                free (exe);
++                                allocated *= 2;
++                                exe = malloc(allocated);
++                                goto retry;
++                        }
++
++                        if (len == -1)
++                                strncpy (exe, "unknown", allocated);
+ 
+                         if (polkit_authorization_get_scope (auth) == POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT) {
+                                 printf ("  Scope:       Confined to single shot from pid %d (%s)\n", pid, exe);
+                         } else {
+                                 printf ("  Scope:       Confined to pid %d (%s)\n", pid, exe);
+                         }
++
++                        free(exe);
+                         break;
++                }
+                 case POLKIT_AUTHORIZATION_SCOPE_SESSION:
+                         printf ("  Scope:       Confined to session %s\n", polkit_authorization_scope_session_get_ck_objref (auth));
+                         break;

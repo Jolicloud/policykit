@@ -1,0 +1,87 @@
+# Description: Fix deadlock when PAM_TEXT_INFO is used.
+# Ubuntu: https://launchpad.net/bugs/354378
+# Upstream: https://bugs.freedesktop.org/show_bug.cgi?id=21031
+=== modified file 'src/polkit-grant/polkit-grant-helper.c'
+--- src/polkit-grant/polkit-grant-helper.c	2008-10-08 23:49:32 +0000
++++ src/polkit-grant/polkit-grant-helper.c	2009-04-13 13:01:21 +0000
+@@ -136,12 +136,15 @@
+  *
+  *   Receive PAM request on stdin.
+  *   Program deals with it.
+- *   Write reply on stdout
++ *   Write reply on stdout if one is
++ *   needed
+  *
+- *                                       Receive PAM reply on stdin
++ *                                       If a PAM reply is needed then read
++ *                                       it on stdin then
+  *                                       Send PAM reply on stdout
+  *
+- *                                                                         Deal with PAM reply on stdin.
++ *                                                                         If awaiting a PAM reply on stdin then deal
++ *                                                                         with it.
+  *                                                                         Now either
+  *                                                                         - GOTO auth_in_progress; or
+  *                                                                         - Write SUCCESS|FAILURE on stdout and then
+@@ -163,6 +166,34 @@
+  */
+ 
+ 
++/**
++ * requires_reply:
++ *
++ * inspect the message that the child is sending to the parent and
++ * decide whether the child will be expecting a response from the parent.
++ */
++gboolean
++requires_reply (const char *message)
++{
++    if (strncmp(message, "PAM_PROMPT_ECHO_OFF ",
++                sizeof "PAM_PROMPT_ECHO_OFF " - 1) == 0) {
++        return TRUE;
++    }
++    if (strncmp(message, "PAM_PROMPT_ECHO_ON ",
++                sizeof "PAM_PROMPT_ECHO_ON " - 1) == 0) {
++        return TRUE;
++    }
++    if (strncmp(message, "POLKIT_GRANT_HELPER_TELL_ADMIN_USERS ",
++                sizeof "POLKIT_GRANT_HELPER_TELL_ADMIN_USERS " - 1) == 0) {
++        return TRUE;
++    }
++    if (strncmp(message, "POLKIT_GRANT_HELPER_ASK_OVERRIDE_GRANT_TYPE ",
++                sizeof "POLKIT_GRANT_HELPER_ASK_OVERRIDE_GRANT_TYPE " - 1) == 0) {
++        return TRUE;
++    }
++    return FALSE;
++}
++
+ /** 
+  * do_auth:
+  * 
+@@ -250,16 +281,18 @@
+                 fprintf (stdout, "%s", buf);
+                 fflush (stdout);
+                 
+-                /* read from parent */
+-                if (fgets (buf, sizeof buf, stdin) == NULL)
+-                        goto out;
++                if (requires_reply (buf)) {
++                    /* read from parent */
++                    if (fgets (buf, sizeof buf, stdin) == NULL)
++                            goto out;
+ 
+ #ifdef PGH_DEBUG
+-                fprintf (stderr, "received: '%s' from parent; sending to child\n", buf);
++                    fprintf (stderr, "received: '%s' from parent; sending to child\n", buf);
+ #endif /* PGH_DEBUG */
+-                /* send to child */
+-                fprintf (child_stdin, "%s", buf);
+-                fflush (child_stdin);
++                    /* send to child */
++                    fprintf (child_stdin, "%s", buf);
++                    fflush (child_stdin);
++                }
+         }
+ 
+ out:
+

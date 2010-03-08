@@ -1,0 +1,15 @@
+diff --git a/data/polkit.in b/data/polkit.in
+index 142dadd..f923207 100644
+--- a/data/polkit.in
++++ b/data/polkit.in
+@@ -1,6 +1,6 @@
+ #%PAM-1.0
+ 
+-auth       include      @PAM_FILE_INCLUDE_AUTH@
+-account    include      @PAM_FILE_INCLUDE_ACCOUNT@
+-password   include      @PAM_FILE_INCLUDE_PASSWORD@
+-session    include      @PAM_FILE_INCLUDE_SESSION@
++@include common-auth
++@include common-account
++@include common-password
++@include common-session

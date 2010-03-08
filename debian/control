@@ -1,0 +1,112 @@
+Source: policykit
+Section: admin
+Priority: optional
+Maintainer: Ubuntu Core Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
+Uploaders: Michael Biebl <biebl@debian.org>
+Build-Depends: cdbs,
+ debhelper (>= 7),
+ autotools-dev,
+ pkg-config,
+ libglib2.0-dev (>= 2.6.0),
+ libdbus-1-dev (>= 1.0),
+ libdbus-glib-1-dev (>= 0.73),
+ libexpat1-dev,
+ libpam0g-dev,
+ libselinux1-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64],
+ gtk-doc-tools,
+ xsltproc,
+ quilt
+Standards-Version: 3.8.1
+Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/policykit
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/policykit
+Homepage: http://hal.freedesktop.org/docs/PolicyKit/
+
+Package: policykit
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, consolekit, dbus
+Suggests: policykit-gnome
+Description: framework for managing administrative policies and privileges
+ PolicyKit is an application-level toolkit for defining and handling the policy
+ that allows unprivileged processes to speak to privileged processes.
+ .
+ It is a framework for centralizing the decision making process with respect to
+ granting access to privileged operations (like calling the HAL Mount() method)
+ for unprivileged (desktop) applications.
+
+Package: policykit-doc
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Suggests: devhelp
+Description: documentation for PolicyKit
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ .
+ This package contains the API documentation of PolicyKit.
+
+Package: libpolkit2
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: library for accessing PolicyKit
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ .
+ This package contains a library for querying system-wide policy.
+
+Package: libpolkit-dev
+Architecture: any
+Section: libdevel
+Depends: libpolkit2 (= ${binary:Version}), ${misc:Depends}, libglib2.0-dev
+Description: library for accessing PolicyKit - development files
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ .
+ This package contains the development files for the library found in 
+ libpolkit2.
+
+Package: libpolkit-dbus2
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: library for accessing PolicyKit via D-Bus
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ .
+ This package contains a helper library for obtaining seat, session
+ and caller information via D-Bus and ConsoleKit.
+
+Package: libpolkit-dbus-dev
+Architecture: any
+Section: libdevel
+Depends: libpolkit-dbus2 (= ${binary:Version}), ${misc:Depends}, libpolkit-dev, libdbus-1-dev
+Description: library for accessing PolicyKit via D-Bus - development files
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ Helper library for obtaining seat, session and caller information via D-Bus
+ and ConsoleKit.
+ .
+ This package contains the development files for the library found in 
+ libpolkit-dbus2.
+
+Package: libpolkit-grant2
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: library for obtaining privileges via PolicyKit
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ .
+ This package contains a library for obtaining privileges via PolicyKit.
+
+Package: libpolkit-grant-dev
+Architecture: any
+Section: libdevel
+Depends: libpolkit-grant2 (= ${binary:Version}), ${misc:Depends}, libpolkit-dev, libglib2.0-dev
+Description: library for obtaining privileges via PolicyKit - development files
+ PolicyKit is a toolkit for defining and handling the policy that
+ allows unprivileged processes to speak to privileged processes.
+ .
+ This package contains the development files for the library found in 
+ libpolkit-grant2.

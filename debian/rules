@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_EXTRA_FLAGS := --enable-gtk-doc \
+                             --enable-man-pages
+
+DEB_DH_INSTALLINIT_ARGS := -r -- start 75 S .
+binary-install/policykit::
+	chmod -x debian/policykit/var/lib/misc/PolicyKit.reload
