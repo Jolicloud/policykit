@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-memory">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-memory.top_of_page">Memory management</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Memory management</refname>
+<refpurpose>Memory management</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-memory.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>*               <link linkend="kit-malloc">kit_malloc</link>                          (<link linkend="size-t">size_t</link> bytes);
+<link linkend="void">void</link>*               <link linkend="kit-malloc0">kit_malloc0</link>                         (<link linkend="size-t">size_t</link> bytes);
+<link linkend="void">void</link>*               <link linkend="kit-realloc">kit_realloc</link>                         (<link linkend="void">void</link> *memory,
+                                                         <link linkend="size-t">size_t</link> bytes);
+<link linkend="void">void</link>                <link linkend="kit-free">kit_free</link>                            (<link linkend="void">void</link> *memory);
+#define             <link linkend="kit-new">kit_new</link>                             (type, count)
+#define             <link linkend="kit-new0">kit_new0</link>                            (type, count)
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-memory.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions used for memory management.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-memory.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="kit-malloc" role="function">
+<title>kit_malloc ()</title>
+<indexterm zone="kit-malloc"><primary>kit_malloc</primary></indexterm><programlisting><link linkend="void">void</link>*               kit_malloc                          (<link linkend="size-t">size_t</link> bytes);</programlisting>
+<para>
+Allocate memory</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bytes</parameter>&nbsp;:</term>
+<listitem><simpara> number of 8-bit bytes to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> memory location or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-malloc0" role="function">
+<title>kit_malloc0 ()</title>
+<indexterm zone="kit-malloc0"><primary>kit_malloc0</primary></indexterm><programlisting><link linkend="void">void</link>*               kit_malloc0                         (<link linkend="size-t">size_t</link> bytes);</programlisting>
+<para>
+Allocate memory and zero it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>bytes</parameter>&nbsp;:</term>
+<listitem><simpara> number of 8-bit bytes to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> memory location or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-realloc" role="function">
+<title>kit_realloc ()</title>
+<indexterm zone="kit-realloc"><primary>kit_realloc</primary></indexterm><programlisting><link linkend="void">void</link>*               kit_realloc                         (<link linkend="void">void</link> *memory,
+                                                         <link linkend="size-t">size_t</link> bytes);</programlisting>
+<para>
+Reallocate memory; like realloc(3).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>memory</parameter>&nbsp;:</term>
+<listitem><simpara> memory previously allocated
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>bytes</parameter>&nbsp;:</term>
+<listitem><simpara> new size
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> memory location or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-free" role="function">
+<title>kit_free ()</title>
+<indexterm zone="kit-free"><primary>kit_free</primary></indexterm><programlisting><link linkend="void">void</link>                kit_free                            (<link linkend="void">void</link> *memory);</programlisting>
+<para>
+Free memory allocated by <link linkend="kit-malloc"><function>kit_malloc()</function></link> + friends.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>memory</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to memory allocated with <link linkend="kit-malloc"><function>kit_malloc()</function></link> + friends
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-new" role="macro">
+<title>kit_new()</title>
+<indexterm zone="kit-new"><primary>kit_new</primary></indexterm><programlisting>#define kit_new(type, count)  ((type*)kit_malloc (sizeof (type) * (count)));
+</programlisting>
+<para>
+Allocate memory for <parameter>count</parameter> structures of type <parameter>type</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> the type of object to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>count</parameter>&nbsp;:</term>
+<listitem><simpara> number of objects to allocate
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-new0" role="macro">
+<title>kit_new0()</title>
+<indexterm zone="kit-new0"><primary>kit_new0</primary></indexterm><programlisting>#define kit_new0(type, count) ((type*)kit_malloc0 (sizeof (type) * (count)));
+</programlisting>
+<para>
+Allocate zeroed memory for <parameter>count</parameter> structures of type <parameter>type</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>type</parameter>&nbsp;:</term>
+<listitem><simpara> the type of object to allocate
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>count</parameter>&nbsp;:</term>
+<listitem><simpara> number of objects to allocate
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

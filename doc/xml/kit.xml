@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit.top_of_page">Macros</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Macros</refname>
+<refpurpose>Macros</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="KIT-BEGIN-DECLS:CAPS">KIT_BEGIN_DECLS</link>
+#define             <link linkend="KIT-END-DECLS:CAPS">KIT_END_DECLS</link>
+typedef             <link linkend="kit-bool-t">kit_bool_t</link>;
+<link linkend="void">void</link>                <link linkend="kit-print-backtrace">kit_print_backtrace</link>                 (void);
+#define             <link linkend="kit-assert">kit_assert</link>                          (expr)
+#define             <link linkend="kit-return-if-fail">kit_return_if_fail</link>                  (expr)
+#define             <link linkend="kit-return-val-if-fail">kit_return_val_if_fail</link>              (expr,val)
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various low-level macros.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="KIT-BEGIN-DECLS:CAPS" role="macro">
+<title>KIT_BEGIN_DECLS</title>
+<indexterm zone="KIT-BEGIN-DECLS:CAPS"><primary>KIT_BEGIN_DECLS</primary></indexterm><programlisting>#define             KIT_BEGIN_DECLS</programlisting>
+<para>
+C++ include header guard.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="KIT-END-DECLS:CAPS" role="macro">
+<title>KIT_END_DECLS</title>
+<indexterm zone="KIT-END-DECLS:CAPS"><primary>KIT_END_DECLS</primary></indexterm><programlisting>#define             KIT_END_DECLS</programlisting>
+<para>
+C++ include header guard.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="kit-bool-t" role="typedef">
+<title>kit_bool_t</title>
+<indexterm zone="kit-bool-t"><primary>kit_bool_t</primary></indexterm><programlisting>typedef int kit_bool_t;
+</programlisting>
+<para>
+A boolean, valid values are <link linkend="TRUE:CAPS"><type>TRUE</type></link> and <link linkend="FALSE:CAPS"><type>FALSE</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="kit-print-backtrace" role="function">
+<title>kit_print_backtrace ()</title>
+<indexterm zone="kit-print-backtrace"><primary>kit_print_backtrace</primary></indexterm><programlisting><link linkend="void">void</link>                kit_print_backtrace                 (void);</programlisting>
+<para>
+Print a back trace if built with -rdynamic or similar.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="kit-assert" role="macro">
+<title>kit_assert()</title>
+<indexterm zone="kit-assert"><primary>kit_assert</primary></indexterm><programlisting>#define             kit_assert(expr)</programlisting>
+<para>
+Debugging macro to terminate the application if the assertion
+fails. If the assertion fails (i.e. the expression is not true), an
+error message is logged and the application is terminated.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>expr</parameter>&nbsp;:</term>
+<listitem><simpara> expression
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-return-if-fail" role="macro">
+<title>kit_return_if_fail()</title>
+<indexterm zone="kit-return-if-fail"><primary>kit_return_if_fail</primary></indexterm><programlisting>#define             kit_return_if_fail(expr)</programlisting>
+<para>
+Returns from the current function if the expression is not true. If
+the expression evaluates to <link linkend="FALSE:CAPS"><type>FALSE</type></link>, an error message is logged and
+the function returns. This can only be used in functions which do
+not return a value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>expr</parameter>&nbsp;:</term>
+<listitem><simpara> expression
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-return-val-if-fail" role="macro">
+<title>kit_return_val_if_fail()</title>
+<indexterm zone="kit-return-val-if-fail"><primary>kit_return_val_if_fail</primary></indexterm><programlisting>#define             kit_return_val_if_fail(expr,val)</programlisting>
+<para>
+Returns from the current function, returning the value <parameter>val</parameter>, if the
+expression is not true. If the expression evaluates to <link linkend="FALSE:CAPS"><type>FALSE</type></link>, an
+error message is logged and val is returned.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>expr</parameter>&nbsp;:</term>
+<listitem><simpara> expression
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>val</parameter>&nbsp;:</term>
+<listitem><simpara> the value to return if the expression evaluates does not
+evaluate to <link linkend="TRUE:CAPS"><type>TRUE</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

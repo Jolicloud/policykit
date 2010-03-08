@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-seat">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-seat.top_of_page">Seat</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Seat</refname>
+<refpurpose>Represents a ConsoleKit Seat.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-seat.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitSeat">PolKitSeat</link>;
+<link linkend="PolKitSeat">PolKitSeat</link>*         <link linkend="polkit-seat-new">polkit_seat_new</link>                     (void);
+<link linkend="PolKitSeat">PolKitSeat</link>*         <link linkend="polkit-seat-ref">polkit_seat_ref</link>                     (<link linkend="PolKitSeat">PolKitSeat</link> *seat);
+<link linkend="void">void</link>                <link linkend="polkit-seat-unref">polkit_seat_unref</link>                   (<link linkend="PolKitSeat">PolKitSeat</link> *seat);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-seat-set-ck-objref">polkit_seat_set_ck_objref</link>           (<link linkend="PolKitSeat">PolKitSeat</link> *seat,
+                                                         const <link linkend="char">char</link> *ck_objref);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-seat-get-ck-objref">polkit_seat_get_ck_objref</link>           (<link linkend="PolKitSeat">PolKitSeat</link> *seat,
+                                                         <link linkend="char">char</link> **out_ck_objref);
+<link linkend="void">void</link>                <link linkend="polkit-seat-debug">polkit_seat_debug</link>                   (<link linkend="PolKitSeat">PolKitSeat</link> *seat);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-seat-validate">polkit_seat_validate</link>                (<link linkend="PolKitSeat">PolKitSeat</link> *seat);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-seat.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent a seat.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-seat.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitSeat" role="struct">
+<title>PolKitSeat</title>
+<indexterm zone="PolKitSeat"><primary>PolKitSeat</primary></indexterm><programlisting>typedef struct _PolKitSeat PolKitSeat;</programlisting>
+<para>
+Objects of this class are used to record information about a
+seat.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-seat-new" role="function">
+<title>polkit_seat_new ()</title>
+<indexterm zone="polkit-seat-new"><primary>polkit_seat_new</primary></indexterm><programlisting><link linkend="PolKitSeat">PolKitSeat</link>*         polkit_seat_new                     (void);</programlisting>
+<para>
+Creates a new <link linkend="PolKitSeat"><type>PolKitSeat</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-seat-ref" role="function">
+<title>polkit_seat_ref ()</title>
+<indexterm zone="polkit-seat-ref"><primary>polkit_seat_ref</primary></indexterm><programlisting><link linkend="PolKitSeat">PolKitSeat</link>*         polkit_seat_ref                     (<link linkend="PolKitSeat">PolKitSeat</link> *seat);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>seat</parameter>&nbsp;:</term>
+<listitem><simpara> the seat object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-seat-unref" role="function">
+<title>polkit_seat_unref ()</title>
+<indexterm zone="polkit-seat-unref"><primary>polkit_seat_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_seat_unref                   (<link linkend="PolKitSeat">PolKitSeat</link> *seat);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>seat</parameter>&nbsp;:</term>
+<listitem><simpara> the seat object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-seat-set-ck-objref" role="function">
+<title>polkit_seat_set_ck_objref ()</title>
+<indexterm zone="polkit-seat-set-ck-objref"><primary>polkit_seat_set_ck_objref</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_seat_set_ck_objref           (<link linkend="PolKitSeat">PolKitSeat</link> *seat,
+                                                         const <link linkend="char">char</link> *ck_objref);</programlisting>
+<para>
+Set the D-Bus object path to the ConsoleKit seat object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>seat</parameter>&nbsp;:</term>
+<listitem><simpara> the seat object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ck_objref</parameter>&nbsp;:</term>
+<listitem><simpara> the D-Bus object path to the ConsoleKit seat object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-seat-get-ck-objref" role="function">
+<title>polkit_seat_get_ck_objref ()</title>
+<indexterm zone="polkit-seat-get-ck-objref"><primary>polkit_seat_get_ck_objref</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_seat_get_ck_objref           (<link linkend="PolKitSeat">PolKitSeat</link> *seat,
+                                                         <link linkend="char">char</link> **out_ck_objref);</programlisting>
+<para>
+Get the D-Bus object path to the ConsoleKit seat object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>seat</parameter>&nbsp;:</term>
+<listitem><simpara> the seat object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_ck_objref</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the D-Bus object path to the ConsoleKit seat object. The caller shall not free this string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value is returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-seat-debug" role="function">
+<title>polkit_seat_debug ()</title>
+<indexterm zone="polkit-seat-debug"><primary>polkit_seat_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_seat_debug                   (<link linkend="PolKitSeat">PolKitSeat</link> *seat);</programlisting>
+<para>
+Print debug details</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>seat</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-seat-validate" role="function">
+<title>polkit_seat_validate ()</title>
+<indexterm zone="polkit-seat-validate"><primary>polkit_seat_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_seat_validate                (<link linkend="PolKitSeat">PolKitSeat</link> *seat);</programlisting>
+<para>
+Validate the object</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>seat</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> iff the object is valid.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

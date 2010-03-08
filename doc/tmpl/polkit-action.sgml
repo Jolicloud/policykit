@@ -1,0 +1,124 @@
+<!-- ##### SECTION Title ##### -->
+polkit-action
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitAction ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_action_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_ref ##### -->
+<para>
+
+</para>
+
+@action: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_unref ##### -->
+<para>
+
+</para>
+
+@action: 
+
+
+<!-- ##### FUNCTION polkit_action_set_action_id ##### -->
+<para>
+
+</para>
+
+@action: 
+@action_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_get_action_id ##### -->
+<para>
+
+</para>
+
+@action: 
+@out_action_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_debug ##### -->
+<para>
+
+</para>
+
+@action: 
+
+
+<!-- ##### FUNCTION polkit_action_validate ##### -->
+<para>
+
+</para>
+
+@action: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_validate_id ##### -->
+<para>
+
+</para>
+
+@action_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_equal ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_to_string_representation ##### -->
+<para>
+
+</para>
+
+@action: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_action_new_from_string_representation ##### -->
+<para>
+
+</para>
+
+@str: 
+@Returns: 
+
+

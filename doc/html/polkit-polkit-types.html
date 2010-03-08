@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Basic types</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="ref-core.html" title="Core API Reference">
+<link rel="next" href="polkit-polkit-sysdeps.html" title="System Dependencies">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ref-core.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-sysdeps.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-types.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-types.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-types"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-types.top_of_page"></a>Basic types</span></h2>
+<p>Basic types — Type definitions for common primitive types.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-types.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+#define             <a
+href="../polkit/polkit-polkit-types.html#POLKIT-BEGIN-DECLS:CAPS"
+>POLKIT_BEGIN_DECLS</a>
+#define             <a
+href="../polkit/polkit-polkit-types.html#POLKIT-END-DECLS:CAPS"
+>POLKIT_END_DECLS</a>
+#define             <a
+href="../polkit/polkit-polkit-types.html#POLKIT-GNUC-DEPRECATED:CAPS"
+>POLKIT_GNUC_DEPRECATED</a>
+typedef             <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>;
+typedef             <a
+href="../polkit/polkit-polkit-types.html#polkit-uint32-t"
+>polkit_uint32_t</a>;
+typedef             <a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a>;
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-types.description"></a><h2>Description</h2>
+<p>
+Type definitions for common primitive types.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-types.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="POLKIT-BEGIN-DECLS:CAPS"></a><h3>POLKIT_BEGIN_DECLS</h3>
+<pre class="programlisting">#define             POLKIT_BEGIN_DECLS</pre>
+<p>
+C++ include header guard.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="POLKIT-END-DECLS:CAPS"></a><h3>POLKIT_END_DECLS</h3>
+<pre class="programlisting">#define             POLKIT_END_DECLS</pre>
+<p>
+C++ include header guard.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="POLKIT-GNUC-DEPRECATED:CAPS"></a><h3>POLKIT_GNUC_DEPRECATED</h3>
+<pre class="programlisting">#define             POLKIT_GNUC_DEPRECATED</pre>
+<p>
+Used in front of deprecated functions.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-bool-t"></a><h3>polkit_bool_t</h3>
+<pre class="programlisting">typedef int polkit_bool_t;
+</pre>
+<p>
+A boolean, valid values are <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> and <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a>.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-uint32-t"></a><h3>polkit_uint32_t</h3>
+<pre class="programlisting">typedef unsigned int polkit_uint32_t;
+</pre>
+<p>
+Type for unsigned 32 bit integer.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-uint64-t"></a><h3>polkit_uint64_t</h3>
+<pre class="programlisting">typedef unsigned long long polkit_uint64_t;
+</pre>
+<p>
+Type for unsigned 64 bit integer.</p>
+<p>
+
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-private">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-private.top_of_page">polkit-private</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>polkit-private</refname>
+<refpurpose>Private symbols for libpolkit</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-private.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitAuthorizationDB">PolKitAuthorizationDB</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-private.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Private symbols for libpolkit.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-private.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitAuthorizationDB" role="struct" condition="since:0.7">
+<title>PolKitAuthorizationDB</title>
+<indexterm zone="PolKitAuthorizationDB" role="0.7"><primary>PolKitAuthorizationDB</primary></indexterm><programlisting>typedef struct {
+} PolKitAuthorizationDB;
+</programlisting>
+<para>
+Objects of this class are used to represent the authorization
+database.</para>
+<para>
+
+</para><para role="since">Since  0.7
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

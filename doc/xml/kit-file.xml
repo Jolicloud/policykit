@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-file">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-file.top_of_page">File utilities</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>File utilities</refname>
+<refpurpose>File utilities</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-file.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-file-get-contents">kit_file_get_contents</link>               (const <link linkend="char">char</link> *path,
+                                                         <link linkend="char">char</link> **out_contents,
+                                                         <link linkend="size-t">size_t</link> *out_contents_size);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-file-set-contents">kit_file_set_contents</link>               (const <link linkend="char">char</link> *path,
+                                                         <link linkend="mode-t">mode_t</link> mode,
+                                                         const <link linkend="char">char</link> *contents,
+                                                         <link linkend="size-t">size_t</link> contents_size);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-file.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various file utilities.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-file.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="kit-file-get-contents" role="function">
+<title>kit_file_get_contents ()</title>
+<indexterm zone="kit-file-get-contents"><primary>kit_file_get_contents</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_file_get_contents               (const <link linkend="char">char</link> *path,
+                                                         <link linkend="char">char</link> **out_contents,
+                                                         <link linkend="size-t">size_t</link> *out_contents_size);</programlisting>
+<para>
+Reads an entire file into allocated memory.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> path to file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_contents</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for allocated memory. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_contents_size</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for size of the file.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> if the file was read into memory; <link linkend="FALSE:CAPS"><type>FALSE</type></link> if an error
+occured and errno will be set. On OOM, errno will be set to
+ENOMEM. If the file doesn't exist, errno will be set to ENOENT.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-file-set-contents" role="function">
+<title>kit_file_set_contents ()</title>
+<indexterm zone="kit-file-set-contents"><primary>kit_file_set_contents</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_file_set_contents               (const <link linkend="char">char</link> *path,
+                                                         <link linkend="mode-t">mode_t</link> mode,
+                                                         const <link linkend="char">char</link> *contents,
+                                                         <link linkend="size-t">size_t</link> contents_size);</programlisting>
+<para>
+Writes all of contents to a file named <parameter>path</parameter>, with good error
+checking. If a file called <parameter>path</parameter> already exists it will be
+overwritten. This write is atomic in the sense that it is first
+written to a temporary file which is then renamed to the final
+name.
+</para>
+<para>
+If the file already exists hard links to <parameter>path</parameter> will break. Also
+since the file is recreated, existing permissions, access control
+lists, metadata etc. may be lost. If <parameter>path</parameter> is a symbolic link, the
+link itself will be replaced, not the linked file.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> path to file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>mode</parameter>&nbsp;:</term>
+<listitem><simpara> mode for file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>contents</parameter>&nbsp;:</term>
+<listitem><simpara> contents to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>contents_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of contents
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> if contents were set; <link linkend="FALSE:CAPS"><type>FALSE</type></link> if an error occured and
+errno will be set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-debug">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-debug.top_of_page">polkit-debug</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>polkit-debug</refname>
+<refpurpose>Internal debug functions for polkit.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-debug.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>                <link linkend="polkit-debug">polkit_debug</link>                        (const <link linkend="char">char</link> *format,
+                                                         ...);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-debug.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+These functions are used for debug purposes.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-debug.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="polkit-debug" role="function">
+<title>polkit_debug ()</title>
+<indexterm zone="polkit-debug"><primary>polkit_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_debug                        (const <link linkend="char">char</link> *format,
+                                                         ...);</programlisting>
+<para>
+Prints a debug message to stdout if the environment variable
+POLKIT_DEBUG is set. In production builds this function may
+be a no-op.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara> format
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

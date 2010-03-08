@@ -1,0 +1,44 @@
+<!-- ##### SECTION Title ##### -->
+kit-spawn
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM KitSpawnFlags ##### -->
+<para>
+
+</para>
+
+@KIT_SPAWN_CHILD_INHERITS_STDIN: 
+@KIT_SPAWN_STDOUT_TO_DEV_NULL: 
+@KIT_SPAWN_STDERR_TO_DEV_NULL: 
+
+<!-- ##### FUNCTION kit_spawn_sync ##### -->
+<para>
+
+</para>
+
+@working_directory: 
+@flags: 
+@argv: 
+@envp: 
+@stdinp: 
+@stdoutp: 
+@stderrp: 
+@out_exit_status: 
+@Returns: 
+
+

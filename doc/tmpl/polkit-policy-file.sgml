@@ -1,0 +1,75 @@
+<!-- ##### SECTION Title ##### -->
+polkit-policy-file
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitPolicyFile ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION PolKitPolicyFileEntryForeachFunc ##### -->
+<para>
+
+</para>
+
+@policy_file: 
+@policy_file_entry: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_new ##### -->
+<para>
+
+</para>
+
+@path: 
+@load_descriptions: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_ref ##### -->
+<para>
+
+</para>
+
+@policy_file: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_unref ##### -->
+<para>
+
+</para>
+
+@policy_file: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_foreach ##### -->
+<para>
+
+</para>
+
+@policy_file: 
+@cb: 
+@user_data: 
+@Returns: 
+
+

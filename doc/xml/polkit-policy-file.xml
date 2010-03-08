@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-policy-file">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-policy-file.top_of_page">Policy Definition Files</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Policy Definition Files</refname>
+<refpurpose>Represents a set of declared actions.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-policy-file.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitPolicyFile">PolKitPolicyFile</link>;
+<link linkend="polkit-bool-t">polkit_bool_t</link>       (<link linkend="PolKitPolicyFileEntryForeachFunc">*PolKitPolicyFileEntryForeachFunc</link>) (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file,
+                                                         <link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="PolKitPolicyFile">PolKitPolicyFile</link>*   <link linkend="polkit-policy-file-new">polkit_policy_file_new</link>              (const <link linkend="char">char</link> *path,
+                                                         <link linkend="polkit-bool-t">polkit_bool_t</link> load_descriptions,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
+<link linkend="PolKitPolicyFile">PolKitPolicyFile</link>*   <link linkend="polkit-policy-file-ref">polkit_policy_file_ref</link>              (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file);
+<link linkend="void">void</link>                <link linkend="polkit-policy-file-unref">polkit_policy_file_unref</link>            (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-policy-file-entry-foreach">polkit_policy_file_entry_foreach</link>    (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file,
+                                                         <link linkend="PolKitPolicyFileEntryForeachFunc">PolKitPolicyFileEntryForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-policy-file.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent a policy file.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-policy-file.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitPolicyFile" role="struct">
+<title>PolKitPolicyFile</title>
+<indexterm zone="PolKitPolicyFile"><primary>PolKitPolicyFile</primary></indexterm><programlisting>typedef struct _PolKitPolicyFile PolKitPolicyFile;</programlisting>
+<para>
+Objects of this class are used to record information about a
+policy file.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="PolKitPolicyFileEntryForeachFunc" role="function">
+<title>PolKitPolicyFileEntryForeachFunc ()</title>
+<indexterm zone="PolKitPolicyFileEntryForeachFunc"><primary>PolKitPolicyFileEntryForeachFunc</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       (*PolKitPolicyFileEntryForeachFunc) (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file,
+                                                         <link linkend="PolKitPolicyFileEntry">PolKitPolicyFileEntry</link> *policy_file_entry,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Type for function used in <link linkend="polkit-policy-file-entry-foreach"><function>polkit_policy_file_entry_foreach()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>policy_file_entry</parameter>&nbsp;:</term>
+<listitem><simpara> the entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g.  stop the iteration
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-policy-file-new" role="function">
+<title>polkit_policy_file_new ()</title>
+<indexterm zone="polkit-policy-file-new"><primary>polkit_policy_file_new</primary></indexterm><programlisting><link linkend="PolKitPolicyFile">PolKitPolicyFile</link>*   polkit_policy_file_new              (const <link linkend="char">char</link> *path,
+                                                         <link linkend="polkit-bool-t">polkit_bool_t</link> load_descriptions,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Load a policy file.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> path to file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>load_descriptions</parameter>&nbsp;:</term>
+<listitem><simpara> whether descriptions should be loaded
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The new object or <link linkend="NULL:CAPS"><type>NULL</type></link> if error is set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-policy-file-ref" role="function">
+<title>polkit_policy_file_ref ()</title>
+<indexterm zone="polkit-policy-file-ref"><primary>polkit_policy_file_ref</primary></indexterm><programlisting><link linkend="PolKitPolicyFile">PolKitPolicyFile</link>*   polkit_policy_file_ref              (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-policy-file-unref" role="function">
+<title>polkit_policy_file_unref ()</title>
+<indexterm zone="polkit-policy-file-unref"><primary>polkit_policy_file_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_policy_file_unref            (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-policy-file-entry-foreach" role="function">
+<title>polkit_policy_file_entry_foreach ()</title>
+<indexterm zone="polkit-policy-file-entry-foreach"><primary>polkit_policy_file_entry_foreach</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_policy_file_entry_foreach    (<link linkend="PolKitPolicyFile">PolKitPolicyFile</link> *policy_file,
+                                                         <link linkend="PolKitPolicyFileEntryForeachFunc">PolKitPolicyFileEntryForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Visits all entries in a policy file.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>policy_file</parameter>&nbsp;:</term>
+<listitem><simpara> the policy file object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cb</parameter>&nbsp;:</term>
+<listitem><simpara> callback to invoke for each entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> if the iteration was short-circuited
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

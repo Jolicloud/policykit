@@ -1,0 +1,263 @@
+<!-- ##### SECTION Title ##### -->
+polkit-authorization-db
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitAuthorizationDB ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### ENUM PolKitAuthorizationDBCapability ##### -->
+<para>
+
+</para>
+
+@POLKIT_AUTHORIZATION_DB_CAPABILITY_CAN_OBTAIN: 
+
+<!-- ##### FUNCTION polkit_authorization_db_get_capabilities ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_ref ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_unref ##### -->
+<para>
+
+</para>
+
+@authdb: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_debug ##### -->
+<para>
+
+</para>
+
+@authdb: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_validate ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_is_session_authorized ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@session: 
+@out_is_authorized: 
+@out_is_negative_authorized: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_is_caller_authorized ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@caller: 
+@revoke_if_one_shot: 
+@out_is_authorized: 
+@out_is_negative_authorized: 
+@error: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitAuthorizationDBForeach ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@auth: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_foreach ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@cb: 
+@user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_foreach_for_uid ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@uid: 
+@cb: 
+@user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_foreach_for_action ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@cb: 
+@user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_foreach_for_action_for_uid ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@uid: 
+@cb: 
+@user_data: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_add_entry_process_one_shot ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@caller: 
+@user_authenticated_as: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_add_entry_process ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@caller: 
+@user_authenticated_as: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_add_entry_session ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@caller: 
+@user_authenticated_as: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_add_entry_always ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@caller: 
+@user_authenticated_as: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_grant_to_uid ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@uid: 
+@constraints: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_grant_negative_to_uid ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@uid: 
+@constraints: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_revoke_entry ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@auth: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_db_is_uid_blocked_by_self ##### -->
+<para>
+
+</para>
+
+@authdb: 
+@action: 
+@uid: 
+@error: 
+@Returns: 
+
+

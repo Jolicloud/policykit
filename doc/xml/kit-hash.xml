@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-hash">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-hash.top_of_page">Hash tables</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Hash tables</refname>
+<refpurpose>Hash tables</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-hash.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="KitHash">KitHash</link>;
+<link linkend="uint32-t">uint32_t</link>            (<link linkend="KitHashFunc">*KitHashFunc</link>)                      (const <link linkend="void">void</link> *key);
+<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitEqualFunc">*KitEqualFunc</link>)                     (const <link linkend="void">void</link> *key1,
+                                                         const <link linkend="void">void</link> *key2);
+<link linkend="void">void</link>                (<link linkend="KitFreeFunc">*KitFreeFunc</link>)                      (<link linkend="void">void</link> *p);
+<link linkend="void">void</link>*               (<link linkend="KitCopyFunc">*KitCopyFunc</link>)                      (const <link linkend="void">void</link> *p);
+<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitHashForeachFunc">*KitHashForeachFunc</link>)               (<link linkend="void">void</link> *key,
+                                                         <link linkend="void">void</link> *value,
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitHash">KitHash</link> *hash);
+<link linkend="KitHash">KitHash</link>*            <link linkend="kit-hash-new">kit_hash_new</link>                        (<link linkend="KitHashFunc">KitHashFunc</link> hash_func,
+                                                         <link linkend="KitEqualFunc">KitEqualFunc</link> key_equal_func,
+                                                         <link linkend="KitCopyFunc">KitCopyFunc</link> key_copy_func,
+                                                         <link linkend="KitCopyFunc">KitCopyFunc</link> value_copy_func,
+                                                         <link linkend="KitFreeFunc">KitFreeFunc</link> key_destroy_func,
+                                                         <link linkend="KitFreeFunc">KitFreeFunc</link> value_destroy_func);
+<link linkend="KitHash">KitHash</link>*            <link linkend="kit-hash-ref">kit_hash_ref</link>                        (<link linkend="KitHash">KitHash</link> *hash);
+<link linkend="void">void</link>                <link linkend="kit-hash-unref">kit_hash_unref</link>                      (<link linkend="KitHash">KitHash</link> *hash);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-hash-insert">kit_hash_insert</link>                     (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="void">void</link> *key,
+                                                         <link linkend="void">void</link> *value);
+<link linkend="void">void</link>*               <link linkend="kit-hash-lookup">kit_hash_lookup</link>                     (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="void">void</link> *key,
+                                                         <link linkend="kit-bool-t">kit_bool_t</link> *found);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-hash-foreach">kit_hash_foreach</link>                    (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="KitHashForeachFunc">KitHashForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="size-t">size_t</link>              <link linkend="kit-hash-foreach-remove">kit_hash_foreach_remove</link>             (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="KitHashForeachFunc">KitHashForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="uint32-t">uint32_t</link>            <link linkend="kit-hash-direct-hash-func">kit_hash_direct_hash_func</link>           (const <link linkend="void">void</link> *key);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-hash-direct-equal-func">kit_hash_direct_equal_func</link>          (const <link linkend="void">void</link> *v1,
+                                                         const <link linkend="void">void</link> *v2);
+<link linkend="uint32-t">uint32_t</link>            <link linkend="kit-hash-str-hash-func">kit_hash_str_hash_func</link>              (const <link linkend="void">void</link> *key);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-hash-str-equal-func">kit_hash_str_equal_func</link>             (const <link linkend="void">void</link> *v1,
+                                                         const <link linkend="void">void</link> *v2);
+<link linkend="void">void</link>*               <link linkend="kit-hash-str-copy">kit_hash_str_copy</link>                   (const <link linkend="void">void</link> *p);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-hash.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class provides support for hash tables.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-hash.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="KitHash" role="struct">
+<title>KitHash</title>
+<indexterm zone="KitHash"><primary>KitHash</primary></indexterm><programlisting>typedef struct _KitHash KitHash;</programlisting>
+<para>
+The <link linkend="KitHash"><type>KitHash</type></link> structure not be accessed directly.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="KitHashFunc" role="function">
+<title>KitHashFunc ()</title>
+<indexterm zone="KitHashFunc"><primary>KitHashFunc</primary></indexterm><programlisting><link linkend="uint32-t">uint32_t</link>            (*KitHashFunc)                      (const <link linkend="void">void</link> *key);</programlisting>
+<para>
+The function is passed a key and should return a hash value. The
+functions <link linkend="kit-hash-direct-hash-func"><function>kit_hash_direct_hash_func()</function></link> and
+<link linkend="kit-hash-str-hash-func"><function>kit_hash_str_hash_func()</function></link> provide hash functions which can be
+used when the key is a pointer and an char* respectively.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> a key
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the hash value corresponding to the key
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitEqualFunc" role="function">
+<title>KitEqualFunc ()</title>
+<indexterm zone="KitEqualFunc"><primary>KitEqualFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitEqualFunc)                     (const <link linkend="void">void</link> *key1,
+                                                         const <link linkend="void">void</link> *key2);</programlisting>
+<para>
+Determines if two keys are equal. The functions
+<link linkend="kit-hash-direct-equal-func"><function>kit_hash_direct_equal_func()</function></link> and <link linkend="kit-hash-str-equal-func"><function>kit_hash_str_equal_func()</function></link>
+provide equality functions which can be used when the key is a
+pointer and an char* respectively.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>key1</parameter>&nbsp;:</term>
+<listitem><simpara> first key
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key2</parameter>&nbsp;:</term>
+<listitem><simpara> second key
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> iff the keys are equal
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitFreeFunc" role="function">
+<title>KitFreeFunc ()</title>
+<indexterm zone="KitFreeFunc"><primary>KitFreeFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*KitFreeFunc)                      (<link linkend="void">void</link> *p);</programlisting>
+<para>
+Specifies the type of function which is called when a data element
+is destroyed. It is passed the pointer to the data element and
+should free any memory and resources allocated for it. The function
+<link linkend="p-free"><function>p_free()</function></link> or any of the object unref functions can be passed here.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitCopyFunc" role="function">
+<title>KitCopyFunc ()</title>
+<indexterm zone="KitCopyFunc"><primary>KitCopyFunc</primary></indexterm><programlisting><link linkend="void">void</link>*               (*KitCopyFunc)                      (const <link linkend="void">void</link> *p);</programlisting>
+<para>
+Specifies the type of function which is called when a data element
+is to be cloned or reffed. It is passed the pointer to the data
+element and should return a new pointer to a reffed or cloned
+object. The function <link linkend="kit-hash-str-copy"><function>kit_hash_str_copy()</function></link> or any of the object
+ref functions can be passed here.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> pointer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A copy or ref of the object in question
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitHashForeachFunc" role="function">
+<title>KitHashForeachFunc ()</title>
+<indexterm zone="KitHashForeachFunc"><primary>KitHashForeachFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitHashForeachFunc)               (<link linkend="void">void</link> *key,
+                                                         <link linkend="void">void</link> *value,
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitHash">KitHash</link> *hash);</programlisting>
+<para>
+Type signature for callback function used in <link linkend="kit-hash-foreach"><function>kit_hash_foreach()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> key
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data passed to <link linkend="kit-hash-foreach"><function>kit_hash_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Return <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g. stop the iteration.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-new" role="function">
+<title>kit_hash_new ()</title>
+<indexterm zone="kit-hash-new"><primary>kit_hash_new</primary></indexterm><programlisting><link linkend="KitHash">KitHash</link>*            kit_hash_new                        (<link linkend="KitHashFunc">KitHashFunc</link> hash_func,
+                                                         <link linkend="KitEqualFunc">KitEqualFunc</link> key_equal_func,
+                                                         <link linkend="KitCopyFunc">KitCopyFunc</link> key_copy_func,
+                                                         <link linkend="KitCopyFunc">KitCopyFunc</link> value_copy_func,
+                                                         <link linkend="KitFreeFunc">KitFreeFunc</link> key_destroy_func,
+                                                         <link linkend="KitFreeFunc">KitFreeFunc</link> value_destroy_func);</programlisting>
+<para>
+Creates a new Hash Table.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash_func</parameter>&nbsp;:</term>
+<listitem><simpara> The hash function to use
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_equal_func</parameter>&nbsp;:</term>
+<listitem><simpara> The function used to determine key equality
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_copy_func</parameter>&nbsp;:</term>
+<listitem><simpara> Function for copying keys or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value_copy_func</parameter>&nbsp;:</term>
+<listitem><simpara> Function for copying values or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key_destroy_func</parameter>&nbsp;:</term>
+<listitem><simpara> Function for freeing keys or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value_destroy_func</parameter>&nbsp;:</term>
+<listitem><simpara> Function for freeing values or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The new hash table. Returns <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-ref" role="function">
+<title>kit_hash_ref ()</title>
+<indexterm zone="kit-hash-ref"><primary>kit_hash_ref</primary></indexterm><programlisting><link linkend="KitHash">KitHash</link>*            kit_hash_ref                        (<link linkend="KitHash">KitHash</link> *hash);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-unref" role="function">
+<title>kit_hash_unref ()</title>
+<indexterm zone="kit-hash-unref"><primary>kit_hash_unref</primary></indexterm><programlisting><link linkend="void">void</link>                kit_hash_unref                      (<link linkend="KitHash">KitHash</link> *hash);</programlisting>
+<para>
+Decrease reference count. If reference count drop to zero the hash
+table is freed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-insert" role="function">
+<title>kit_hash_insert ()</title>
+<indexterm zone="kit-hash-insert"><primary>kit_hash_insert</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_hash_insert                     (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="void">void</link> *key,
+                                                         <link linkend="void">void</link> *value);</programlisting>
+<para>
+Inserts a new key and value into a hash table. If the key already
+exists in the hash table it's current value is replaced with the
+new value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> key to insert
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value to insert
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> unless OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-lookup" role="function">
+<title>kit_hash_lookup ()</title>
+<indexterm zone="kit-hash-lookup"><primary>kit_hash_lookup</primary></indexterm><programlisting><link linkend="void">void</link>*               kit_hash_lookup                     (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="void">void</link> *key,
+                                                         <link linkend="kit-bool-t">kit_bool_t</link> *found);</programlisting>
+<para>
+Look up a value in the hash table.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> key to look up
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>found</parameter>&nbsp;:</term>
+<listitem><simpara> if not <link linkend="NULL:CAPS"><type>NULL</type></link>, will return <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the key was found in the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the value; caller shall not free/unref this value
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-foreach" role="function">
+<title>kit_hash_foreach ()</title>
+<indexterm zone="kit-hash-foreach"><primary>kit_hash_foreach</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_hash_foreach                    (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="KitHashForeachFunc">KitHashForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Iterate over all elements in a hash table</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cb</parameter>&nbsp;:</term>
+<listitem><simpara> callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the callback short-circuited the iteration
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-foreach-remove" role="function">
+<title>kit_hash_foreach_remove ()</title>
+<indexterm zone="kit-hash-foreach-remove"><primary>kit_hash_foreach_remove</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              kit_hash_foreach_remove             (<link linkend="KitHash">KitHash</link> *hash,
+                                                         <link linkend="KitHashForeachFunc">KitHashForeachFunc</link> cb,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Iterate over all elements in a hash table. If <parameter>cb</parameter> returns <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>,
+the element will be removed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>hash</parameter>&nbsp;:</term>
+<listitem><simpara> the hash table
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cb</parameter>&nbsp;:</term>
+<listitem><simpara> callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of key/value pairs removed
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-direct-hash-func" role="function">
+<title>kit_hash_direct_hash_func ()</title>
+<indexterm zone="kit-hash-direct-hash-func"><primary>kit_hash_direct_hash_func</primary></indexterm><programlisting><link linkend="uint32-t">uint32_t</link>            kit_hash_direct_hash_func           (const <link linkend="void">void</link> *key);</programlisting>
+<para>
+Converts a pointer to a hash value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> the key
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a hash value corresponding to the key
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-direct-equal-func" role="function">
+<title>kit_hash_direct_equal_func ()</title>
+<indexterm zone="kit-hash-direct-equal-func"><primary>kit_hash_direct_equal_func</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_hash_direct_equal_func          (const <link linkend="void">void</link> *v1,
+                                                         const <link linkend="void">void</link> *v2);</programlisting>
+<para>
+Compares two pointers and return <link linkend="TRUE:CAPS"><type>TRUE</type></link> if they are equal (same address).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>v1</parameter>&nbsp;:</term>
+<listitem><simpara> first value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>v2</parameter>&nbsp;:</term>
+<listitem><simpara> second value
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the values are equal
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-str-hash-func" role="function">
+<title>kit_hash_str_hash_func ()</title>
+<indexterm zone="kit-hash-str-hash-func"><primary>kit_hash_str_hash_func</primary></indexterm><programlisting><link linkend="uint32-t">uint32_t</link>            kit_hash_str_hash_func              (const <link linkend="void">void</link> *key);</programlisting>
+<para>
+Converts a string to a hash value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> the key
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a hash value corresponding to the key
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-str-equal-func" role="function">
+<title>kit_hash_str_equal_func ()</title>
+<indexterm zone="kit-hash-str-equal-func"><primary>kit_hash_str_equal_func</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_hash_str_equal_func             (const <link linkend="void">void</link> *v1,
+                                                         const <link linkend="void">void</link> *v2);</programlisting>
+<para>
+Compares two strings and return <link linkend="TRUE:CAPS"><type>TRUE</type></link> if they are equal.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>v1</parameter>&nbsp;:</term>
+<listitem><simpara> first value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>v2</parameter>&nbsp;:</term>
+<listitem><simpara> second value
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the values are equal
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-hash-str-copy" role="function">
+<title>kit_hash_str_copy ()</title>
+<indexterm zone="kit-hash-str-copy"><primary>kit_hash_str_copy</primary></indexterm><programlisting><link linkend="void">void</link>*               kit_hash_str_copy                   (const <link linkend="void">void</link> *p);</programlisting>
+<para>
+Similar to <link linkend="kit-strdup"><function>kit_strdup()</function></link> except for types.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>p</parameter>&nbsp;:</term>
+<listitem><simpara> void pointer to string
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a void pointer to a copy or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

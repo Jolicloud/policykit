@@ -1,0 +1,1130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Caller Determination</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-caller.html" title="Caller">
+<link rel="next" href="polkit-polkit-context.html" title="Context">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-caller.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-context.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-dbus.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-dbus.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-dbus"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-dbus.top_of_page"></a>Caller Determination</span></h2>
+<p>Caller Determination — Obtaining seat, session and caller information
+via D-Bus and ConsoleKit.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-dbus.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+<a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-session-new-from-objpath"
+>polkit_session_new_from_objpath</a>     (DBusConnection *con,
+                                                         const char *objpath,
+                                                         uid_t uid,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-session-new-from-cookie"
+>polkit_session_new_from_cookie</a>      (DBusConnection *con,
+                                                         const char *cookie,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+>polkit_caller_new_from_dbus_name</a>    (DBusConnection *con,
+                                                         const char *dbus_name,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+>polkit_caller_new_from_pid</a>          (DBusConnection *con,
+                                                         pid_t pid,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-is-authorization-relevant"
+>polkit_is_authorization_relevant</a>    (DBusConnection *con,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         DBusError *error);
+                    <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>;
+<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-new"
+>polkit_tracker_new</a>                  (void);
+<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-ref"
+>polkit_tracker_ref</a>                  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);
+void                <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-unref"
+>polkit_tracker_unref</a>                (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);
+void                <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-set-system-bus-connection"
+>polkit_tracker_set_system_bus_connection</a>
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         DBusConnection *con);
+void                <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-init"
+>polkit_tracker_init</a>                 (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-dbus-func"
+>polkit_tracker_dbus_func</a>            (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         DBusMessage *message);
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-get-caller-from-dbus-name"
+>polkit_tracker_get_caller_from_dbus_name</a>
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         const char *dbus_name,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-get-caller-from-pid"
+>polkit_tracker_get_caller_from_pid</a>  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         pid_t pid,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant"
+>polkit_tracker_is_authorization_relevant</a>
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         DBusError *error);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-dbus.description"></a><h2>Description</h2>
+<p>
+Helper library for obtaining seat, session and caller information
+via D-Bus and ConsoleKit. This library is only useful when writing
+a mechanism. 
+</p>
+<p>
+If the mechanism itself is a daemon exposing a remote services via
+the system message bus it's often a better idea, to reduce
+roundtrips, to use the high-level <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> class rather than
+the low-level functions <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+><code class="function">polkit_caller_new_from_dbus_name()</code></a> and
+<a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+><code class="function">polkit_caller_new_from_pid()</code></a>.
+</p>
+<p>
+These functions are in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-dbus.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="polkit-session-new-from-objpath"></a><h3>polkit_session_new_from_objpath ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      polkit_session_new_from_objpath     (DBusConnection *con,
+                                                         const char *objpath,
+                                                         uid_t uid,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+><span class="type">PolKitSession</span></a> object by querying
+the ConsoleKit daemon for information. Note that this will do a lot
+of blocking IO so it is best avoided if your process already
+tracks/caches all the information. If you pass in <em class="parameter"><code>uid</code></em> as a
+non-negative number, a round trip can be saved.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>objpath</code></em>:</span></p></td>
+<td> object path of ConsoleKit session object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uid</code></em>:</span></p></td>
+<td> the user owning the session or -1 if unknown
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-session-new-from-cookie"></a><h3>polkit_session_new_from_cookie ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a>*      polkit_session_new_from_cookie      (DBusConnection *con,
+                                                         const char *cookie,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+><span class="type">PolKitSession</span></a> object by querying
+the ConsoleKit daemon for information. Note that this will do a lot
+of blocking IO so it is best avoided if your process already
+tracks/caches all the information.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cookie</code></em>:</span></p></td>
+<td> a ConsoleKit XDG_SESSION_COOKIE
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-new-from-dbus-name"></a><h3>polkit_caller_new_from_dbus_name ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_caller_new_from_dbus_name    (DBusConnection *con,
+                                                         const char *dbus_name,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object by querying
+both the system bus daemon and the ConsoleKit daemon for
+information. Note that this will do a lot of blocking IO so it is
+best avoided if your process already tracks/caches all the
+information. You can use the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> class for this.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>:</span></p></td>
+<td> unique system bus connection name
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-new-from-pid"></a><h3>polkit_caller_new_from_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_caller_new_from_pid          (DBusConnection *con,
+                                                         pid_t pid,
+                                                         DBusError *error);</pre>
+<p>
+This function will construct a <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object by querying
+both information in /proc (on Linux) and the ConsoleKit daemon for
+information about a given process. Note that this will do a lot of
+blocking IO so it is best avoided if your process already
+tracks/caches all the information. You can use the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a>
+class for this.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> process id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case
+<em class="parameter"><code>error</code></em> will be set)
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-is-authorization-relevant"></a><h3>polkit_is_authorization_relevant ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_is_authorization_relevant    (DBusConnection *con,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         DBusError *error);</pre>
+<p>
+As explicit authorizations are scoped (process single shot,
+process, session or everything), they become irrelevant once the
+entity (process or session) ceases to exist. This function
+determines whether the authorization is still relevant; it's useful
+for reporting and graphical tools displaying authorizations.
+</p>
+<p>
+Note that this may do blocking IO to check for session
+authorizations so it is best avoided if your process already
+tracks/caches all the information. You can use the
+<a
+href="../polkit/polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant"
+><code class="function">polkit_tracker_is_authorization_relevant()</code></a> method on the
+<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> class for this.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
+<td> D-Bus system bus connection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
+<td> authorization to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if the authorization still applies, <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a> if an
+error occurred (then error will be set) or if the entity the
+authorization refers to has gone out of scope.
+
+This function is in <code class="literal">libpolkit-dbus</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitTracker"></a><h3>PolKitTracker</h3>
+<pre class="programlisting">typedef struct _PolKitTracker PolKitTracker;</pre>
+<p>
+Instances of this class are used to cache information about
+callers; typically this is used in scenarios where the same caller
+is calling into a mechanism multiple times. 
+</p>
+<p>
+Thus, an application can use this class to get the <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a>
+object; the class will listen to both NameOwnerChanged and
+ActivityChanged signals from the message bus and update / retire
+the <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> objects.
+</p>
+<p>
+An example of how to use <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> is provided here. First, build the following program
+</p>
+<p>
+</p>
+<pre class="programlisting">/*
+ * Small example of how to use the PolKitTracker class.
+ *
+ * Copyright (C) 2007 David Zeuthen, &lt;david@fubar.dk&gt;
+ * 
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+#include &lt;stdio.h&gt;
+#include &lt;glib.h&gt;
+#include &lt;dbus/dbus.h&gt;
+#include &lt;polkit-dbus/polkit-dbus.h&gt;
+
+/* Note, on purpose, there is little or no error checking done
+ * anywhere in this program. Use at your own risk.
+ */
+
+static void
+print_caller (PolKitTracker *pk_tracker, const char *dbus_name)
+{
+        DBusError error;
+        PolKitCaller *caller;
+
+        dbus_error_init (&amp;error);
+
+        caller = polkit_tracker_get_caller_from_dbus_name (pk_tracker, 
+                                                           dbus_name,
+                                                           &amp;error);
+        if (caller == NULL) {
+                g_warning ("Error getting PolKitCaller for '%s': %s: %s",
+                           dbus_name, error.name, error.message);
+                dbus_error_free (&amp;error);
+        } else {
+                /* got it; print it to stdout */
+                printf ("\n");
+                polkit_caller_debug (caller);
+                polkit_caller_unref (caller);
+        }
+}
+
+static DBusHandlerResult
+filter (DBusConnection *connection, DBusMessage *message, void *user_data)
+{
+        PolKitTracker *pk_tracker = (PolKitTracker *) user_data;
+        char *name;
+        char *new_service_name;
+        char *old_service_name;
+
+        /*  pass NameOwnerChanged signals from the bus and ConsoleKit to PolKitTracker */
+        if (dbus_message_is_signal (message, DBUS_INTERFACE_DBUS, "NameOwnerChanged") ||
+            g_str_has_prefix (dbus_message_get_interface (message), "org.freedesktop.ConsoleKit")) {
+                polkit_tracker_dbus_func (pk_tracker, message);
+        }
+
+        /* handle calls into our test service */
+        if (dbus_message_is_method_call (message, "dk.fubar.PolKitTestService", "Test")) {
+                DBusMessage *reply;
+                const char *reply_str = "Right back at y'all!";
+
+                print_caller (pk_tracker, dbus_message_get_sender (message));
+
+                reply = dbus_message_new_method_return (message);
+                dbus_message_append_args (reply, 
+                                          DBUS_TYPE_STRING, &amp;reply_str,
+                                          DBUS_TYPE_INVALID);
+                dbus_connection_send (connection, reply, NULL);
+                dbus_message_unref (reply);
+
+                /* this one we do handle */
+                return DBUS_HANDLER_RESULT_HANDLED;
+        }
+
+        /* other filters might want to process this message too */
+        return DBUS_HANDLER_RESULT_NOT_YET_HANDLED;
+}
+
+
+int
+main (int argc, char *argv[])
+{
+        DBusError error;
+        DBusConnection *con;
+        GMainLoop *loop;
+        PolKitTracker *pk_tracker;
+
+        /* This is needed to get something out of polkit_caller_debug() */
+        g_setenv ("POLKIT_DEBUG", "1", TRUE);
+
+        loop = g_main_loop_new (NULL, FALSE);
+
+        dbus_error_init (&amp;error);
+        con = dbus_bus_get (DBUS_BUS_SYSTEM, &amp;error);
+
+        pk_tracker = polkit_tracker_new ();
+        polkit_tracker_set_system_bus_connection (pk_tracker, con);
+        polkit_tracker_init (pk_tracker);
+
+        /* need to listen to NameOwnerChanged */
+	dbus_bus_add_match (con,
+			    "type='signal'"
+			    ",interface='"DBUS_INTERFACE_DBUS"'"
+			    ",sender='"DBUS_SERVICE_DBUS"'"
+			    ",member='NameOwnerChanged'",
+			    &amp;error);
+
+        /* need to listen to ConsoleKit signals */
+	dbus_bus_add_match (con,
+			    "type='signal',sender='org.freedesktop.ConsoleKit'",
+			    &amp;error);
+
+        /* own a simple service */
+        dbus_bus_request_name (con, "dk.fubar.PolKitTestService", DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;error);
+
+        dbus_connection_add_filter (con, filter, pk_tracker, NULL);
+        dbus_connection_setup_with_g_main (con, g_main_loop_get_context (loop));
+
+        g_main_loop_run (loop);
+        return 0;
+}
+</pre>
+<p>
+</p>
+<p>
+with
+</p>
+<p>
+</p>
+<pre class="programlisting">gcc -o tracker-example `pkg-config --cflags --libs dbus-glib-1 polkit-dbus` tracker-example.c</pre>
+<p>
+</p>
+<p>
+Then put the following content
+</p>
+<p>
+</p>
+<pre class="programlisting">&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;!-- -*- XML -*- --&gt;
+&lt;!DOCTYPE busconfig PUBLIC
+ "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd"&gt;
+&lt;busconfig&gt;
+  &lt;policy context="default"&gt;
+    &lt;allow own="dk.fubar.PolKitTestService"/&gt;
+  &lt;/policy&gt;
+&lt;/busconfig&gt;
+
+</pre>
+<p>
+</p>
+<p>
+in the file <code class="literal">/etc/dbus-1/system.d/dk.fubar.PolKitTestService.conf</code>. Finally,
+create a small Python client like this
+</p>
+<p>
+</p>
+<pre class="programlisting">#!/usr/bin/python
+
+import dbus
+import time
+
+bus = dbus.Bus(dbus.Bus.TYPE_SYSTEM)
+obj = dbus.Interface(bus.get_object("dk.fubar.PolKitTestService", "/"), "dk.fubar.PolKitTestService")
+
+while True:
+    print obj.Test()
+    time.sleep(1)
+</pre>
+<p>
+</p>
+<p>
+as <code class="literal">tracker-example-client.py</code>. Now, run <code class="literal">tracker-example</code>
+in one window and <code class="literal">tracker-example-client</code> in another. The output of
+the former should look like this
+</p>
+<p>
+</p>
+<pre class="programlisting">
+18:20:00.414: PolKitCaller: refcount=1 dbus_name=:1.473 uid=500 pid=8636 selinux_context=system_u:system_r:unconfined_t
+18:20:00.414: PolKitSession: refcount=1 uid=0 objpath=/org/freedesktop/ConsoleKit/Session1 is_active=1 is_local=1 remote_host=(null)
+18:20:00.414: PolKitSeat: refcount=1 objpath=/org/freedesktop/ConsoleKit/Seat1
+
+18:20:01.424: PolKitCaller: refcount=1 dbus_name=:1.473 uid=500 pid=8636 selinux_context=system_u:system_r:unconfined_t
+18:20:01.424: PolKitSession: refcount=1 uid=0 objpath=/org/freedesktop/ConsoleKit/Session1 is_active=1 is_local=1 remote_host=(null)
+18:20:01.424: PolKitSeat: refcount=1 objpath=/org/freedesktop/ConsoleKit/Seat1
+
+18:20:02.434: PolKitCaller: refcount=1 dbus_name=:1.473 uid=500 pid=8636 selinux_context=system_u:system_r:unconfined_t
+18:20:02.434: PolKitSession: refcount=1 uid=0 objpath=/org/freedesktop/ConsoleKit/Session1 is_active=0 is_local=1 remote_host=(null)
+18:20:02.434: PolKitSeat: refcount=1 objpath=/org/freedesktop/ConsoleKit/Seat1
+
+18:20:03.445: PolKitCaller: refcount=1 dbus_name=:1.473 uid=500 pid=8636 selinux_context=system_u:system_r:unconfined_t
+18:20:03.445: PolKitSession: refcount=1 uid=0 objpath=/org/freedesktop/ConsoleKit/Session1 is_active=1 is_local=1 remote_host=(null)
+18:20:03.445: PolKitSeat: refcount=1 objpath=/org/freedesktop/ConsoleKit/Seat1
+</pre>
+<p>
+</p>
+<p>
+The point of the test program is simply to gather caller
+information about clients (the small Python program, you may launch
+multiple instances of it) that repeatedly calls into the D-Bus
+service; if one runs <code class="literal">strace(1)</code> in front of the
+test program one will notice that there is only syscall / IPC
+overhead (except for printing to stdout) on the first call from the
+client.
+</p>
+<p>
+The careful reader will notice that, during the testing session, we
+did a quick VT switch away from the session (and back) which is
+reflected in the output.
+</p>
+<p>
+These functions are in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-new"></a><h3>polkit_tracker_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      polkit_tracker_new                  (void);</pre>
+<p>
+Creates a new <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> object.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-ref"></a><h3>polkit_tracker_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a>*      polkit_tracker_ref                  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);</pre>
+<p>
+Increase reference count.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-unref"></a><h3>polkit_tracker_unref ()</h3>
+<pre class="programlisting">void                polkit_tracker_unref                (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-set-system-bus-connection"></a><h3>polkit_tracker_set_system_bus_connection ()</h3>
+<pre class="programlisting">void                polkit_tracker_set_system_bus_connection
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         DBusConnection *con);</pre>
+<p>
+Tell the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> object to use the given D-Bus connection
+when it needs to fetch information from the system message bus and
+ConsoleKit services. This is used for priming the cache.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>con</code></em>:</span></p></td>
+<td> the connection to the system message bus
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-init"></a><h3>polkit_tracker_init ()</h3>
+<pre class="programlisting">void                polkit_tracker_init                 (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker);</pre>
+<p>
+Initialize the tracker.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-dbus-func"></a><h3>polkit_tracker_dbus_func ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_tracker_dbus_func            (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         DBusMessage *message);</pre>
+<p>
+The owner of the <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> object must pass signals from the
+system message bus (just NameOwnerChanged will do) and all signals
+from the ConsoleKit service into this function.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>message</code></em>:</span></p></td>
+<td> message to pass
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if there was a change in the ConsoleKit database.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-get-caller-from-dbus-name"></a><h3>polkit_tracker_get_caller_from_dbus_name ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_tracker_get_caller_from_dbus_name
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         const char *dbus_name,
+                                                         DBusError *error);</pre>
+<p>
+This function is similar to <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+><code class="function">polkit_caller_new_from_dbus_name()</code></a>
+except that it uses the cache in <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a>. So on the second
+and subsequent calls, for the same D-Bus name, there will be no
+syscall or IPC overhead in calling this function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>:</span></p></td>
+<td> unique name on the system message bus
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object; the caller must use
+<a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-unref"
+><code class="function">polkit_caller_unref()</code></a> on the object when done with it. Returns
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case error will be set).
+
+This function is in <code class="literal">libpolkit-dbus</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-get-caller-from-pid"></a><h3>polkit_tracker_get_caller_from_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_tracker_get_caller_from_pid  (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         pid_t pid,
+                                                         DBusError *error);</pre>
+<p>
+This function is similar to <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+><code class="function">polkit_caller_new_from_pid()</code></a>
+except that it uses the cache in <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a>. So on the second
+and subsequent calls, for the same D-Bus name, there will be no
+IPC overhead in calling this function. 
+</p>
+<p>
+There will be some syscall overhead to lookup the time when the
+given process is started (on Linux, looking up /proc/$pid/stat);
+this is needed because pid's can be recycled and the cache thus
+needs to record this in addition to the pid.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> UNIX process id to look at
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object; the caller must use
+<a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-unref"
+><code class="function">polkit_caller_unref()</code></a> on the object when done with it. Returns
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if an error occured (in which case error will be set).
+
+This function is in <code class="literal">libpolkit-dbus</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-tracker-is-authorization-relevant"></a><h3>polkit_tracker_is_authorization_relevant ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_tracker_is_authorization_relevant
+                                                        (<a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+>PolKitTracker</a> *pk_tracker,
+                                                         <a
+href="../polkit/polkit-polkit-authorization.html#PolKitAuthorization"
+>PolKitAuthorization</a> *auth,
+                                                         DBusError *error);</pre>
+<p>
+As explicit authorizations are scoped (process single shot,
+process, session or everything), they become irrelevant once the
+entity (process or session) ceases to exist. This function
+determines whether the authorization is still relevant; it's useful
+for reporting and graphical tools displaying authorizations.
+</p>
+<p>
+This function is similar to <a
+href="../polkit/polkit-polkit-dbus.html#polkit-is-authorization-relevant"
+><code class="function">polkit_is_authorization_relevant()</code></a> only
+that it avoids IPC overhead on the 2nd and subsequent calls when
+checking authorizations scoped for a session.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_tracker</code></em>:</span></p></td>
+<td> the tracker
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>auth</code></em>:</span></p></td>
+<td> authorization to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if the authorization still applies, <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a> if an
+error occurred (then error will be set) or if the entity the
+authorization refers to has gone out of scope.
+
+This function is in <code class="literal">libpolkit-dbus</code>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

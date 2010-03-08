@@ -1,0 +1,153 @@
+<!-- ##### SECTION Title ##### -->
+polkit-policy-default
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitPolicyDefault ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_policy_default_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_ref ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_unref ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_debug ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_clone ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_equals ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_can_session_do_action ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@action: 
+@session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_can_caller_do_action ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@action: 
+@caller: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_get_allow_any ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_get_allow_inactive ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_get_allow_active ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_set_allow_any ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@value: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_set_allow_inactive ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@value: 
+
+
+<!-- ##### FUNCTION polkit_policy_default_set_allow_active ##### -->
+<para>
+
+</para>
+
+@policy_default: 
+@value: 
+
+

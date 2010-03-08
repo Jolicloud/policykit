@@ -1,0 +1,311 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-simple">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-simple.top_of_page">Simple convenience interface</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Simple convenience interface</refname>
+<refpurpose>Simple convenience interface</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-simple.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-check-auth">polkit_check_auth</link>                   (<link linkend="pid-t">pid_t</link> pid,
+                                                         ...);
+<link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-check-authv">polkit_check_authv</link>                  (<link linkend="pid-t">pid_t</link> pid,
+                                                         const <link linkend="char">char</link> **action_ids);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-auth-obtain">polkit_auth_obtain</link>                  (const <link linkend="char">char</link> *action_id,
+                                                         <link linkend="polkit-uint32-t">polkit_uint32_t</link> xid,
+                                                         <link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-dbus-error-generate">polkit_dbus_error_generate</link>          (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> result,
+                                                         <link linkend="DBusError">DBusError</link> *error);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-dbus-error-parse">polkit_dbus_error_parse</link>             (<link linkend="DBusError">DBusError</link> *error,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-dbus-error-parse-from-strings">polkit_dbus_error_parse_from_strings</link>
+                                                        (const <link linkend="char">char</link> *error_name,
+                                                         const <link linkend="char">char</link> *error_message,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-simple.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Simple convenience interface</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-simple.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="polkit-check-auth" role="function" condition="since:0.7">
+<title>polkit_check_auth ()</title>
+<indexterm zone="polkit-check-auth" role="0.7"><primary>polkit_check_auth</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_check_auth                   (<link linkend="pid-t">pid_t</link> pid,
+                                                         ...);</programlisting>
+<para>
+A simple convenience function to check whether a given process is
+authorized for a number of actions. 
+</para>
+<para>
+This is useful for programs that just wants to check whether they
+should carry out some action. Note that the user identity used for
+the purpose of checking authorizations is the Real one compared to
+the e.g. Effective one (e.g. <link linkend="getuid"><function>getuid()</function></link>, <link linkend="getgid"><function>getgid()</function></link> is used instead of
+e.g. <link linkend="geteuid"><function>geteuid()</function></link>, <link linkend="getegid"><function>getegid()</function></link>). This is typically what one wants in a
+setuid root program if the setuid root program is designed to do
+work on behalf of the unprivileged user who invoked it (for
+example, the PulseAudio sound server is setuid root only so it can
+become a real time process; after that it drops all privileges).
+</para>
+<para>
+It varies whether one wants to pass <link linkend="getpid"><function>getpid()</function></link> or <link linkend="getppid"><function>getppid()</function></link> as the
+process id to this function. For example, in the PulseAudio case it
+is the right thing to pass <link linkend="getpid"><function>getpid()</function></link>. However, in a setup where the
+process is a privileged helper, one wants to pass the process id of
+the parent. Beware though, if the parent dies, <link linkend="getppid"><function>getppid()</function></link> will
+return 1 (the process id of <literal>/sbin/init</literal>) which is
+almost certainly guaranteed to be privileged as it is running as
+uid 0.
+</para>
+<para>
+Note that this function will open a connection to the system
+message bus and query ConsoleKit for details. In addition, it will
+load PolicyKit specific files and spawn privileged helpers if
+necessary. As such, there is a bit of IPC, context switching,
+syscall overhead and I/O involved in using this function. If you
+are planning on calling this function multiple times (e.g. from a
+daemon) on a frequent basis and/or need more detail you should use
+the <link linkend="PolKitContext"><type>PolKitContext</type></link> and <link linkend="PolKitTracker"><type>PolKitTracker</type></link> classes instead as these are
+designed to aggresively cache information.
+</para>
+<para>
+The return value is a bit mask indicating whether the given process
+is authorized for the given actions. Bit 0 represents the first
+action; bit 1 represents the 2nd action and so forth. A bit is set
+to 1 if, and only if, the caller is authorized for the given
+action. If the given action is unknown zero will be returned as well.
+</para>
+<para>
+If the function succeeds, errno will be set to 0. If an error
+occurs 0 is returned and errno will be set:
+<itemizedlist>
+<listitem><literal>ENOMEM</literal>: Out of memory.</listitem>
+<listitem><literal>ENOENT</literal>: Failed to connect to either the system message bus or ConsoleKit.</listitem>
+</itemizedlist></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process to check for; typically you want to pass the result of <link linkend="getpid"><function>getpid()</function></link> here
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated list of action identifiers to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See above
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-check-authv" role="function" condition="since:0.7">
+<title>polkit_check_authv ()</title>
+<indexterm zone="polkit-check-authv" role="0.7"><primary>polkit_check_authv</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_check_authv                  (<link linkend="pid-t">pid_t</link> pid,
+                                                         const <link linkend="char">char</link> **action_ids);</programlisting>
+<para>
+This function is similar to <link linkend="polkit-check-auth"><function>polkit_check_auth()</function></link> but takes an <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+terminated array instead of being a varadic function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> See docs for <link linkend="polkit-check-auth"><function>polkit_check_auth()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action_ids</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of action id's
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See docs for <link linkend="polkit-check-auth"><function>polkit_check_auth()</function></link>
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-auth-obtain" role="function" condition="since:0.7">
+<title>polkit_auth_obtain ()</title>
+<indexterm zone="polkit-auth-obtain" role="0.7"><primary>polkit_auth_obtain</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_auth_obtain                  (const <link linkend="char">char</link> *action_id,
+                                                         <link linkend="polkit-uint32-t">polkit_uint32_t</link> xid,
+                                                         <link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+Convenience function to prompt the user to authenticate to gain an
+authorization for the given action. First, an attempt to reach an
+Authentication Agent on the session message bus is made. If that
+doesn't work and stdout/stdin are both tty's, polkit-auth(1) is
+invoked.
+</para>
+<para>
+This is a blocking call. If you're using GTK+ see
+<link linkend="polkit-gnome-auth-obtain"><function>polkit_gnome_auth_obtain()</function></link> for a non-blocking version.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action_id</parameter>&nbsp;:</term>
+<listitem><simpara> The action_id for the <link linkend="PolKitAction"><type>PolKitAction</type></link> to make the user
+authenticate for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>xid</parameter>&nbsp;:</term>
+<listitem><simpara> X11 window ID for the window that the dialog will be
+transient for. If there is no window, pass 0.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> Process ID of process to grant authorization to. Normally one wants to pass result of <link linkend="getpid"><function>getpid()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for error; cannot be <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if, and only if, the user successfully
+authenticated. <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if the user failed to authenticate or if
+error is set
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-dbus-error-generate" role="function" condition="since:0.8">
+<title>polkit_dbus_error_generate ()</title>
+<indexterm zone="polkit-dbus-error-generate" role="0.8"><primary>polkit_dbus_error_generate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_generate          (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> result,
+                                                         <link linkend="DBusError">DBusError</link> *error);</programlisting>
+<para>
+Convenience function to generate a <link linkend="DBusError"><type>DBusError</type></link> that encapsulates
+information that the caller is not authorized. This includes
+information such as <parameter>action</parameter> that describes what action the caller
+lacks an authorization for, as well as <parameter>result</parameter> that describes if
+the caller can obtain an authorization through authentication.
+</para>
+<para>
+Typically a privileged mechanism uses this function to generate
+errors. At the other end of the wire, the caller can use
+<link linkend="polkit-dbus-error-parse"><function>polkit_dbus_error_parse()</function></link> to extract <parameter>action</parameter> and <parameter>result</parameter>.
+</para>
+<para>
+The form of the <link linkend="DBusError"><type>DBusError</type></link> is as follows. The name is
+set to
+<literal>org.freedesktop.PolicyKit.Error.NotAuthorized</literal>
+and the message consists of two strings separated by a single
+space: the string representation of the action
+(cf. <link linkend="polkit-action-to-string-representation"><function>polkit_action_to_string_representation()</function></link>) and the string
+representation of the result
+(cf. <link linkend="polkit-result-to-string-representation"><function>polkit_result_to_string_representation()</function></link>).
+</para>
+<para>
+This function is in <literal>libpolkit-dbus</literal>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action that the caller needs an authorization for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> the result from e.g. <link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="DBusError"><type>DBusError</type></link> to set
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if <parameter>error</parameter> was set. FALSE on error or OOM.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="polkit-dbus-error-parse" role="function" condition="since:0.8">
+<title>polkit_dbus_error_parse ()</title>
+<indexterm zone="polkit-dbus-error-parse" role="0.8"><primary>polkit_dbus_error_parse</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse             (<link linkend="DBusError">DBusError</link> *error,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);</programlisting>
+<para>
+Parse an error received over D-Bus, typically generated by
+<link linkend="polkit-dbus-error-generate"><function>polkit_dbus_error_generate()</function></link>, into what action an authorization is
+missing for and whether that authorization can be obtained.
+</para>
+<para>
+This function is in <literal>libpolkit-dbus</literal>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> error to parse; must be set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitAction"><type>PolKitAction</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitResult"><type>PolKitResult</type></link> variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE only if <parameter>error</parameter> was successfully parsed and <parameter>action</parameter>
+and <parameter>result</parameter> is set (and caller must free <parameter>action</parameter> using
+<link linkend="polkit-action-unref"><function>polkit_action_unref()</function></link>).
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="polkit-dbus-error-parse-from-strings" role="function" condition="since:0.8">
+<title>polkit_dbus_error_parse_from_strings ()</title>
+<indexterm zone="polkit-dbus-error-parse-from-strings" role="0.8"><primary>polkit_dbus_error_parse_from_strings</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_dbus_error_parse_from_strings
+                                                        (const <link linkend="char">char</link> *error_name,
+                                                         const <link linkend="char">char</link> *error_message,
+                                                         <link linkend="PolKitAction">PolKitAction</link> **action,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *result);</programlisting>
+<para>
+Like <link linkend="polkit-dbus-error-parse"><function>polkit_dbus_error_parse()</function></link>, only it takes the name and message
+instead of a <link linkend="DBusError"><type>DBusError</type></link>. This is useful when usings D-Bus bindings
+(such as dbus-glib) that don't expose the <link linkend="DBusError"><type>DBusError</type></link> object
+directly.
+</para>
+<para>
+This function is in <literal>libpolkit-dbus</literal>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>error_name</parameter>&nbsp;:</term>
+<listitem><simpara> name of D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error_message</parameter>&nbsp;:</term>
+<listitem><simpara> message of D-Bus error
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitAction"><type>PolKitAction</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitResult"><type>PolKitResult</type></link> variable
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See <link linkend="polkit-dbus-error-parse"><function>polkit_dbus_error_parse()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

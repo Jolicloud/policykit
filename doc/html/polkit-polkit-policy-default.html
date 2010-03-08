@@ -1,0 +1,651 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Defaults</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-policy-file-entry.html" title="Policy File Entry">
+<link rel="next" href="polkit-polkit-policy-cache.html" title="Policy Cache">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-policy-file-entry.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-policy-cache.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-policy-default.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-policy-default.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-policy-default"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-policy-default.top_of_page"></a>Defaults</span></h2>
+<p>Defaults — Models the default policy for an action.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-policy-default.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>;
+<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-new"
+>polkit_policy_default_new</a>          (void);
+<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-ref"
+>polkit_policy_default_ref</a>          (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+void                <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-unref"
+>polkit_policy_default_unref</a>         (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+void                <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-debug"
+>polkit_policy_default_debug</a>         (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-clone"
+>polkit_policy_default_clone</a>        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-equals"
+>polkit_policy_default_equals</a>        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *a,
+                                                         <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *b);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-can-session-do-action"
+>polkit_policy_default_can_session_do_action</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-can-caller-do-action"
+>polkit_policy_default_can_caller_do_action</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-get-allow-any"
+>polkit_policy_default_get_allow_any</a> (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-get-allow-inactive"
+>polkit_policy_default_get_allow_inactive</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-get-allow-active"
+>polkit_policy_default_get_allow_active</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);
+void                <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-set-allow-any"
+>polkit_policy_default_set_allow_any</a> (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> value);
+void                <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-set-allow-inactive"
+>polkit_policy_default_set_allow_inactive</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> value);
+void                <a
+href="../polkit/polkit-polkit-policy-default.html#polkit-policy-default-set-allow-active"
+>polkit_policy_default_set_allow_active</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> value);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-policy-default.description"></a><h2>Description</h2>
+<p>
+This class records the default policy of an action.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-policy-default.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitPolicyDefault"></a><h3>PolKitPolicyDefault</h3>
+<pre class="programlisting">typedef struct _PolKitPolicyDefault PolKitPolicyDefault;</pre>
+<p>
+Objects of this class are used to record information about a
+default policy for an action.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-new"></a><h3>polkit_policy_default_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* polkit_policy_default_new          (void);</pre>
+<p>
+Construct a new object with all defaults set as restrictive as possible.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> a new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM.
+
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-ref"></a><h3>polkit_policy_default_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* polkit_policy_default_ref          (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the policy object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-unref"></a><h3>polkit_policy_default_unref ()</h3>
+<pre class="programlisting">void                polkit_policy_default_unref         (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-debug"></a><h3>polkit_policy_default_debug ()</h3>
+<pre class="programlisting">void                polkit_policy_default_debug         (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Print debug details</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-clone"></a><h3>polkit_policy_default_clone ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* polkit_policy_default_clone        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Create a new object with the same value as the given object</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> object to clone
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> a new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> on OOM.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-equals"></a><h3>polkit_policy_default_equals ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_policy_default_equals        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *a,
+                                                         <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *b);</pre>
+<p>
+Compare if two objects are equal.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em>:</span></p></td>
+<td> a <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+><span class="type">PolKitPolicyDefault</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em>:</span></p></td>
+<td> a <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+><span class="type">PolKitPolicyDefault</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> only if the objects are equal
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-can-session-do-action"></a><h3>polkit_policy_default_can_session_do_action ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_policy_default_can_session_do_action
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);</pre>
+<p>
+Using the default policy for an action, determine if a given
+session can do a given action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em>:</span></p></td>
+<td> the session in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> - can only be one of
+<span class="type">POLKIT_RESULT_YES</span>, <span class="type">POLKIT_RESULT_NO</span>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-can-caller-do-action"></a><h3>polkit_policy_default_can_caller_do_action ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_policy_default_can_caller_do_action
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Using the default policy for an action, determine if a given
+caller can do a given action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the caller in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> specifying if, and how, the caller can
+do the given action.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-get-allow-any"></a><h3>polkit_policy_default_get_allow_any ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_policy_default_get_allow_any (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Get default policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> default policy
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-get-allow-inactive"></a><h3>polkit_policy_default_get_allow_inactive ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_policy_default_get_allow_inactive
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Get default policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> default policy
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-get-allow-active"></a><h3>polkit_policy_default_get_allow_active ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_policy_default_get_allow_active
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default);</pre>
+<p>
+Get default policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> default policy
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-set-allow-any"></a><h3>polkit_policy_default_set_allow_any ()</h3>
+<pre class="programlisting">void                polkit_policy_default_set_allow_any (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> value);</pre>
+<p>
+Set default policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td> the value to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-set-allow-inactive"></a><h3>polkit_policy_default_set_allow_inactive ()</h3>
+<pre class="programlisting">void                polkit_policy_default_set_allow_inactive
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> value);</pre>
+<p>
+Set default policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td> the value to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-default-set-allow-active"></a><h3>polkit_policy_default_set_allow_active ()</h3>
+<pre class="programlisting">void                polkit_policy_default_set_allow_active
+                                                        (<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *policy_default,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> value);</pre>
+<p>
+Set default policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_default</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td> the value to set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

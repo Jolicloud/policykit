@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-config">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-config.top_of_page">Configuration</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Configuration</refname>
+<refpurpose>Represents the system-wide <literal>/etc/PolicyKit/PolicyKit.conf</literal> file.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-config.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitConfig">PolKitConfig</link>;
+<link linkend="PolKitConfig">PolKitConfig</link>*       <link linkend="polkit-config-new">polkit_config_new</link>                   (const <link linkend="char">char</link> *path,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
+<link linkend="PolKitConfig">PolKitConfig</link>*       <link linkend="polkit-config-ref">polkit_config_ref</link>                   (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config);
+<link linkend="void">void</link>                <link linkend="polkit-config-unref">polkit_config_unref</link>                 (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-config-can-session-do-action">polkit_config_can_session_do_action</link> (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-config-can-caller-do-action">polkit_config_can_caller_do_action</link>  (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller);
+enum                <link linkend="PolKitConfigAdminAuthType">PolKitConfigAdminAuthType</link>;
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-config-determine-admin-auth-type">polkit_config_determine_admin_auth_type</link>
+                                                        (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="PolKitConfigAdminAuthType">PolKitConfigAdminAuthType</link> *out_admin_auth_type,
+                                                         const <link linkend="char">char</link> **out_data);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-config.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent the /etc/PolicyKit/PolicyKit.conf
+configuration file. Applications using PolicyKit should never use
+this class; it's only here for integration with other PolicyKit
+components.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-config.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitConfig" role="struct">
+<title>PolKitConfig</title>
+<indexterm zone="PolKitConfig"><primary>PolKitConfig</primary></indexterm><programlisting>typedef struct _PolKitConfig PolKitConfig;</programlisting>
+<para>
+This class represents the system-wide configuration file for
+PolicyKit. Applications using PolicyKit should never use this
+class; it's only here for integration with other PolicyKit
+components.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-config-new" role="function">
+<title>polkit_config_new ()</title>
+<indexterm zone="polkit-config-new"><primary>polkit_config_new</primary></indexterm><programlisting><link linkend="PolKitConfig">PolKitConfig</link>*       polkit_config_new                   (const <link linkend="char">char</link> *path,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Load and parse a PolicyKit configuration file.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> Path to configuration, typically /etc/PolicyKit/PolicyKit.conf is passed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the configuration file object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-config-ref" role="function">
+<title>polkit_config_ref ()</title>
+<indexterm zone="polkit-config-ref"><primary>polkit_config_ref</primary></indexterm><programlisting><link linkend="PolKitConfig">PolKitConfig</link>*       polkit_config_ref                   (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_config</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-config-unref" role="function">
+<title>polkit_config_unref ()</title>
+<indexterm zone="polkit-config-unref"><primary>polkit_config_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_config_unref                 (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_config</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-config-can-session-do-action" role="function">
+<title>polkit_config_can_session_do_action ()</title>
+<indexterm zone="polkit-config-can-session-do-action"><primary>polkit_config_can_session_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_config_can_session_do_action (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session);</programlisting>
+<para>
+Determine if the /etc/PolicyKit/PolicyKit.conf configuration file
+says that a given session can do a given action.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_config</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>session</parameter>&nbsp;:</term>
+<listitem><simpara> the session in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitResult"><type>PolKitResult</type></link> - returns <link linkend="POLKIT-RESULT-UNKNOWN:CAPS"><type>POLKIT_RESULT_UNKNOWN</type></link> if there
+was no match in the configuration file.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-config-can-caller-do-action" role="function">
+<title>polkit_config_can_caller_do_action ()</title>
+<indexterm zone="polkit-config-can-caller-do-action"><primary>polkit_config_can_caller_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_config_can_caller_do_action  (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
+<para>
+Determine if the /etc/PolicyKit/PolicyKit.conf configuration file
+says that a given caller can do a given action.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_config</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> the caller in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitResult"><type>PolKitResult</type></link> - returns <link linkend="POLKIT-RESULT-UNKNOWN:CAPS"><type>POLKIT_RESULT_UNKNOWN</type></link> if there
+was no match in the configuration file.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="PolKitConfigAdminAuthType" role="enum">
+<title>enum PolKitConfigAdminAuthType</title>
+<indexterm zone="PolKitConfigAdminAuthType"><primary>PolKitConfigAdminAuthType</primary></indexterm><programlisting>typedef enum
+{
+        POLKIT_CONFIG_ADMIN_AUTH_TYPE_USER,
+        POLKIT_CONFIG_ADMIN_AUTH_TYPE_GROUP
+} PolKitConfigAdminAuthType;
+</programlisting>
+<para>
+This enumeration reflects results defined in the
+"define_admin_auth" configuration element.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="POLKIT-CONFIG-ADMIN-AUTH-TYPE-USER:CAPS" role="constant">
+<term><literal>POLKIT_CONFIG_ADMIN_AUTH_TYPE_USER</literal></term>
+<listitem><simpara> Authentication as
+administrator matches one or more users
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-CONFIG-ADMIN-AUTH-TYPE-GROUP:CAPS" role="constant">
+<term><literal>POLKIT_CONFIG_ADMIN_AUTH_TYPE_GROUP</literal></term>
+<listitem><simpara> Authentication as
+administrator matches users from one or more groups
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-config-determine-admin-auth-type" role="function">
+<title>polkit_config_determine_admin_auth_type ()</title>
+<indexterm zone="polkit-config-determine-admin-auth-type"><primary>polkit_config_determine_admin_auth_type</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_config_determine_admin_auth_type
+                                                        (<link linkend="PolKitConfig">PolKitConfig</link> *pk_config,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="PolKitConfigAdminAuthType">PolKitConfigAdminAuthType</link> *out_admin_auth_type,
+                                                         const <link linkend="char">char</link> **out_data);</programlisting>
+<para>
+Determine what "Authenticate as admin" means for a given caller and
+a given action. This basically returns the result of the
+"define_admin_auth" in the configuration file when drilling down
+for a specific caller / action.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_config</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> the caller in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_admin_auth_type</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the authentication type
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_data</parameter>&nbsp;:</term>
+<listitem><simpara> return location for the match value of the given
+authentication type. Caller shall not manipulate or free this
+string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if value was returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

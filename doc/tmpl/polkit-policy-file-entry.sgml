@@ -1,0 +1,166 @@
+<!-- ##### SECTION Title ##### -->
+polkit-policy-file-entry
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitPolicyFileEntry ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION PolKitPolicyFileEntryAnnotationsForeachFunc ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@key: 
+@value: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_ref ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_unref ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_debug ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_id ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_default ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_description ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_message ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_vendor ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_vendor_url ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_action_icon_name ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_annotations_foreach ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@cb: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_annotation ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@key: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_get_default_factory ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_file_entry_set_default ##### -->
+<para>
+
+</para>
+
+@policy_file_entry: 
+@defaults: 
+@error: 
+@Returns: 
+
+

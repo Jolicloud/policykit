@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>polkit-auth</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="prev" href="PolicyKit.conf.5.html" title="PolicyKit.conf">
+<link rel="next" href="polkit-action.1.html" title="polkit-action">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="PolicyKit.conf.5.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="tools-fileformats.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-action.1.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="polkit-auth.1"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">polkit-auth</span></h2>
+<p>polkit-auth — Manage authorizations</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<div class="cmdsynopsis"><p><code class="command">polkit-auth</code>  [<code class="option">--obtain <em class="replaceable"><code>action</code></em></code>] [<code class="option">--show-obtainable</code>] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --explicit</code>] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --explicit-detail</code>] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --grant <em class="replaceable"><code>action</code></em></code> [<code class="option">--constraint <em class="replaceable"><code>constraint</code></em></code>]*] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --block <em class="replaceable"><code>action</code></em></code> [<code class="option">--constraint <em class="replaceable"><code>constraint</code></em></code>]*] [<code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --revoke <em class="replaceable"><code>action</code></em></code>] [<code class="option">--version</code>] [<code class="option">--help</code>]</p></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id367453"></a><h2>DESCRIPTION</h2>
+<p>
+      polkit-auth is used to inspect, obtain, grant and revoke
+      PolicyKit authorizations. If invoked without any options, the
+      authorizations of the calling process will be printed.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id367466"></a><h2>OPTIONS</h2>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><code class="option">--obtain <em class="replaceable"><code>action</code></em></code></span></p></td>
+<td>
+<p>
+            Attempt to obtain an authorization through authentication
+            for the given action. This is only useful for implicit
+            authorizations requiring authentication; e.g. when an
+            appropriate stanza in the defaults section of the .policy
+            file for the action specifies
+            <code class="literal">auth_*</code>. 
+          </p>
+<p> 
+
+            The gained authorization will be constrained as much as
+            possible using the constraints specified in
+            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called “CONSTRAINTS”</a>. For example, on
+            a system running SELinux, if the caller runs uses this
+            tool to obtain an authorization from a shell in a desktop
+            in an active session, then constraints
+            for <span class="emphasis"><em>local</em></span>, <span class="emphasis"><em>active</em></span>, <span class="emphasis"><em>exe</em></span>
+            and <span class="emphasis"><em>selinux_context</em></span> will all be
+            added.
+          </p>
+<p> 
+            If an Authentication Agent (such as the one from
+            PolicyKit-gnome) is available in the session, it will used
+            for authentication unless the environment variable
+            POLKIT_AUTH_FORCE_TEXT is set. If the environment variable
+            POLKIT_AUTH_GRANT_TO_PID is set, the authorization will be
+            granted to that process id instead of the invoking process
+            (e.g. the shell from which polkit-auth is launched).
+          </p>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--show-obtainable</code></span></p></td>
+<td><p>
+             Prints all actions that can be obtained via
+             authentication and for which an authorization does not
+             exist.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --explicit</code></span></p></td>
+<td><p>
+            Show explicit authorizations. Duplicates are not
+            printed. If used with the <code class="option">--user</code> option,
+            the authorization
+            <code class="literal">org.freedesktop.policykit.read</code> is required.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --explicit-detail</code></span></p></td>
+<td><p>
+            Show detailed information about explicit
+            authorizations. In contrast to
+            the <code class="literal">--explicit</code>, duplicates are printed
+            as several authorizations with different scope and
+            constraints may exist.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --grant <em class="replaceable"><code>action</code></em></code> [<code class="option">--constraint <em class="replaceable"><code>constraint</code></em></code>]*</span></p></td>
+<td><p>
+            Grant an authorization for an action. This is different
+            than <code class="literal">--obtain</code> insofar that
+            the <code class="literal">defaults</code> stanza of the .policy file
+            is not consulted. Optionally, one or more constraints on
+            the granted authorization can be specified, see
+            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called “CONSTRAINTS”</a> for details. The
+            authorization needed to grant authorizations is
+            <code class="literal">org.freedesktop.policykit.grant</code>.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --block <em class="replaceable"><code>action</code></em></code> [<code class="option">--constraint <em class="replaceable"><code>constraint</code></em></code>]*</span></p></td>
+<td><p>
+            Grant an negative authorization for an action. Negative
+            authorizations are normally used to block users that would
+            normally be authorized due to implicit
+            authorizations. Optionally, one or more constraints on the
+            granted authorization can be specified, see
+            <a class="xref" href="polkit-auth.1.html#polkit-auth-constraints" title="CONSTRAINTS">the section called “CONSTRAINTS”</a> for details. The
+            authorization needed to grant negative authorizations is
+            <code class="literal">org.freedesktop.policykit.grant</code> if the
+            "beneficiary" is another user.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">[<code class="option">--user <em class="replaceable"><code>user</code></em></code>] --revoke <em class="replaceable"><code>action</code></em></code></span></p></td>
+<td><p>
+            Revoke all authorizations for an action. If the user is
+            not specified the calling user is used. The
+            authorization <code class="literal">org.freedesktop.policykit.revoke</code>
+            is needed to revoke authorizations from other users.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--version</code></span></p></td>
+<td><p>
+            Show version and exit.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--help</code></span></p></td>
+<td><p>
+            Show this information.
+          </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-auth-constraints"></a><h2>CONSTRAINTS</h2>
+<p>
+      One can put one or more <span class="emphasis"><em>constraints</em></span> on an
+      authorization. They are used to limit where the authrorization
+      applies. Presently the following constraints are supported
+
+      </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><code class="option">--constraint local</code></span></p></td>
+<td><p>
+              The caller must be in a session on a local console
+              attached to the system. For example processes that
+              belong to remote XDMCP or ssh connections will fail to
+              meet this constraint and as such the authorization with
+              such a constraint won't apply.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--constraint active</code></span></p></td>
+<td><p>
+              The caller must be in an active session. This is
+              typically used with a <span class="emphasis"><em>local</em></span>
+              constraint to ensure that the caller is only authorized
+              if his session is in the foreground. This is typically
+              used for fast user switching (multiple sessions on the
+              same console) to prevent inactive sessions from doing
+              privileged operations like spying (using a webcam or a
+              sound card) on the current active session.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--constraint exe:<em class="replaceable"><code>/path/to/program</code></em></code></span></p></td>
+<td><p>
+              The authorization is constrained to processes for where
+              executable path (<code class="literal">/proc/pid/exe</code> on
+              Linux) matches the given path. See
+              <a class="xref" href="polkit-auth.1.html#polkit-auth-notes" title="NOTES">the section called “NOTES”</a> for limitations on
+              why this may not be secure.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--constraint selinux_context:<em class="replaceable"><code>system_u:object_r:some_context_t</code></em></code></span></p></td>
+<td><p>
+              The authorization is constrained to processes for where
+              their SELinux security context matches the given
+              context.
+            </p></td>
+</tr>
+</tbody>
+</table></div>
+<p>
+
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-auth-notes"></a><h2>NOTES</h2>
+<p>
+      Note that the executable path for a process is not necessary
+      reliable information and as such shouldn't be relied on 100% to
+      make a security decision. In fact, this information is only
+      trustworthy in situations where the given binary is securely
+      locked down meaning that 1) it can't
+      be <code class="literal">ptrace(2)</code>'d; 2) libc secure mode kicks in
+      (e.g <code class="literal">LD_PRELOAD</code> won't work); 3) there are no
+      other attack vectors (e.g. GTK_MODULES, X11, CORBA, D-Bus) to
+      patch running code into the process.
+    </p>
+<p>
+      In other words: the risk of relying on constraining an
+      authorization to a path of an executable is high. Suppose that
+      the program <code class="literal">/usr/bin/gullible</code> obtains an
+      authorization via authentication for the action
+      <code class="literal">org.example.foo</code>. We add a constraint to say
+      that the gained authorization only applies to processes for whom
+      <code class="literal">/proc/pid/exe</code> points to
+      <code class="literal">/usr/bin/gullible</code>.
+    </p>
+<p>
+      Now enter <code class="literal">/usr/bin/evil</code>. It knows that the
+      program <code class="literal">/usr/bin/gullible</code> is not "securely
+      locked down" (per the definition in the above paragraph). So
+      <code class="literal">/usr/bin/evil</code> simply sets
+      <code class="literal">LD_PRELOAD</code> and execs
+      <code class="literal">/usr/bin/gullible</code> and it can now run code in a
+      process where <code class="literal">/proc/pid/exe</code> points to
+      <code class="literal">/usr/bin/gullible</code>. Thus, the recently gained
+      authorization for <code class="literal">org.example.foo</code> applies. Also,
+      <code class="literal">/usr/bin/evil</code> could use a host of other attack
+      vectors to run it's own code under the disguise of pretending to be
+      <code class="literal">/usr/bin/gullible</code>.
+    </p>
+<p>
+      Specifically for interpreted languages like Python and Mono it
+      is the case that <code class="literal">/proc/pid/exe</code> always points
+      to
+      <code class="literal">/usr/bin/python</code>
+      resp. <code class="literal">/usr/bin/mono</code>. Thus, it's not very useful
+      to rely on that the result for this function if you want to
+      constrain an authorization to
+      e.g. <code class="literal">/usr/bin/tomboy</code> or
+      <code class="literal">/usr/bin/banshee</code>.
+    </p>
+<p>
+      It is however possible to write programs that are "securely
+      locked down" (per the definition in the above paragraph); for
+      example all properly written <code class="literal">setuid</code>
+      and <code class="literal">setgid</code> programs are written in this way.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id396767"></a><h2>COMPLETION</h2>
+<p>
+      PolicyKit ships with a collection of shell functions such that
+      completion on users, actions and constraints work when using the
+      <span class="citerefentry"><span class="refentrytitle">bash</span>(1)</span>
+      shell. For completion to properly work for polkit-auth,
+      arguments should be entered in the order specified in this
+      manual page; for example. <code class="option">--user</code> should be
+      specified before <code class="option">--revoke</code> to complete only on
+      the authorizations the given user has. Note that if the calling
+      user lacks the <code class="literal">org.freedesktop.policykit.read</code>
+      authorization, the completion function will fall back to
+      completing on all registered actions.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id396803"></a><h2>BUGS</h2>
+<p>
+      Please send bug reports to either the distribution or the
+      hal mailing list,
+      see <a class="ulink" href="http://lists.freedesktop.org/mailman/listinfo/hal" target="_top">http://lists.freedesktop.org/mailman/listinfo/hal</a>.
+      to subscribe.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id396819"></a><h2>SEE ALSO</h2>
+<p>
+      <span class="citerefentry"><span class="refentrytitle">PolicyKit</span>(8)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">PolicyKit.conf</span>(5)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">polkit-action</span>(1)</span>
+    </p>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

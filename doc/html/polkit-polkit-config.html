@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Configuration</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-context.html" title="Context">
+<link rel="next" href="polkit-polkit-policy-file.html" title="Policy Definition Files">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-context.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-policy-file.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-config.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-config.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-config"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-config.top_of_page"></a>Configuration</span></h2>
+<p>Configuration — Represents the system-wide <code class="literal">/etc/PolicyKit/PolicyKit.conf</code> file.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-config.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>;
+<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>*       <a
+href="../polkit/polkit-polkit-config.html#polkit-config-new"
+>polkit_config_new</a>                   (const char *path,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);
+<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>*       <a
+href="../polkit/polkit-polkit-config.html#polkit-config-ref"
+>polkit_config_ref</a>                   (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config);
+void                <a
+href="../polkit/polkit-polkit-config.html#polkit-config-unref"
+>polkit_config_unref</a>                 (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-config.html#polkit-config-can-session-do-action"
+>polkit_config_can_session_do_action</a> (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-config.html#polkit-config-can-caller-do-action"
+>polkit_config_can_caller_do_action</a>  (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+enum                <a
+href="../polkit/polkit-polkit-config.html#PolKitConfigAdminAuthType"
+>PolKitConfigAdminAuthType</a>;
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-config.html#polkit-config-determine-admin-auth-type"
+>polkit_config_determine_admin_auth_type</a>
+                                                        (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-config.html#PolKitConfigAdminAuthType"
+>PolKitConfigAdminAuthType</a> *out_admin_auth_type,
+                                                         const char **out_data);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-config.description"></a><h2>Description</h2>
+<p>
+This class is used to represent the /etc/PolicyKit/PolicyKit.conf
+configuration file. Applications using PolicyKit should never use
+this class; it's only here for integration with other PolicyKit
+components.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-config.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitConfig"></a><h3>PolKitConfig</h3>
+<pre class="programlisting">typedef struct _PolKitConfig PolKitConfig;</pre>
+<p>
+This class represents the system-wide configuration file for
+PolicyKit. Applications using PolicyKit should never use this
+class; it's only here for integration with other PolicyKit
+components.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-config-new"></a><h3>polkit_config_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>*       polkit_config_new                   (const char *path,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);</pre>
+<p>
+Load and parse a PolicyKit configuration file.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em>:</span></p></td>
+<td> Path to configuration, typically /etc/PolicyKit/PolicyKit.conf is passed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the configuration file object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-config-ref"></a><h3>polkit_config_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>*       polkit_config_ref                   (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_config</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-config-unref"></a><h3>polkit_config_unref ()</h3>
+<pre class="programlisting">void                polkit_config_unref                 (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pk_config</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-config-can-session-do-action"></a><h3>polkit_config_can_session_do_action ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_config_can_session_do_action (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);</pre>
+<p>
+Determine if the /etc/PolicyKit/PolicyKit.conf configuration file
+says that a given session can do a given action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_config</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em>:</span></p></td>
+<td> the session in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> - returns <span class="type">POLKIT_RESULT_UNKNOWN</span> if there
+was no match in the configuration file.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-config-can-caller-do-action"></a><h3>polkit_config_can_caller_do_action ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_config_can_caller_do_action  (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Determine if the /etc/PolicyKit/PolicyKit.conf configuration file
+says that a given caller can do a given action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_config</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the caller in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> - returns <span class="type">POLKIT_RESULT_UNKNOWN</span> if there
+was no match in the configuration file.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitConfigAdminAuthType"></a><h3>enum PolKitConfigAdminAuthType</h3>
+<pre class="programlisting">typedef enum
+{
+        POLKIT_CONFIG_ADMIN_AUTH_TYPE_USER,
+        POLKIT_CONFIG_ADMIN_AUTH_TYPE_GROUP
+} PolKitConfigAdminAuthType;
+</pre>
+<p>
+This enumeration reflects results defined in the
+"define_admin_auth" configuration element.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="POLKIT-CONFIG-ADMIN-AUTH-TYPE-USER:CAPS"></a><span class="term"><code class="literal">POLKIT_CONFIG_ADMIN_AUTH_TYPE_USER</code></span></p></td>
+<td> Authentication as
+administrator matches one or more users
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-CONFIG-ADMIN-AUTH-TYPE-GROUP:CAPS"></a><span class="term"><code class="literal">POLKIT_CONFIG_ADMIN_AUTH_TYPE_GROUP</code></span></p></td>
+<td> Authentication as
+administrator matches users from one or more groups
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-config-determine-admin-auth-type"></a><h3>polkit_config_determine_admin_auth_type ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_config_determine_admin_auth_type
+                                                        (<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a> *pk_config,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-config.html#PolKitConfigAdminAuthType"
+>PolKitConfigAdminAuthType</a> *out_admin_auth_type,
+                                                         const char **out_data);</pre>
+<p>
+Determine what "Authenticate as admin" means for a given caller and
+a given action. This basically returns the result of the
+"define_admin_auth" in the configuration file when drilling down
+for a specific caller / action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_config</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the caller in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_admin_auth_type</code></em>:</span></p></td>
+<td> return location for the authentication type
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_data</code></em>:</span></p></td>
+<td> return location for the match value of the given
+authentication type. Caller shall not manipulate or free this
+string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE if value was returned
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Policy File Entry</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-policy-file.html" title="Policy Definition Files">
+<link rel="next" href="polkit-polkit-policy-default.html" title="Defaults">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-policy-file.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-policy-default.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-policy-file-entry.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-policy-file-entry.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-policy-file-entry"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-policy-file-entry.top_of_page"></a>Policy File Entry</span></h2>
+<p>Policy File Entry — Represents a declared action in a policy file.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-policy-file-entry.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a>;
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntryAnnotationsForeachFunc"
+>*PolKitPolicyFileEntryAnnotationsForeachFunc</a>)
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         const char *key,
+                                                         const char *value,
+                                                         void *user_data);
+<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a>* <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-ref"
+>polkit_policy_file_entry_ref</a>     (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+void                <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-unref"
+>polkit_policy_file_entry_unref</a>      (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+void                <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-debug"
+>polkit_policy_file_entry_debug</a>      (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-id"
+>polkit_policy_file_entry_get_id</a>     (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-default"
+>polkit_policy_file_entry_get_default</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-description"
+>polkit_policy_file_entry_get_action_description</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-message"
+>polkit_policy_file_entry_get_action_message</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-vendor"
+>polkit_policy_file_entry_get_action_vendor</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-vendor-url"
+>polkit_policy_file_entry_get_action_vendor_url</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-icon-name"
+>polkit_policy_file_entry_get_action_icon_name</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-annotations-foreach"
+>polkit_policy_file_entry_annotations_foreach</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntryAnnotationsForeachFunc"
+>PolKitPolicyFileEntryAnnotationsForeachFunc</a> cb,
+                                                         void *user_data);
+const char*         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-annotation"
+>polkit_policy_file_entry_get_annotation</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         const char *key);
+<a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-default-factory"
+>polkit_policy_file_entry_get_default_factory</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-set-default"
+>polkit_policy_file_entry_set_default</a>
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *defaults,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-policy-file-entry.description"></a><h2>Description</h2>
+<p>
+This class is used to represent a entries in policy files.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-policy-file-entry.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitPolicyFileEntry"></a><h3>PolKitPolicyFileEntry</h3>
+<pre class="programlisting">typedef struct _PolKitPolicyFileEntry PolKitPolicyFileEntry;</pre>
+<p>
+Objects of this class are used to record information about a
+policy.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitPolicyFileEntryAnnotationsForeachFunc"></a><h3>PolKitPolicyFileEntryAnnotationsForeachFunc ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       (*PolKitPolicyFileEntryAnnotationsForeachFunc)
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         const char *key,
+                                                         const char *value,
+                                                         void *user_data);</pre>
+<p>
+Callback function for <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-annotations-foreach"
+><code class="function">polkit_policy_file_entry_annotations_foreach()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the policy file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em>:</span></p></td>
+<td> key of the annotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em>:</span></p></td>
+<td> corrosponding value of the annotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data passed to <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-annotations-foreach"
+><code class="function">polkit_policy_file_entry_annotations_foreach()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> Pass <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> to short-circuit, e.g. stop the iteration
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-ref"></a><h3>polkit_policy_file_entry_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a>* polkit_policy_file_entry_ref     (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the policy file object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-unref"></a><h3>polkit_policy_file_entry_unref ()</h3>
+<pre class="programlisting">void                polkit_policy_file_entry_unref      (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the policy file object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-debug"></a><h3>polkit_policy_file_entry_debug ()</h3>
+<pre class="programlisting">void                polkit_policy_file_entry_debug      (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Print debug information about object</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the entry
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-id"></a><h3>polkit_policy_file_entry_get_id ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_id     (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the action identifier.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A string - caller shall not free this string.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-default"></a><h3>polkit_policy_file_entry_get_default ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* polkit_policy_file_entry_get_default
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the the default policy for this policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+><span class="type">PolKitPolicyDefault</span></a> object - caller shall not unref or modify this object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-action-description"></a><h3>polkit_policy_file_entry_get_action_description ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_action_description
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the description of the action that this policy entry describes. This
+is intended to be used in policy editors, for example "Mount internal
+volumes". Contrast with <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-message"
+><code class="function">polkit_policy_file_entry_get_action_message()</code></a>. The
+textual string will be returned in the current locale.
+</p>
+<p>
+Note, if <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-load-descriptions"
+><code class="function">polkit_context_set_load_descriptions()</code></a> on the
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
+method will return <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if descriptions are not loaded - caller shall not free this string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-action-message"></a><h3>polkit_policy_file_entry_get_action_message ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_action_message
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the message describing the action that this policy entry
+describes. This is to be used in dialogs, for example "System
+Policy prevents mounting this volume". Contrast with
+<a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-description"
+><code class="function">polkit_policy_file_entry_get_action_description()</code></a>. The textual string
+will be returned in the current locale.
+</p>
+<p>
+Note, if <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-load-descriptions"
+><code class="function">polkit_context_set_load_descriptions()</code></a> on the
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
+method will return <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if descriptions are not loaded - caller shall not free this string
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-action-vendor"></a><h3>polkit_policy_file_entry_get_action_vendor ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_action_vendor
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the name of the vendor of this action.
+</p>
+<p>
+Note, if <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-load-descriptions"
+><code class="function">polkit_context_set_load_descriptions()</code></a> on the
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
+method will return <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if descriptions are not loaded or vendor
+tag isn't set - caller shall not free this string
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-action-vendor-url"></a><h3>polkit_policy_file_entry_get_action_vendor_url ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_action_vendor_url
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the URL of the vendor of this action.
+</p>
+<p>
+Note, if <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-load-descriptions"
+><code class="function">polkit_context_set_load_descriptions()</code></a> on the
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
+method will return <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if descriptions are not loaded or vendor
+url isn't set - caller shall not free this string
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-action-icon-name"></a><h3>polkit_policy_file_entry_get_action_icon_name ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_action_icon_name
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the name of the icon that represents the action. This name
+conforms to the freedesktop.org icon naming specification.
+</p>
+<p>
+Note, if <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-load-descriptions"
+><code class="function">polkit_context_set_load_descriptions()</code></a> on the
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+><span class="type">PolKitContext</span></a> object used to get this object wasn't called, this
+method will return <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> string or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if descriptions are not loaded or icon
+tag isn't set - caller shall not free this string
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-annotations-foreach"></a><h3>polkit_policy_file_entry_annotations_foreach ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_policy_file_entry_annotations_foreach
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         <a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntryAnnotationsForeachFunc"
+>PolKitPolicyFileEntryAnnotationsForeachFunc</a> cb,
+                                                         void *user_data);</pre>
+<p>
+Iterate over all annotations on the policy file entry.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the policy file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cb</code></em>:</span></p></td>
+<td> callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data to pass to the callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the iteration was short-circuited
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-annotation"></a><h3>polkit_policy_file_entry_get_annotation ()</h3>
+<pre class="programlisting">const char*         polkit_policy_file_entry_get_annotation
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         const char *key);</pre>
+<p>
+Look of the value of a given annotation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the policy file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>key</code></em>:</span></p></td>
+<td> the key of the annotation
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> The value of the annotation or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if not found.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-get-default-factory"></a><h3>polkit_policy_file_entry_get_default_factory ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a>* polkit_policy_file_entry_get_default_factory
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry);</pre>
+<p>
+Get the factory defaults for the entry. This may be different that
+what <a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-default"
+><code class="function">polkit_policy_file_entry_get_default()</code></a> returns if the function
+<a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-set-default"
+><code class="function">polkit_policy_file_entry_set_default()</code></a> have been used to change the
+defaults.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+><span class="type">PolKitPolicyDefault</span></a> object - caller shall not unref or modify this object.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-policy-file-entry-set-default"></a><h3>polkit_policy_file_entry_set_default ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_policy_file_entry_set_default
+                                                        (<a
+href="../polkit/polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"
+>PolKitPolicyFileEntry</a> *policy_file_entry,
+                                                         <a
+href="../polkit/polkit-polkit-policy-default.html#PolKitPolicyDefault"
+>PolKitPolicyDefault</a> *defaults,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);</pre>
+<p>
+Set new defaults for a given policy file entry; subsequent calls to
+<code class="function">polkit_policy_file_get_default()</code> will return these values. Note
+that the old defaults are not modified; they are still available via
+<a
+href="../polkit/polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-default-factory"
+><code class="function">polkit_policy_file_entry_get_default_factory()</code></a>.
+</p>
+<p>
+This operation requires the
+org.freedesktop.policykit.modify-defaults authorization and will
+fail if the caller lacks it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>policy_file_entry</code></em>:</span></p></td>
+<td> the file entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>defaults</code></em>:</span></p></td>
+<td> the new defaults to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if the given defaults was set; <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em> is set.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

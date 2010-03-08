@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-spawn">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-spawn.top_of_page">Spawn utilities</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Spawn utilities</refname>
+<refpurpose>Spawn utilities</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-spawn.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="KitSpawnFlags">KitSpawnFlags</link>;
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-spawn-sync">kit_spawn_sync</link>                      (const <link linkend="char">char</link> *working_directory,
+                                                         <link linkend="KitSpawnFlags">KitSpawnFlags</link> flags,
+                                                         <link linkend="char">char</link> **argv,
+                                                         <link linkend="char">char</link> **envp,
+                                                         <link linkend="char">char</link> *stdinp,
+                                                         <link linkend="char">char</link> **stdoutp,
+                                                         <link linkend="char">char</link> **stderrp,
+                                                         <link linkend="int">int</link> *out_exit_status);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-spawn.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various spawn utilities.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-spawn.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="KitSpawnFlags" role="enum">
+<title>enum KitSpawnFlags</title>
+<indexterm zone="KitSpawnFlags"><primary>KitSpawnFlags</primary></indexterm><programlisting>typedef enum {
+        KIT_SPAWN_CHILD_INHERITS_STDIN = 1 &lt;&lt; 0,
+        KIT_SPAWN_STDOUT_TO_DEV_NULL   = 1 &lt;&lt; 1,
+        KIT_SPAWN_STDERR_TO_DEV_NULL   = 1 &lt;&lt; 2,
+} KitSpawnFlags;
+</programlisting>
+<para>
+Flags passed to <link linkend="kit-spawn-sync"><function>kit_spawn_sync()</function></link>.</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="KIT-SPAWN-CHILD-INHERITS-STDIN:CAPS" role="constant">
+<term><literal>KIT_SPAWN_CHILD_INHERITS_STDIN</literal></term>
+<listitem><simpara> If not set, child's stdin will be attached to <literal>/dev/null</literal>
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="KIT-SPAWN-STDOUT-TO-DEV-NULL:CAPS" role="constant">
+<term><literal>KIT_SPAWN_STDOUT_TO_DEV_NULL</literal></term>
+<listitem><simpara> If set childs output will be sent to <literal>/dev/null</literal>
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="KIT-SPAWN-STDERR-TO-DEV-NULL:CAPS" role="constant">
+<term><literal>KIT_SPAWN_STDERR_TO_DEV_NULL</literal></term>
+<listitem><simpara> If set childs error output will be sent to <literal>/dev/null</literal>
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-spawn-sync" role="function">
+<title>kit_spawn_sync ()</title>
+<indexterm zone="kit-spawn-sync"><primary>kit_spawn_sync</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_spawn_sync                      (const <link linkend="char">char</link> *working_directory,
+                                                         <link linkend="KitSpawnFlags">KitSpawnFlags</link> flags,
+                                                         <link linkend="char">char</link> **argv,
+                                                         <link linkend="char">char</link> **envp,
+                                                         <link linkend="char">char</link> *stdinp,
+                                                         <link linkend="char">char</link> **stdoutp,
+                                                         <link linkend="char">char</link> **stderrp,
+                                                         <link linkend="int">int</link> *out_exit_status);</programlisting>
+<para>
+Executes a child process and waits for the child process to exit
+before returning. The exit status of the child is stored in
+<parameter>out_exit_status</parameter> as it would be returned by <link linkend="waitpid"><function>waitpid()</function></link>; standard
+UNIX macros such as <link linkend="WIFEXITED:CAPS"><function>WIFEXITED()</function></link> and <link linkend="WEXITSTATUS:CAPS"><function>WEXITSTATUS()</function></link> must be used to
+evaluate the exit status.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>working_directory</parameter>&nbsp;:</term>
+<listitem><simpara> Working directory for child or <link linkend="NULL:CAPS"><type>NULL</type></link> to inherit parents
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>flags</parameter>&nbsp;:</term>
+<listitem><simpara> A combination of flags from <link linkend="KitSpawnFlags"><type>KitSpawnFlags</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>argv</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><type>NULL</type></link> terminated argument vector
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>envp</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><type>NULL</type></link> terminated environment or <link linkend="NULL:CAPS"><type>NULL</type></link> to inherit parents;
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stdinp</parameter>&nbsp;:</term>
+<listitem><simpara> String to write to stdin of child or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stdoutp</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for stdout from child or <link linkend="NULL:CAPS"><type>NULL</type></link>. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>stderrp</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for stderr from child or <link linkend="NULL:CAPS"><type>NULL</type></link>. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_exit_status</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for exit status
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> if the child was executed; <link linkend="FALSE:CAPS"><type>FALSE</type></link> if an error
+occured and errno will be set.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

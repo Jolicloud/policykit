@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Results</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-error.html" title="Error reporting">
+<link rel="next" href="polkit-polkit-action.html" title="Actions">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-error.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-action.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-result.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-result.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-result"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-result.top_of_page"></a>Results</span></h2>
+<p>Results — Definition of results of PolicyKit queries.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-result.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>;
+const char*         <a
+href="../polkit/polkit-polkit-result.html#polkit-result-to-string-representation"
+>polkit_result_to_string_representation</a>
+                                                        (<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> result);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-result.html#polkit-result-from-string-representation"
+>polkit_result_from_string_representation</a>
+                                                        (const char *string,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *out_result);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-result.description"></a><h2>Description</h2>
+<p>
+These functions are used to manipulate PolicyKit results.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-result.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitResult"></a><h3>enum PolKitResult</h3>
+<pre class="programlisting">typedef enum
+{
+        POLKIT_RESULT_UNKNOWN,
+
+        POLKIT_RESULT_NO,
+
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH,
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION,
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS,
+
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS,
+
+        POLKIT_RESULT_YES,
+
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT,
+
+        POLKIT_RESULT_N_RESULTS
+} PolKitResult;
+</pre>
+<p>
+Result codes from queries to PolicyKit. This enumeration may grow
+in the future. One should never rely on the ordering</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="POLKIT-RESULT-UNKNOWN:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_UNKNOWN</code></span></p></td>
+<td> The result is unknown / cannot be
+computed. This is mostly used internally in libpolkit.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-NO:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_NO</code></span></p></td>
+<td> Access denied.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access to the process the caller is originating from.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-SESSION:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access for the remainder of the session
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-ALWAYS:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access in the future.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-SELF-AUTH:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_SELF_AUTH</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as himself will grant access to the
+process the caller is originating from.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-SESSION:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as himself will grant access to the
+resource for the remainder of the session
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-ALWAYS:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as himself will grant access to the
+resource in the future.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-YES:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_YES</code></span></p></td>
+<td> Access granted.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-ONE-SHOT:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access exactly one time to the process the caller is originating
+from. See <a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-caller-authorized"
+><code class="function">polkit_context_is_caller_authorized()</code></a> for discussion (and
+limitations) about one-shot authorizations.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-ONE-SHOT:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT</code></span></p></td>
+<td> Access denied, but
+authentication by the caller as himself will grant access exactly
+one time to the process the caller is originating from. See
+<a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-caller-authorized"
+><code class="function">polkit_context_is_caller_authorized()</code></a> for discussion (and
+limitations) about one-shot authorizations.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-RESULT-N-RESULTS:CAPS"></a><span class="term"><code class="literal">POLKIT_RESULT_N_RESULTS</code></span></p></td>
+<td> Number of result codes
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-result-to-string-representation"></a><h3>polkit_result_to_string_representation ()</h3>
+<pre class="programlisting">const char*         polkit_result_to_string_representation
+                                                        (<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> result);</pre>
+<p>
+Gives a textual representation of a <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> object. This
+string is not suitable for displaying to an end user (it's not
+localized for starters) but is useful for serialization as it can
+be converted back to a <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> object using
+<a
+href="../polkit/polkit-polkit-result.html#polkit-result-from-string-representation"
+><code class="function">polkit_result_from_string_representation()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em>:</span></p></td>
+<td> the given result to get a textual representation of
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> string representing the result (do not free) or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if the given result is invalid
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-result-from-string-representation"></a><h3>polkit_result_from_string_representation ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_result_from_string_representation
+                                                        (const char *string,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *out_result);</pre>
+<p>
+Given a textual representation of a <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> object, find the
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>string</code></em>:</span></p></td>
+<td> textual representation of a <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_result</code></em>:</span></p></td>
+<td> return location for <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE if the textual representation was valid, otherwise FALSE
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

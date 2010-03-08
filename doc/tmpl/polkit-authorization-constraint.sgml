@@ -1,0 +1,191 @@
+<!-- ##### SECTION Title ##### -->
+polkit-authorization-constraint
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM PolKitAuthorizationConstraintType ##### -->
+<para>
+
+</para>
+
+@POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_LOCAL: 
+@POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_ACTIVE: 
+@POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_EXE: 
+@POLKIT_AUTHORIZATION_CONSTRAINT_TYPE_REQUIRE_SELINUX_CONTEXT: 
+
+<!-- ##### STRUCT PolKitAuthorizationConstraint ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_require_local ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_require_active ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_require_exe ##### -->
+<para>
+
+</para>
+
+@path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_require_selinux_context ##### -->
+<para>
+
+</para>
+
+@context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_ref ##### -->
+<para>
+
+</para>
+
+@authc: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_unref ##### -->
+<para>
+
+</para>
+
+@authc: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_debug ##### -->
+<para>
+
+</para>
+
+@authc: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_validate ##### -->
+<para>
+
+</para>
+
+@authc: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_type ##### -->
+<para>
+
+</para>
+
+@authc: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_exe ##### -->
+<para>
+
+</para>
+
+@authc: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_selinux_context ##### -->
+<para>
+
+</para>
+
+@authc: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_check_session ##### -->
+<para>
+
+</para>
+
+@authc: 
+@session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_check_caller ##### -->
+<para>
+
+</para>
+
+@authc: 
+@caller: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_to_string ##### -->
+<para>
+
+</para>
+
+@authc: 
+@out_buf: 
+@buf_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_from_string ##### -->
+<para>
+
+</para>
+
+@str: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_get_from_caller ##### -->
+<para>
+
+</para>
+
+@caller: 
+@out_array: 
+@array_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraint_equal ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+@Returns: 
+
+

@@ -1,0 +1,38 @@
+<!-- ##### SECTION Title ##### -->
+kit-lib
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION kit_getline ##### -->
+<para>
+
+</para>
+
+@lineptr: 
+@n: 
+@f: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_clearenv ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

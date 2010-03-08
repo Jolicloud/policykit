@@ -1,0 +1,1272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Authorizations and Authentication</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-authorization-db.html" title="Authorization Database">
+<link rel="next" href="tools-fileformats.html" title="Tools and file formats">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-authorization-db.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="tools-fileformats.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-grant.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-grant.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-grant"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-grant.top_of_page"></a>Authorizations and Authentication</span></h2>
+<p>Authorizations and Authentication — Obtain authorizations through
+authentication.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-grant.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a>;
+void                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantType"
+>*PolKitGrantType</a>)                  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> grant_type,
+                                                         void *user_data);
+char*               (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantSelectAdminUser"
+>*PolKitGrantSelectAdminUser</a>)       (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         char **admin_users,
+                                                         void *user_data);
+char*               (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOff"
+>*PolKitGrantConversationPromptEchoOff</a>)
+                                                        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *prompt,
+                                                         void *user_data);
+char*               (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOn"
+>*PolKitGrantConversationPromptEchoOn</a>)
+                                                        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *prompt,
+                                                         void *user_data);
+void                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationErrorMessage"
+>*PolKitGrantConversationErrorMessage</a>)
+                                                        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *error_message,
+                                                         void *user_data);
+void                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationTextInfo"
+>*PolKitGrantConversationTextInfo</a>)  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *text_info,
+                                                         void *user_data);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantOverrideGrantType"
+>*PolKitGrantOverrideGrantType</a>)     (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> grant_type,
+                                                         void *user_data);
+void                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantDone"
+>*PolKitGrantDone</a>)                  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> gained_privilege,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> invalid_data,
+                                                         void *user_data);
+int                 (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddChildWatch"
+>*PolKitGrantAddChildWatch</a>)         (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         pid_t pid);
+int                 (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+>*PolKitGrantAddIOWatch</a>)            (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         int fd);
+void                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantRemoveWatch"
+>*PolKitGrantRemoveWatch</a>)           (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         int watch_id);
+<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a>*        <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-new"
+>polkit_grant_new</a>                    (void);
+<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a>*        <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-ref"
+>polkit_grant_ref</a>                    (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant);
+void                <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-unref"
+>polkit_grant_unref</a>                  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant);
+void                <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+>polkit_grant_set_functions</a>          (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+>PolKitGrantAddIOWatch</a> func_add_io_watch,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddChildWatch"
+>PolKitGrantAddChildWatch</a> func_add_child_watch,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantRemoveWatch"
+>PolKitGrantRemoveWatch</a> func_remove_watch,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantType"
+>PolKitGrantType</a> func_type,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantSelectAdminUser"
+>PolKitGrantSelectAdminUser</a> func_select_admin_user,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOff"
+>PolKitGrantConversationPromptEchoOff</a> func_prompt_echo_off,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOn"
+>PolKitGrantConversationPromptEchoOn</a> func_prompt_echo_on,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationErrorMessage"
+>PolKitGrantConversationErrorMessage</a> func_error_message,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationTextInfo"
+>PolKitGrantConversationTextInfo</a> func_text_info,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantOverrideGrantType"
+>PolKitGrantOverrideGrantType</a> func_override_grant_type,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantDone"
+>PolKitGrantDone</a> func_done,
+                                                         void *user_data);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-initiate-auth"
+>polkit_grant_initiate_auth</a>          (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+void                <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-cancel-auth"
+>polkit_grant_cancel_auth</a>            (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant);
+void                <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-io-func"
+>polkit_grant_io_func</a>                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         int fd);
+void                <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-child-func"
+>polkit_grant_child_func</a>             (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         pid_t pid,
+                                                         int exit_code);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-grant.description"></a><h2>Description</h2>
+<p>
+These functions are used to obtain authorizations for a user that
+is able to successfully authenticate. It is only useful for people
+writing user interfaces that interfaces with the end user.
+</p>
+<p>
+All of these functions are in the
+<code class="literal">libpolkit-grant</code> library.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-grant.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitGrant"></a><h3>PolKitGrant</h3>
+<pre class="programlisting">typedef struct _PolKitGrant PolKitGrant;</pre>
+<p>
+Objects of this class are used to obtain authorizations for a user
+that is able to successfully authenticate. It is only useful for
+people writing user interfaces that interfaces with the end user.
+</p>
+<p>
+All of these functions are in the
+<code class="literal">libpolkit-grant</code> library.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantType"></a><h3>PolKitGrantType ()</h3>
+<pre class="programlisting">void                (*PolKitGrantType)                  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> grant_type,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that describes to what extent the
+privilege can be obtained; e.g. whether the user can keep it
+(e.g. forever, for the session or not keep it at all).
+</p>
+<p>
+See also <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantOverrideGrantType"
+><span class="type">PolKitGrantOverrideGrantType</span></a> for discussion on the type
+of user interfaces one should put up depending on the value of
+<em class="parameter"><code>grant_type</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>grant_type</code></em>:</span></p></td>
+<td> the current type of what privilege to obtain
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantSelectAdminUser"></a><h3>PolKitGrantSelectAdminUser ()</h3>
+<pre class="programlisting">char*               (*PolKitGrantSelectAdminUser)       (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         char **admin_users,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that describes the possible users that
+can be chosen for authentication when administrator privileges are
+required.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>admin_users</code></em>:</span></p></td>
+<td> a NULL-terminated array of users that can be used for
+authentication for admin grants.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the chosen user; must be allocated with malloc(3) and will
+be freed by the <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+><span class="type">PolKitGrant</span></a> class.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantConversationPromptEchoOff"></a><h3>PolKitGrantConversationPromptEchoOff ()</h3>
+<pre class="programlisting">char*               (*PolKitGrantConversationPromptEchoOff)
+                                                        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *prompt,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that is invoked when the authentication
+layer needs to ask the user a secret and the UI should NOT echo what
+the user types on the screen.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prompt</code></em>:</span></p></td>
+<td> prompt passed by the authentication layer; do not free this string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the answer obtained from the user; must be allocated with
+malloc(3) and will be freed by the <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+><span class="type">PolKitGrant</span></a> class.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantConversationPromptEchoOn"></a><h3>PolKitGrantConversationPromptEchoOn ()</h3>
+<pre class="programlisting">char*               (*PolKitGrantConversationPromptEchoOn)
+                                                        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *prompt,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that is invoked when the authentication
+layer needs to ask the user a secret and the UI should echo what
+the user types on the screen.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>prompt</code></em>:</span></p></td>
+<td> prompt passed by the authentication layer; do not free this string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the answer obtained from the user; must be allocated with
+malloc(3) and will be freed by the <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+><span class="type">PolKitGrant</span></a> class.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantConversationErrorMessage"></a><h3>PolKitGrantConversationErrorMessage ()</h3>
+<pre class="programlisting">void                (*PolKitGrantConversationErrorMessage)
+                                                        (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *error_message,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that is invoked when the authentication
+layer produces an error message that should be displayed in the UI.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error_message</code></em>:</span></p></td>
+<td> error message passed by the authentication layer; do not free this string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantConversationTextInfo"></a><h3>PolKitGrantConversationTextInfo ()</h3>
+<pre class="programlisting">void                (*PolKitGrantConversationTextInfo)  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         const char *text_info,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that is invoked when the authentication
+layer produces an informational message that should be displayed in
+the UI.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>text_info</code></em>:</span></p></td>
+<td> information passed by the authentication layer; do not free this string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantOverrideGrantType"></a><h3>PolKitGrantOverrideGrantType ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        (*PolKitGrantOverrideGrantType)     (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> grant_type,
+                                                         void *user_data);</pre>
+<p>
+Type for callback function that enables the UI to request a lesser
+privilege than is obtainable. This callback is invoked when the
+user have successfully authenticated but before the privilege is
+granted.
+</p>
+<p>
+Basically, this callback enables a program to provide an user
+interface like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
++------------------------------------------------------------+
+| You need to authenticate to access the volume 'Frobnicator |
+| Adventures Vol 2'                                          |
+|                                                            |
+| Password: [_________________]                              |
+|                                                            |
+[ [x] Remember this decision                                 |
+|   [ ] for this session                                     |
+|   [*] for this and future sessions                         |
+|                                                            |
+|                                    [Cancel] [Authenticate] |
++------------------------------------------------------------+
+</pre>
+<p>
+</p>
+<p>
+This dialog assumes that <em class="parameter"><code>grant_type</code></em> passed was
+<span class="type">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS</span>. By ticking the
+check boxes in the dialog, the user can override this to either
+<span class="type">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION</span> or
+<span class="type">POLKIT_RESULT_ONLY_VIA_SELF_AUTH</span>. Thus, the user can
+voluntarily choose to obtain a lesser privilege.
+</p>
+<p>
+Another example, would be that the <em class="parameter"><code>grant_type</code></em> passed was
+<span class="type">POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION</span>. Then the dialog
+should look like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
++------------------------------------------------------------+
+| You need to authenticate to access the volume 'Frobnicator |
+| Adventures Vol 2'                                          |
+|                                                            |
+| Password: [_________________]                              |
+|                                                            |
+[ [x] Remember this decision for the rest of the session     |
+|                                                            |
+|                                    [Cancel] [Authenticate] |
++------------------------------------------------------------+
+</pre>
+<p>
+</p>
+<p>
+Finally, if the <em class="parameter"><code>grant_type</code></em> value passed is
+e.g. <span class="type">POLKIT_RESULT_ONLY_VIA_SELF_AUTH</span>, there are no options to
+click.:
+</p>
+<p>
+</p>
+<pre class="programlisting">
++------------------------------------------------------------+
+| You need to authenticate to access the volume 'Frobnicator |
+| Adventures Vol 2'                                          |
+|                                                            |
+| Password: [_________________]                              |
+|                                                            |
+|                                    [Cancel] [Authenticate] |
++------------------------------------------------------------+
+</pre>
+<p>
+</p>
+<p>
+Of course, these examples also applies to
+<span class="type">POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH</span> and friends.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>grant_type</code></em>:</span></p></td>
+<td> the current type of what privilege to obtain; this is
+the same value as passed to the callback of type <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantType"
+><span class="type">PolKitGrantType</span></a>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the desired type of what privilege to obtain; note that it
+won't work asking for more privileges than what <em class="parameter"><code>grant_type</code></em>
+specifies; the passed value is properly checked in the secure
+setgid granting helper mentioned in
+<a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-initiate-auth"
+><code class="function">polkit_grant_initiate_auth()</code></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantDone"></a><h3>PolKitGrantDone ()</h3>
+<pre class="programlisting">void                (*PolKitGrantDone)                  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> gained_privilege,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> invalid_data,
+                                                         void *user_data);</pre>
+<p>
+This function is called when the granting process ends; either if
+successful or if it was canceled using
+e.g. <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-cancel-auth"
+><code class="function">polkit_grant_cancel_auth()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>gained_privilege</code></em>:</span></p></td>
+<td> whether the privilege was obtained
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>invalid_data</code></em>:</span></p></td>
+<td> whether the input data was bogus (not including bad passwords)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data pointed as passed into <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantAddChildWatch"></a><h3>PolKitGrantAddChildWatch ()</h3>
+<pre class="programlisting">int                 (*PolKitGrantAddChildWatch)         (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         pid_t pid);</pre>
+<p>
+Type for function supplied by the application to integrate a watch
+on a child process into the applications main loop. The
+application must call <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-child-func"
+><code class="function">polkit_grant_child_func()</code></a> when the
+child dies
+</p>
+<p>
+For glib mainloop, the function will typically look like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
+static void
+child_watch_func (GPid pid,
+                  gint status,
+                  gpointer user_data)
+{
+        PolKitGrant *polkit_grant = user_data;
+        polkit_grant_child_func (polkit_grant, pid, WEXITSTATUS (status));
+}
+
+static int 
+add_child_watch (PolKitGrant *polkit_grant, pid_t pid)
+{
+        return g_child_watch_add (pid, child_watch_func, polkit_grant);
+}
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> the child pid to watch
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> 0 if the watch couldn't be set up; otherwise an unique
+identifier for the watch.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantAddIOWatch"></a><h3>PolKitGrantAddIOWatch ()</h3>
+<pre class="programlisting">int                 (*PolKitGrantAddIOWatch)            (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         int fd);</pre>
+<p>
+Type for function supplied by the application to integrate a watch
+on a file descriptor into the applications main loop. The
+application must call <a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-io-func"
+><code class="function">polkit_grant_io_func()</code></a> when there is data
+to read from the file descriptor.
+</p>
+<p>
+For glib mainloop, the function will typically look like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
+static gboolean
+io_watch_have_data (GIOChannel *channel, GIOCondition condition, gpointer user_data)
+{
+        int fd;
+        PolKitGrant *polkit_grant = user_data;
+        fd = g_io_channel_unix_get_fd (channel);
+        polkit_grant_io_func (polkit_grant, fd);
+        return TRUE;
+}
+
+static int 
+add_io_watch (PolKitGrant *polkit_grant, int fd)
+{
+        guint id = 0;
+        GIOChannel *channel;
+        channel = g_io_channel_unix_new (fd);
+        if (channel == NULL)
+                goto out;
+        id = g_io_add_watch (channel, G_IO_IN, io_watch_have_data, polkit_grant);
+        if (id == 0) {
+                g_io_channel_unref (channel);
+                goto out;
+        }
+        g_io_channel_unref (channel);
+out:
+        return id;
+}
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fd</code></em>:</span></p></td>
+<td> the file descriptor to watch
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> 0 if the watch couldn't be set up; otherwise an unique
+identifier for the watch.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitGrantRemoveWatch"></a><h3>PolKitGrantRemoveWatch ()</h3>
+<pre class="programlisting">void                (*PolKitGrantRemoveWatch)           (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         int watch_id);</pre>
+<p>
+Type for function supplied by the application to remove a watch set
+up via the supplied function of type <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+><span class="type">PolKitGrantAddIOWatch</span></a> or type
+<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddChildWatch"
+><span class="type">PolKitGrantAddChildWatch</span></a>.
+</p>
+<p>
+For glib mainloop, the function will typically look like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
+static void 
+remove_watch (PolKitGrant *polkit_auth, int watch_id)
+{
+        g_source_remove (watch_id);
+}
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the grant object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>watch_id</code></em>:</span></p></td>
+<td> the id obtained from using the supplied function
+of type <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+><span class="type">PolKitGrantAddIOWatch</span></a> or <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddChildWatch"
+><span class="type">PolKitGrantAddChildWatch</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-new"></a><h3>polkit_grant_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a>*        polkit_grant_new                    (void);</pre>
+<p>
+Creates a <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+><span class="type">PolKitGrant</span></a> object.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if the authorization backend
+doesn't support obtaining authorizations through authentication.
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-ref"></a><h3>polkit_grant_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a>*        polkit_grant_ref                    (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant);</pre>
+<p>
+Increase reference count.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-unref"></a><h3>polkit_grant_unref ()</h3>
+<pre class="programlisting">void                polkit_grant_unref                  (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-set-functions"></a><h3>polkit_grant_set_functions ()</h3>
+<pre class="programlisting">void                polkit_grant_set_functions          (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+>PolKitGrantAddIOWatch</a> func_add_io_watch,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddChildWatch"
+>PolKitGrantAddChildWatch</a> func_add_child_watch,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantRemoveWatch"
+>PolKitGrantRemoveWatch</a> func_remove_watch,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantType"
+>PolKitGrantType</a> func_type,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantSelectAdminUser"
+>PolKitGrantSelectAdminUser</a> func_select_admin_user,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOff"
+>PolKitGrantConversationPromptEchoOff</a> func_prompt_echo_off,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOn"
+>PolKitGrantConversationPromptEchoOn</a> func_prompt_echo_on,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationErrorMessage"
+>PolKitGrantConversationErrorMessage</a> func_error_message,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantConversationTextInfo"
+>PolKitGrantConversationTextInfo</a> func_text_info,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantOverrideGrantType"
+>PolKitGrantOverrideGrantType</a> func_override_grant_type,
+                                                         <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantDone"
+>PolKitGrantDone</a> func_done,
+                                                         void *user_data);</pre>
+<p>
+Set callback functions used for authentication.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_add_io_watch</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_add_child_watch</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_remove_watch</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_type</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_select_admin_user</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_prompt_echo_off</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_prompt_echo_on</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_error_message</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_text_info</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_override_grant_type</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func_done</code></em>:</span></p></td>
+<td> Callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> User data that will be passed to the callback functions.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-initiate-auth"></a><h3>polkit_grant_initiate_auth ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_grant_initiate_auth          (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Initiate authentication to obtain the privilege for the given
+<em class="parameter"><code>caller</code></em> to perform the specified <em class="parameter"><code>action</code></em>. The caller of this method
+must have setup callback functions using the method
+<a
+href="../polkit/polkit-polkit-grant.html#polkit-grant-set-functions"
+><code class="function">polkit_grant_set_functions()</code></a> prior to calling this method.
+</p>
+<p>
+Implementation-wise, this class uses a secure (e.g. as in that it
+checks all information and fundamenally don't trust the caller;
+e.g. the <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+><span class="type">PolKitGrant</span></a> class) setgid helper that does all the heavy
+lifting.
+</p>
+<p>
+The caller of this method must iterate the mainloop context in
+order for authentication to make progress.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> Action requested by caller
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> Caller in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if authentication have been initiated.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-cancel-auth"></a><h3>polkit_grant_cancel_auth ()</h3>
+<pre class="programlisting">void                polkit_grant_cancel_auth            (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant);</pre>
+<p>
+Cancel an authentication in progress
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-io-func"></a><h3>polkit_grant_io_func ()</h3>
+<pre class="programlisting">void                polkit_grant_io_func                (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         int fd);</pre>
+<p>
+Method that the application must call when there is data to read
+from a file descriptor registered with the supplied function of
+type <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+><span class="type">PolKitGrantAddIOWatch</span></a>.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fd</code></em>:</span></p></td>
+<td> the file descriptor passed to the supplied function of type <a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddIOWatch"
+><span class="type">PolKitGrantAddIOWatch</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-grant-child-func"></a><h3>polkit_grant_child_func ()</h3>
+<pre class="programlisting">void                polkit_grant_child_func             (<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrant"
+>PolKitGrant</a> *polkit_grant,
+                                                         pid_t pid,
+                                                         int exit_code);</pre>
+<p>
+Method that the application must call when a child process
+registered with the supplied function of type
+<a
+href="../polkit/polkit-polkit-grant.html#PolKitGrantAddChildWatch"
+><span class="type">PolKitGrantAddChildWatch</span></a> terminates.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-grant</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>polkit_grant</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> pid of the child
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>exit_code</code></em>:</span></p></td>
+<td> exit code of the child
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

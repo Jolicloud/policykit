@@ -1,0 +1,39 @@
+<!-- ##### SECTION Title ##### -->
+kit-test
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT KitTest ##### -->
+<para>
+
+</para>
+
+@name: 
+@setup: 
+@teardown: 
+@run: 
+
+<!-- ##### FUNCTION kit_test_run ##### -->
+<para>
+
+</para>
+
+@tests: 
+@num_tests: 
+@Returns: 
+
+

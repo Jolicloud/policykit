@@ -1,0 +1,195 @@
+<!-- ##### SECTION Title ##### -->
+kit-hash
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT KitHash ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION KitHashFunc ##### -->
+<para>
+
+</para>
+
+@key: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION KitEqualFunc ##### -->
+<para>
+
+</para>
+
+@key1: 
+@key2: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION KitFreeFunc ##### -->
+<para>
+
+</para>
+
+@p: 
+
+
+<!-- ##### USER_FUNCTION KitCopyFunc ##### -->
+<para>
+
+</para>
+
+@p: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION KitHashForeachFunc ##### -->
+<para>
+
+</para>
+
+@key: 
+@value: 
+@user_data: 
+@hash: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_new ##### -->
+<para>
+
+</para>
+
+@hash_func: 
+@key_equal_func: 
+@key_copy_func: 
+@value_copy_func: 
+@key_destroy_func: 
+@value_destroy_func: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_ref ##### -->
+<para>
+
+</para>
+
+@hash: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_unref ##### -->
+<para>
+
+</para>
+
+@hash: 
+
+
+<!-- ##### FUNCTION kit_hash_insert ##### -->
+<para>
+
+</para>
+
+@hash: 
+@key: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_lookup ##### -->
+<para>
+
+</para>
+
+@hash: 
+@key: 
+@found: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_foreach ##### -->
+<para>
+
+</para>
+
+@hash: 
+@cb: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_foreach_remove ##### -->
+<para>
+
+</para>
+
+@hash: 
+@cb: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_direct_hash_func ##### -->
+<para>
+
+</para>
+
+@key: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_direct_equal_func ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_str_hash_func ##### -->
+<para>
+
+</para>
+
+@key: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_str_equal_func ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_hash_str_copy ##### -->
+<para>
+
+</para>
+
+@p: 
+@Returns: 
+
+

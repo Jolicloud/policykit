@@ -1,0 +1,184 @@
+<!-- ##### SECTION Title ##### -->
+polkit-authorization
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitAuthorization ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_authorization_ref ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_unref ##### -->
+<para>
+
+</para>
+
+@auth: 
+
+
+<!-- ##### FUNCTION polkit_authorization_debug ##### -->
+<para>
+
+</para>
+
+@auth: 
+
+
+<!-- ##### FUNCTION polkit_authorization_validate ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### ENUM PolKitAuthorizationScope ##### -->
+<para>
+
+</para>
+
+@POLKIT_AUTHORIZATION_SCOPE_PROCESS_ONE_SHOT: 
+@POLKIT_AUTHORIZATION_SCOPE_PROCESS: 
+@POLKIT_AUTHORIZATION_SCOPE_SESSION: 
+@POLKIT_AUTHORIZATION_SCOPE_ALWAYS: 
+
+<!-- ##### ENUM PolKitAuthorizationType ##### -->
+<para>
+
+</para>
+
+@POLKIT_AUTHORIZATION_TYPE_UID: 
+
+<!-- ##### FUNCTION polkit_authorization_type ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_get_action_id ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_get_uid ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_get_time_of_grant ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_get_scope ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_scope_process_get_pid ##### -->
+<para>
+
+</para>
+
+@auth: 
+@out_pid: 
+@out_pid_start_time: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_scope_session_get_ck_objref ##### -->
+<para>
+
+</para>
+
+@auth: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_was_granted_via_defaults ##### -->
+<para>
+
+</para>
+
+@auth: 
+@out_user_authenticated_as: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_was_granted_explicitly ##### -->
+<para>
+
+</para>
+
+@auth: 
+@out_by_whom: 
+@out_is_negative: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitAuthorizationConstraintsForeachFunc ##### -->
+<para>
+
+</para>
+
+@auth: 
+@authc: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_authorization_constraints_foreach ##### -->
+<para>
+
+</para>
+
+@auth: 
+@cb: 
+@user_data: 
+@Returns: 
+
+

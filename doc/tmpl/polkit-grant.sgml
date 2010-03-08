@@ -1,0 +1,222 @@
+<!-- ##### SECTION Title ##### -->
+polkit-grant
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitGrant ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION PolKitGrantType ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@grant_type: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantSelectAdminUser ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@admin_users: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantConversationPromptEchoOff ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@prompt: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantConversationPromptEchoOn ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@prompt: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantConversationErrorMessage ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@error_message: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantConversationTextInfo ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@text_info: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantOverrideGrantType ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@grant_type: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantDone ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@gained_privilege: 
+@invalid_data: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantAddChildWatch ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@pid: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantAddIOWatch ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@fd: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitGrantRemoveWatch ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@watch_id: 
+
+
+<!-- ##### FUNCTION polkit_grant_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_grant_ref ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_grant_unref ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+
+
+<!-- ##### FUNCTION polkit_grant_set_functions ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@func_add_io_watch: 
+@func_add_child_watch: 
+@func_remove_watch: 
+@func_type: 
+@func_select_admin_user: 
+@func_prompt_echo_off: 
+@func_prompt_echo_on: 
+@func_error_message: 
+@func_text_info: 
+@func_override_grant_type: 
+@func_done: 
+@user_data: 
+
+
+<!-- ##### FUNCTION polkit_grant_initiate_auth ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@action: 
+@caller: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_grant_cancel_auth ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+
+
+<!-- ##### FUNCTION polkit_grant_io_func ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@fd: 
+
+
+<!-- ##### FUNCTION polkit_grant_child_func ##### -->
+<para>
+
+</para>
+
+@polkit_grant: 
+@pid: 
+@exit_code: 
+
+

@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-result">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-result.top_of_page">Results</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Results</refname>
+<refpurpose>Definition of results of PolicyKit queries.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-result.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="PolKitResult">PolKitResult</link>;
+const <link linkend="char">char</link>*         <link linkend="polkit-result-to-string-representation">polkit_result_to_string_representation</link>
+                                                        (<link linkend="PolKitResult">PolKitResult</link> result);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-result-from-string-representation">polkit_result_from_string_representation</link>
+                                                        (const <link linkend="char">char</link> *string,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *out_result);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-result.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+These functions are used to manipulate PolicyKit results.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-result.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitResult" role="enum">
+<title>enum PolKitResult</title>
+<indexterm zone="PolKitResult"><primary>PolKitResult</primary></indexterm><programlisting>typedef enum
+{
+        POLKIT_RESULT_UNKNOWN,
+
+        POLKIT_RESULT_NO,
+
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH,
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION,
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS,
+
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS,
+
+        POLKIT_RESULT_YES,
+
+        POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT,
+        POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT,
+
+        POLKIT_RESULT_N_RESULTS
+} PolKitResult;
+</programlisting>
+<para>
+Result codes from queries to PolicyKit. This enumeration may grow
+in the future. One should never rely on the ordering</para>
+<para>
+
+</para><variablelist role="enum">
+<varlistentry id="POLKIT-RESULT-UNKNOWN:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_UNKNOWN</literal></term>
+<listitem><simpara> The result is unknown / cannot be
+computed. This is mostly used internally in libpolkit.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-NO:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_NO</literal></term>
+<listitem><simpara> Access denied.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access to the process the caller is originating from.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-SESSION:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access for the remainder of the session
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-KEEP-ALWAYS:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access in the future.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as himself will grant access to the
+process the caller is originating from.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-SESSION:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as himself will grant access to the
+resource for the remainder of the session
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-KEEP-ALWAYS:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as himself will grant access to the
+resource in the future.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-YES:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_YES</literal></term>
+<listitem><simpara> Access granted.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-ADMIN-AUTH-ONE-SHOT:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as administrator (e.g. root or a
+member in the wheel group depending on configuration) will grant
+access exactly one time to the process the caller is originating
+from. See <link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link> for discussion (and
+limitations) about one-shot authorizations.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-ONLY-VIA-SELF-AUTH-ONE-SHOT:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT</literal></term>
+<listitem><simpara> Access denied, but
+authentication by the caller as himself will grant access exactly
+one time to the process the caller is originating from. See
+<link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link> for discussion (and
+limitations) about one-shot authorizations.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="POLKIT-RESULT-N-RESULTS:CAPS" role="constant">
+<term><literal>POLKIT_RESULT_N_RESULTS</literal></term>
+<listitem><simpara> Number of result codes
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-result-to-string-representation" role="function">
+<title>polkit_result_to_string_representation ()</title>
+<indexterm zone="polkit-result-to-string-representation"><primary>polkit_result_to_string_representation</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_result_to_string_representation
+                                                        (<link linkend="PolKitResult">PolKitResult</link> result);</programlisting>
+<para>
+Gives a textual representation of a <link linkend="PolKitResult"><type>PolKitResult</type></link> object. This
+string is not suitable for displaying to an end user (it's not
+localized for starters) but is useful for serialization as it can
+be converted back to a <link linkend="PolKitResult"><type>PolKitResult</type></link> object using
+<link linkend="polkit-result-from-string-representation"><function>polkit_result_from_string_representation()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>result</parameter>&nbsp;:</term>
+<listitem><simpara> the given result to get a textual representation of
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> string representing the result (do not free) or <link linkend="NULL:CAPS"><type>NULL</type></link> if the given result is invalid
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-result-from-string-representation" role="function">
+<title>polkit_result_from_string_representation ()</title>
+<indexterm zone="polkit-result-from-string-representation"><primary>polkit_result_from_string_representation</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_result_from_string_representation
+                                                        (const <link linkend="char">char</link> *string,
+                                                         <link linkend="PolKitResult">PolKitResult</link> *out_result);</programlisting>
+<para>
+Given a textual representation of a <link linkend="PolKitResult"><type>PolKitResult</type></link> object, find the
+<link linkend="PolKitResult"><type>PolKitResult</type></link> value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>string</parameter>&nbsp;:</term>
+<listitem><simpara> textual representation of a <link linkend="PolKitResult"><type>PolKitResult</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_result</parameter>&nbsp;:</term>
+<listitem><simpara> return location for <link linkend="PolKitResult"><type>PolKitResult</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE if the textual representation was valid, otherwise FALSE
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

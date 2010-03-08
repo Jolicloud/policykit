@@ -1,0 +1,73 @@
+<!-- ##### SECTION Title ##### -->
+kit-memory
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION kit_malloc ##### -->
+<para>
+
+</para>
+
+@bytes: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_malloc0 ##### -->
+<para>
+
+</para>
+
+@bytes: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_realloc ##### -->
+<para>
+
+</para>
+
+@memory: 
+@bytes: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_free ##### -->
+<para>
+
+</para>
+
+@memory: 
+
+
+<!-- ##### MACRO kit_new ##### -->
+<para>
+
+</para>
+
+@type: 
+@count: 
+
+
+<!-- ##### MACRO kit_new0 ##### -->
+<para>
+
+</para>
+
+@type: 
+@count: 
+
+

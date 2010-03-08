@@ -1,0 +1,71 @@
+<!-- ##### SECTION Title ##### -->
+kit
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO KIT_BEGIN_DECLS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO KIT_END_DECLS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF kit_bool_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION kit_print_backtrace ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO kit_assert ##### -->
+<para>
+
+</para>
+
+@expr: 
+
+
+<!-- ##### MACRO kit_return_if_fail ##### -->
+<para>
+
+</para>
+
+@expr: 
+
+
+<!-- ##### MACRO kit_return_val_if_fail ##### -->
+<para>
+
+</para>
+
+@expr: 
+@val: 
+
+

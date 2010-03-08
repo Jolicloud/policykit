@@ -1,0 +1,85 @@
+<!-- ##### SECTION Title ##### -->
+polkit-simple
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION polkit_check_auth ##### -->
+<para>
+
+</para>
+
+@pid: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_check_authv ##### -->
+<para>
+
+</para>
+
+@pid: 
+@action_ids: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_auth_obtain ##### -->
+<para>
+
+</para>
+
+@action_id: 
+@xid: 
+@pid: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_dbus_error_generate ##### -->
+<para>
+
+</para>
+
+@action: 
+@result: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_dbus_error_parse ##### -->
+<para>
+
+</para>
+
+@error: 
+@action: 
+@result: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_dbus_error_parse_from_strings ##### -->
+<para>
+
+</para>
+
+@error_name: 
+@error_message: 
+@action: 
+@result: 
+@Returns: 
+
+

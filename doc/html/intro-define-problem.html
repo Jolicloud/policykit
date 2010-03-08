@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Defining the Problem</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="introduction.html" title="Introduction">
+<link rel="prev" href="polkit-spec-history.html" title="History and Prior Art">
+<link rel="next" href="model.html" title="PolicyKit Model">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="polkit-spec-history.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="introduction.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="model.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="sect1" lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="intro-define-problem"></a>Defining the Problem</h2></div></div></div>
+<p>
+      There's a couple of problems with the mechanisms described in
+      <a class="xref" href="polkit-spec-history.html" title="History and Prior Art">the section called “History and Prior Art”</a>.
+
+      </p>
+<div class="itemizedlist"><ul type="disc">
+<li><p>
+            Mechanisms are coarsely grained: either you're at the
+            console or you're not (pam_console). Either you're a
+            member of a group or you're not (Debian). There is no easy
+            way to specify that only a subset of privileged operations
+            should be available for a given user (e.g. it's hard to
+            express "it's fine to mount removable media; it's not fine
+            to mount fixed media; it's not fine to change the
+            timezone" in a coherent way).
+          </p></li>
+<li><p>
+            The way most people use pam-console and sudo is
+            fundamentally broken. Full-fledged GTK+ or Qt applications
+            run as the super user which means that millions of line of
+            code (including code such as image loaders that
+            historically have lots of security problems) runs
+            privileged. This is in direct violation of the well-known
+            "least privilege" principle. In addition, often
+            applications look out of place because settings in such
+            programs now read per-user settings from root's home
+            directory.
+          </p></li>
+<li><p>
+            UNIX group membership have always been problematic; if a
+            user is a member of a group once, he can always become
+            member of the group again
+            (copy <code class="literal">/bin/bash</code> to $HOME; chown to
+            group, set the setgid bit, done).
+          </p></li>
+<li><p>
+            It is difficult for upstream projects (such as GNOME or
+            KDE) to implement features that requires administrative
+            privileges because most downstream consumers
+            (e.g. operating systems) have different ways of
+            implementing access control. As a result most of these
+            features are punted to OS distributors who have their own
+            code for doing the same thing e.g. setting the
+            date/timezone etc.; there is no way for file sharing
+            applications (such as gnome-user-share, Banshee,
+            Rhythmbox) to punch a hole in the firewall.
+          </p></li>
+<li><p>
+            Without a centralized framework, access control
+            configuration is often scattered throughout the system
+            which makes it hard for system administrators to grasp how
+            to configure the system. There's literally a bunch of
+            different configuration files all with different formats
+            and semantics.
+          </p></li>
+</ul></div>
+<p>
+    </p>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

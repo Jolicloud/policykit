@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-context">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-context.top_of_page">Context</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Context</refname>
+<refpurpose>The main interface used to query PolicyKit.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-context.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitContext">PolKitContext</link>;
+<link linkend="void">void</link>                (<link linkend="PolKitContextConfigChangedCB">*PolKitContextConfigChangedCB</link>)     (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="int">int</link>                 (<link linkend="PolKitContextAddIOWatch">*PolKitContextAddIOWatch</link>)          (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="int">int</link> fd);
+<link linkend="void">void</link>                (<link linkend="PolKitContextRemoveIOWatch">*PolKitContextRemoveIOWatch</link>)       (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="int">int</link> watch_id);
+<link linkend="PolKitContext">PolKitContext</link>*      <link linkend="polkit-context-new">polkit_context_new</link>                  (void);
+<link linkend="void">void</link>                <link linkend="polkit-context-set-config-changed">polkit_context_set_config_changed</link>   (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitContextConfigChangedCB">PolKitContextConfigChangedCB</link> cb,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="void">void</link>                <link linkend="polkit-context-set-io-watch-functions">polkit_context_set_io_watch_functions</link>
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitContextAddIOWatch">PolKitContextAddIOWatch</link> io_add_watch_func,
+                                                         <link linkend="PolKitContextRemoveIOWatch">PolKitContextRemoveIOWatch</link> io_remove_watch_func);
+<link linkend="void">void</link>                <link linkend="polkit-context-set-load-descriptions">polkit_context_set_load_descriptions</link>
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-context-init">polkit_context_init</link>                 (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
+<link linkend="PolKitContext">PolKitContext</link>*      <link linkend="polkit-context-ref">polkit_context_ref</link>                  (<link linkend="PolKitContext">PolKitContext</link> *pk_context);
+<link linkend="void">void</link>                <link linkend="polkit-context-unref">polkit_context_unref</link>                (<link linkend="PolKitContext">PolKitContext</link> *pk_context);
+<link linkend="void">void</link>                <link linkend="polkit-context-force-reload">polkit_context_force_reload</link>         (<link linkend="PolKitContext">PolKitContext</link> *pk_context);
+<link linkend="void">void</link>                <link linkend="polkit-context-io-func">polkit_context_io_func</link>              (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="int">int</link> fd);
+<link linkend="PolKitPolicyCache">PolKitPolicyCache</link>*  <link linkend="polkit-context-get-policy-cache">polkit_context_get_policy_cache</link>     (<link linkend="PolKitContext">PolKitContext</link> *pk_context);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-context-can-session-do-action">polkit_context_can_session_do_action</link>
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-context-can-caller-do-action">polkit_context_can_caller_do_action</link> (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller);
+<link linkend="PolKitConfig">PolKitConfig</link>*       <link linkend="polkit-context-get-config">polkit_context_get_config</link>           (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-context-is-caller-authorized">polkit_context_is_caller_authorized</link> (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="polkit-bool-t">polkit_bool_t</link> revoke_if_one_shot,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
+<link linkend="PolKitResult">PolKitResult</link>        <link linkend="polkit-context-is-session-authorized">polkit_context_is_session_authorized</link>
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);
+<link linkend="PolKitAuthorizationDB">PolKitAuthorizationDB</link>* <link linkend="polkit-context-get-authorization-db">polkit_context_get_authorization_db</link>
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-context.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent the interface to PolicyKit - it is
+used by Mechanisms that use PolicyKit for making
+decisions. Typically, it's used as a singleton:
+</para>
+<para>
+<itemizedlist>
+<listitem>First, the Mechanism need to declare one or more PolicyKit Actions by dropping a <literal>.policy</literal> file into <literal>/usr/share/PolicyKit/policy</literal>. This is described in the PolicyKit specification.</listitem>
+<listitem>The mechanism starts up and uses <link linkend="polkit-context-new"><function>polkit_context_new()</function></link> to create a new context</listitem>
+<listitem>If the mechanism is a long running daemon, it should use <link linkend="polkit-context-set-config-changed"><function>polkit_context_set_config_changed()</function></link> to register a callback when configuration changes. This is useful if, for example, the mechanism needs to revise decisions based on earlier answers from libpolkit. For example, a daemon that manages permissions on <literal>/dev</literal> may want to add/remove ACL's when configuration changes; for example, the system administrator could have changed the PolicyKit configuration file <literal>/etc/PolicyKit/PolicyKit.conf</literal> such that some user is now privileged to access a specific device.</listitem>
+<listitem>If <link linkend="polkit-context-set-config-changed"><function>polkit_context_set_config_changed()</function></link> is used, the mechanism must also use <link linkend="polkit-context-set-io-watch-functions"><function>polkit_context_set_io_watch_functions()</function></link> to integrate libpolkit into the mainloop.</listitem>
+<listitem>The mechanism needs to call <link linkend="polkit-context-init"><function>polkit_context_init()</function></link> such that libpolkit can load configuration files and properly initialize.</listitem>
+<listitem>Whenever the mechanism needs to make a decision whether a caller is allowed to make a perform some action, the mechanism prepares a <link linkend="PolKitAction"><type>PolKitAction</type></link> and <link linkend="PolKitCaller"><type>PolKitCaller</type></link> object (or <link linkend="PolKitSession"><type>PolKitSession</type></link> if applicable) and calls <link linkend="polkit-context-can-caller-do-action"><function>polkit_context_can_caller_do_action()</function></link> (or <link linkend="polkit-context-can-session-do-action"><function>polkit_context_can_session_do_action()</function></link> if applicable). The mechanism may use the libpolkit-dbus library (specifically the <link linkend="polkit-caller-new-from-dbus-name"><function>polkit_caller_new_from_dbus_name()</function></link> or <link linkend="polkit-caller-new-from-pid"><function>polkit_caller_new_from_pid()</function></link> functions) but may opt, for performance reasons, to construct <link linkend="PolKitCaller"><type>PolKitCaller</type></link> (or <link linkend="PolKitSession"><type>PolKitSession</type></link> if applicable) from it's own cache of information.</listitem>
+<listitem>The mechanism will get a <link linkend="PolKitResult"><type>PolKitResult</type></link> object back that describes whether it should carry out the action. This result stems from a number of sources, see the PolicyKit specification document for details.</listitem>
+<listitem>If the result is <link linkend="POLKIT-RESULT-YES:CAPS"><type>POLKIT_RESULT_YES</type></link>, the mechanism should carry out the action. If the result is not <link linkend="POLKIT-RESULT-YES:CAPS"><type>POLKIT_RESULT_YES</type></link> nor <link linkend="POLKIT-RESULT-UNKNOWN:CAPS"><type>POLKIT_RESULT_UNKNOWN</type></link> (this would never be returned but is mentioned here for completeness), the mechanism should throw an expcetion to the caller detailing the <link linkend="PolKitResult"><type>PolKitResult</type></link> as a textual string using <link linkend="polkit-result-to-string-representation"><function>polkit_result_to_string_representation()</function></link>. For example, if the mechanism is using D-Bus it could throw an com.some-mechanism.DeniedByPolicy exception with the <link linkend="PolKitResult"><type>PolKitResult</type></link> textual representation in the detail field. Then the caller can interpret this exception and then act on it (for example it can attempt to gain that privilege).</listitem>
+</itemizedlist>
+</para>
+<para>
+For more information about using PolicyKit in mechanisms and
+callers, refer to the PolicyKit-gnome project which includes a
+sample application on how to use this in the GNOME desktop.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-context.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitContext" role="struct">
+<title>PolKitContext</title>
+<indexterm zone="PolKitContext"><primary>PolKitContext</primary></indexterm><programlisting>typedef struct _PolKitContext PolKitContext;</programlisting>
+<para>
+Context object for users of PolicyKit.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="PolKitContextConfigChangedCB" role="function">
+<title>PolKitContextConfigChangedCB ()</title>
+<indexterm zone="PolKitContextConfigChangedCB"><primary>PolKitContextConfigChangedCB</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitContextConfigChangedCB)     (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+The type of the callback function for when configuration changes.
+Mechanisms should use this callback to e.g. reconfigure all
+permissions / acl's they have set in response to policy decisions
+made from information provided by PolicyKit.
+</para>
+<para>
+The user must have set up watches using <link linkend="polkit-context-set-io-watch-functions"><type>polkit_context_set_io_watch_functions</type></link>
+for this to work.
+</para>
+<para>
+Note that this function may be called many times within a short
+interval due to how file monitoring works if e.g. the user is
+editing a configuration file (editors typically create back-up
+files). Mechanisms should use a "cool-off" timer (of, say, one
+second) to avoid doing many expensive operations (such as
+reconfiguring all ACL's for all devices) within a very short
+timeframe.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="PolKitContextAddIOWatch" role="function">
+<title>PolKitContextAddIOWatch ()</title>
+<indexterm zone="PolKitContextAddIOWatch"><primary>PolKitContextAddIOWatch</primary></indexterm><programlisting><link linkend="int">int</link>                 (*PolKitContextAddIOWatch)          (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="int">int</link> fd);</programlisting>
+<para>
+Type for function supplied by the application to integrate a watch
+on a file descriptor into the applications main loop. The
+application must call <link linkend="polkit-context-io-func"><function>polkit_context_io_func()</function></link> when there is data
+to read from the file descriptor.
+</para>
+<para>
+For glib mainloop, the function will typically look like this:
+</para>
+<para>
+<programlisting>
+static gboolean
+io_watch_have_data (GIOChannel *channel, GIOCondition condition, gpointer user_data)
+{
+        int fd;
+        PolKitContext *pk_context = user_data;
+        fd = g_io_channel_unix_get_fd (channel);
+        polkit_context_io_func (pk_context, fd);
+        return TRUE;
+}
+
+static int 
+io_add_watch (PolKitContext *pk_context, int fd)
+{
+        guint id = 0;
+        GIOChannel *channel;
+        channel = g_io_channel_unix_new (fd);
+        if (channel == NULL)
+                goto out;
+        id = g_io_add_watch (channel, G_IO_IN, io_watch_have_data, pk_context);
+        if (id == 0) {
+                g_io_channel_unref (channel);
+                goto out;
+        }
+        g_io_channel_unref (channel);
+out:
+        return id;
+}
+</programlisting></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the polkit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fd</parameter>&nbsp;:</term>
+<listitem><simpara> the file descriptor to watch
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 if the watch couldn't be set up; otherwise an unique
+identifier for the watch.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="PolKitContextRemoveIOWatch" role="function">
+<title>PolKitContextRemoveIOWatch ()</title>
+<indexterm zone="PolKitContextRemoveIOWatch"><primary>PolKitContextRemoveIOWatch</primary></indexterm><programlisting><link linkend="void">void</link>                (*PolKitContextRemoveIOWatch)       (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="int">int</link> watch_id);</programlisting>
+<para>
+Type for function supplied by the application to remove a watch set
+up via the supplied function of type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type></link>
+</para>
+<para>
+For the glib mainloop, the function will typically look like this:
+</para>
+<para>
+<programlisting>
+static void 
+io_remove_watch (PolKitContext *pk_context, int watch_id)
+{
+        g_source_remove (watch_id);
+}
+</programlisting></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>watch_id</parameter>&nbsp;:</term>
+<listitem><simpara> the id obtained from using the supplied function
+of type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-new" role="function">
+<title>polkit_context_new ()</title>
+<indexterm zone="polkit-context-new"><primary>polkit_context_new</primary></indexterm><programlisting><link linkend="PolKitContext">PolKitContext</link>*      polkit_context_new                  (void);</programlisting>
+<para>
+Create a new context</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-set-config-changed" role="function">
+<title>polkit_context_set_config_changed ()</title>
+<indexterm zone="polkit-context-set-config-changed"><primary>polkit_context_set_config_changed</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_config_changed   (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitContextConfigChangedCB">PolKitContextConfigChangedCB</link> cb,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Register the callback function for when configuration changes.
+Mechanisms should use this callback to e.g. reconfigure all
+permissions / acl's they have set in response to policy decisions
+made from information provided by PolicyKit. 
+</para>
+<para>
+Note that this function may be called many times within a short
+interval due to how file monitoring works if e.g. the user is
+editing a configuration file (editors typically create back-up
+files). Mechanisms should use a "cool-off" timer (of, say, one
+second) to avoid doing many expensive operations (such as
+reconfiguring all ACL's for all devices) within a very short
+timeframe.
+</para>
+<para>
+This method must be called before <link linkend="polkit-context-init"><function>polkit_context_init()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>cb</parameter>&nbsp;:</term>
+<listitem><simpara> the callback to invoke
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to the callback
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-set-io-watch-functions" role="function">
+<title>polkit_context_set_io_watch_functions ()</title>
+<indexterm zone="polkit-context-set-io-watch-functions"><primary>polkit_context_set_io_watch_functions</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_io_watch_functions
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitContextAddIOWatch">PolKitContextAddIOWatch</link> io_add_watch_func,
+                                                         <link linkend="PolKitContextRemoveIOWatch">PolKitContextRemoveIOWatch</link> io_remove_watch_func);</programlisting>
+<para>
+Register a functions that PolicyKit can use for watching IO descriptors.
+</para>
+<para>
+This method must be called before <link linkend="polkit-context-init"><function>polkit_context_init()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>io_add_watch_func</parameter>&nbsp;:</term>
+<listitem><simpara> the function that the PolicyKit library can invoke to start watching a file descriptor
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>io_remove_watch_func</parameter>&nbsp;:</term>
+<listitem><simpara> the function that the PolicyKit library can invoke to stop watching a file descriptor
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-set-load-descriptions" role="function">
+<title>polkit_context_set_load_descriptions ()</title>
+<indexterm zone="polkit-context-set-load-descriptions"><primary>polkit_context_set_load_descriptions</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_set_load_descriptions
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<para>
+Set whether policy descriptions should be loaded. By default these
+are not loaded to keep memory use down. TODO: specify whether they
+are localized and how.
+</para>
+<para>
+This method must be called before <link linkend="polkit-context-init"><function>polkit_context_init()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-init" role="function">
+<title>polkit_context_init ()</title>
+<indexterm zone="polkit-context-init"><primary>polkit_context_init</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_context_init                 (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Initializes a new context; loads PolicyKit files from
+/usr/share/PolicyKit/policy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="FALSE:CAPS"><type>FALSE</type></link> if <parameter>error</parameter> was set, otherwise <link linkend="TRUE:CAPS"><type>TRUE</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-ref" role="function">
+<title>polkit_context_ref ()</title>
+<indexterm zone="polkit-context-ref"><primary>polkit_context_ref</primary></indexterm><programlisting><link linkend="PolKitContext">PolKitContext</link>*      polkit_context_ref                  (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-unref" role="function">
+<title>polkit_context_unref ()</title>
+<indexterm zone="polkit-context-unref"><primary>polkit_context_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_unref                (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-force-reload" role="function" condition="since:0.7">
+<title>polkit_context_force_reload ()</title>
+<indexterm zone="polkit-context-force-reload" role="0.7"><primary>polkit_context_force_reload</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_force_reload         (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<para>
+Force a reload. 
+</para>
+<para>
+Note that there is no reason to call this method in response to a
+config changed callback.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> context
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7 
+</para></refsect2>
+<refsect2 id="polkit-context-io-func" role="function">
+<title>polkit_context_io_func ()</title>
+<indexterm zone="polkit-context-io-func"><primary>polkit_context_io_func</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_context_io_func              (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="int">int</link> fd);</programlisting>
+<para>
+Method that the application must call when there is data to read
+from a file descriptor registered with the supplied function of
+type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>fd</parameter>&nbsp;:</term>
+<listitem><simpara> the file descriptor passed to the supplied function of type <link linkend="PolKitContextAddIOWatch"><type>PolKitContextAddIOWatch</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-get-policy-cache" role="function">
+<title>polkit_context_get_policy_cache ()</title>
+<indexterm zone="polkit-context-get-policy-cache"><primary>polkit_context_get_policy_cache</primary></indexterm><programlisting><link linkend="PolKitPolicyCache">PolKitPolicyCache</link>*  polkit_context_get_policy_cache     (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<para>
+Get the <link linkend="PolKitPolicyCache"><type>PolKitPolicyCache</type></link> object that holds all the defined policies as well as their defaults.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the context
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the <link linkend="PolKitPolicyCache"><type>PolKitPolicyCache</type></link> object. Caller shall not unref it.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-can-session-do-action" role="function" condition="deprecated:0.7: use polkit_context_is_session_authorized() instead.">
+<title>polkit_context_can_session_do_action ()</title>
+<indexterm zone="polkit-context-can-session-do-action" role="deprecated"><primary>polkit_context_can_session_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_can_session_do_action
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session);</programlisting>
+<warning><para><literal>polkit_context_can_session_do_action</literal> has been deprecated since version 0.7 and should not be used in newly-written code. use <link linkend="polkit-context-is-session-authorized"><function>polkit_context_is_session_authorized()</function></link> instead.</para></warning>
+<para>
+Determine if a given session can do a given action.
+</para>
+<para>
+This can fail with the following errors: 
+<link linkend="POLKIT-ERROR-NOT-AUTHORIZED-TO-READ-AUTHORIZATIONS-FOR-OTHER-USERS:CAPS"><type>POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</type></link></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>session</parameter>&nbsp;:</term>
+<listitem><simpara> the session in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitResult"><type>PolKitResult</type></link> - can only be one of
+<link linkend="POLKIT-RESULT-YES:CAPS"><type>POLKIT_RESULT_YES</type></link>, <link linkend="POLKIT-RESULT-NO:CAPS"><type>POLKIT_RESULT_NO</type></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-can-caller-do-action" role="function" condition="deprecated:0.7: use polkit_context_is_caller_authorized() instead.">
+<title>polkit_context_can_caller_do_action ()</title>
+<indexterm zone="polkit-context-can-caller-do-action" role="deprecated"><primary>polkit_context_can_caller_do_action</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_can_caller_do_action (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
+<warning><para><literal>polkit_context_can_caller_do_action</literal> has been deprecated since version 0.7 and should not be used in newly-written code. use <link linkend="polkit-context-is-caller-authorized"><function>polkit_context_is_caller_authorized()</function></link> instead.</para></warning>
+<para>
+Determine if a given caller can do a given action.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> the caller in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitResult"><type>PolKitResult</type></link> specifying if, and how, the caller can
+do a specific action
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-get-config" role="function">
+<title>polkit_context_get_config ()</title>
+<indexterm zone="polkit-context-get-config"><primary>polkit_context_get_config</primary></indexterm><programlisting><link linkend="PolKitConfig">PolKitConfig</link>*       polkit_context_get_config           (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Returns an object that provides access to the
+/etc/PolicyKit/PolicyKit.conf configuration files. Applications
+using PolicyKit should never use this method; it's only here for
+integration with other PolicyKit components.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> Return location for error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitConfig"><type>PolKitConfig</type></link> object or NULL if the configuration file
+is malformed. Caller should not unref this object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-context-is-caller-authorized" role="function" condition="since:0.7">
+<title>polkit_context_is_caller_authorized ()</title>
+<indexterm zone="polkit-context-is-caller-authorized" role="0.7"><primary>polkit_context_is_caller_authorized</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_is_caller_authorized (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="polkit-bool-t">polkit_bool_t</link> revoke_if_one_shot,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Determine if a given caller is authorized to do a given
+action. 
+</para>
+<para>
+It is important to understand how one-shot authorizations work.
+The revoke_if_one_shot parameter, if <link linkend="TRUE:CAPS"><type>TRUE</type></link>, specifies whether
+one-shot authorizations should be revoked if they are used
+to make the decision to return <link linkend="POLKIT-RESULT-YES:CAPS"><type>POLKIT_RESULT_YES</type></link>.
+</para>
+<para>
+UI applications wanting to hint whether a caller is authorized must
+pass <link linkend="FALSE:CAPS"><type>FALSE</type></link> here. Mechanisms that wants to check authorizations
+before carrying out work on behalf of a caller must pass <link linkend="TRUE:CAPS"><type>TRUE</type></link>
+here.
+</para>
+<para>
+As a side-effect, any process with the authorization
+org.freedesktop.policykit.read can revoke one-shot authorizations
+from other users. Even though the window for doing so is small
+(one-shot auths are typically used right away), be careful who you
+grant that authorization to.
+</para>
+<para>
+This can fail with the following errors: 
+<link linkend="POLKIT-ERROR-NOT-AUTHORIZED-TO-READ-AUTHORIZATIONS-FOR-OTHER-USERS:CAPS"><type>POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</type></link></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> the caller in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>revoke_if_one_shot</parameter>&nbsp;:</term>
+<listitem><simpara> Whether to revoke one-shot authorizations. See
+below for discussion.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitResult"><type>PolKitResult</type></link> specifying if, and how, the caller can
+do a specific action. 
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-context-is-session-authorized" role="function" condition="since:0.7">
+<title>polkit_context_is_session_authorized ()</title>
+<indexterm zone="polkit-context-is-session-authorized" role="0.7"><primary>polkit_context_is_session_authorized</primary></indexterm><programlisting><link linkend="PolKitResult">PolKitResult</link>        polkit_context_is_session_authorized
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session,
+                                                         <link linkend="PolKitError">PolKitError</link> **error);</programlisting>
+<para>
+Determine if any caller from a giver session is authorized to do a
+given action.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the type of access to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>session</parameter>&nbsp;:</term>
+<listitem><simpara> the session in question
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>error</parameter>&nbsp;:</term>
+<listitem><simpara> return location for error
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitResult"><type>PolKitResult</type></link> specifying if, and how, the caller can
+do a specific action. 
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-context-get-authorization-db" role="function">
+<title>polkit_context_get_authorization_db ()</title>
+<indexterm zone="polkit-context-get-authorization-db"><primary>polkit_context_get_authorization_db</primary></indexterm><programlisting><link linkend="PolKitAuthorizationDB">PolKitAuthorizationDB</link>* polkit_context_get_authorization_db
+                                                        (<link linkend="PolKitContext">PolKitContext</link> *pk_context);</programlisting>
+<para>
+Returns an object that provides access to the authorization
+database. Applications using PolicyKit should never use this
+method; it's only here for integration with other PolicyKit
+components.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pk_context</parameter>&nbsp;:</term>
+<listitem><simpara> the PolicyKit context
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="PolKitAuthorizationDB"><type>PolKitAuthorizationDB</type></link> object. Caller should not unref
+this object.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

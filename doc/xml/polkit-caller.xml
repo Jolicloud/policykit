@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-caller">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-caller.top_of_page">Caller</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Caller</refname>
+<refpurpose>Represents a process requesting a mechanism to do something.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-caller.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitCaller">PolKitCaller</link>;
+<link linkend="PolKitCaller">PolKitCaller</link>*       <link linkend="polkit-caller-new">polkit_caller_new</link>                   (void);
+<link linkend="PolKitCaller">PolKitCaller</link>*       <link linkend="polkit-caller-ref">polkit_caller_ref</link>                   (<link linkend="PolKitCaller">PolKitCaller</link> *caller);
+<link linkend="void">void</link>                <link linkend="polkit-caller-unref">polkit_caller_unref</link>                 (<link linkend="PolKitCaller">PolKitCaller</link> *caller);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-set-dbus-name">polkit_caller_set_dbus_name</link>         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         const <link linkend="char">char</link> *dbus_name);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-set-uid">polkit_caller_set_uid</link>               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="uid-t">uid_t</link> uid);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-set-pid">polkit_caller_set_pid</link>               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="pid-t">pid_t</link> pid);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-set-selinux-context">polkit_caller_set_selinux_context</link>   (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         const <link linkend="char">char</link> *selinux_context);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-set-ck-session">polkit_caller_set_ck_session</link>        (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-get-dbus-name">polkit_caller_get_dbus_name</link>         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="char">char</link> **out_dbus_name);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-get-uid">polkit_caller_get_uid</link>               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="uid-t">uid_t</link> *out_uid);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-get-pid">polkit_caller_get_pid</link>               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="pid-t">pid_t</link> *out_pid);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-get-selinux-context">polkit_caller_get_selinux_context</link>   (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="char">char</link> **out_selinux_context);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-get-ck-session">polkit_caller_get_ck_session</link>        (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="PolKitSession">PolKitSession</link> **out_session);
+<link linkend="void">void</link>                <link linkend="polkit-caller-debug">polkit_caller_debug</link>                 (<link linkend="PolKitCaller">PolKitCaller</link> *caller);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-caller-validate">polkit_caller_validate</link>              (<link linkend="PolKitCaller">PolKitCaller</link> *caller);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-caller.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent a caller in another process that is
+calling into a mechanism to make the mechanism do something.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-caller.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitCaller" role="struct">
+<title>PolKitCaller</title>
+<indexterm zone="PolKitCaller"><primary>PolKitCaller</primary></indexterm><programlisting>typedef struct _PolKitCaller PolKitCaller;</programlisting>
+<para>
+Objects of this class are used to record information about a caller
+in another process.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-caller-new" role="function">
+<title>polkit_caller_new ()</title>
+<indexterm zone="polkit-caller-new"><primary>polkit_caller_new</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_new                   (void);</programlisting>
+<para>
+Creates a new <link linkend="PolKitCaller"><type>PolKitCaller</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-ref" role="function">
+<title>polkit_caller_ref ()</title>
+<indexterm zone="polkit-caller-ref"><primary>polkit_caller_ref</primary></indexterm><programlisting><link linkend="PolKitCaller">PolKitCaller</link>*       polkit_caller_ref                   (<link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-unref" role="function">
+<title>polkit_caller_unref ()</title>
+<indexterm zone="polkit-caller-unref"><primary>polkit_caller_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_caller_unref                 (<link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-set-dbus-name" role="function">
+<title>polkit_caller_set_dbus_name ()</title>
+<indexterm zone="polkit-caller-set-dbus-name"><primary>polkit_caller_set_dbus_name</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_set_dbus_name         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         const <link linkend="char">char</link> *dbus_name);</programlisting>
+<para>
+Set the callers unique system bus connection name.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>dbus_name</parameter>&nbsp;:</term>
+<listitem><simpara> unique system bus connection name
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-set-uid" role="function">
+<title>polkit_caller_set_uid ()</title>
+<indexterm zone="polkit-caller-set-uid"><primary>polkit_caller_set_uid</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_set_uid               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="uid-t">uid_t</link> uid);</programlisting>
+<para>
+Set the callers UNIX user id.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>uid</parameter>&nbsp;:</term>
+<listitem><simpara> UNIX user id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-set-pid" role="function">
+<title>polkit_caller_set_pid ()</title>
+<indexterm zone="polkit-caller-set-pid"><primary>polkit_caller_set_pid</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_set_pid               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="pid-t">pid_t</link> pid);</programlisting>
+<para>
+Set the callers UNIX process id.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> UNIX process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-set-selinux-context" role="function">
+<title>polkit_caller_set_selinux_context ()</title>
+<indexterm zone="polkit-caller-set-selinux-context"><primary>polkit_caller_set_selinux_context</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_set_selinux_context   (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         const <link linkend="char">char</link> *selinux_context);</programlisting>
+<para>
+Set the callers SELinux security context.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>selinux_context</parameter>&nbsp;:</term>
+<listitem><simpara> SELinux security context
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-set-ck-session" role="function">
+<title>polkit_caller_set_ck_session ()</title>
+<indexterm zone="polkit-caller-set-ck-session"><primary>polkit_caller_set_ck_session</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_set_ck_session        (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="PolKitSession">PolKitSession</link> *session);</programlisting>
+<para>
+Set the callers session. The reference count on the given object
+will be increased by one. If an existing session object was set
+already, the reference count on that one will be decreased by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>session</parameter>&nbsp;:</term>
+<listitem><simpara> a session object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-get-dbus-name" role="function">
+<title>polkit_caller_get_dbus_name ()</title>
+<indexterm zone="polkit-caller-get-dbus-name"><primary>polkit_caller_get_dbus_name</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_get_dbus_name         (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="char">char</link> **out_dbus_name);</programlisting>
+<para>
+Get the callers unique system bus connection name.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_dbus_name</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the unique system bus connection name. The caller shall not free this string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value is returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-get-uid" role="function">
+<title>polkit_caller_get_uid ()</title>
+<indexterm zone="polkit-caller-get-uid"><primary>polkit_caller_get_uid</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_get_uid               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="uid-t">uid_t</link> *out_uid);</programlisting>
+<para>
+Get the callers UNIX user id.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_uid</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the UNIX user id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value is returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-get-pid" role="function">
+<title>polkit_caller_get_pid ()</title>
+<indexterm zone="polkit-caller-get-pid"><primary>polkit_caller_get_pid</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_get_pid               (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="pid-t">pid_t</link> *out_pid);</programlisting>
+<para>
+Get the callers UNIX process id.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_pid</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the UNIX process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value is returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-get-selinux-context" role="function">
+<title>polkit_caller_get_selinux_context ()</title>
+<indexterm zone="polkit-caller-get-selinux-context"><primary>polkit_caller_get_selinux_context</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_get_selinux_context   (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="char">char</link> **out_selinux_context);</programlisting>
+<para>
+Get the callers SELinux security context. Note that this may be
+<link linkend="NULL:CAPS"><type>NULL</type></link> if SELinux is not available on the system.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_selinux_context</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the SELinux security context. The caller shall not free this string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value is returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-get-ck-session" role="function">
+<title>polkit_caller_get_ck_session ()</title>
+<indexterm zone="polkit-caller-get-ck-session"><primary>polkit_caller_get_ck_session</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_get_ck_session        (<link linkend="PolKitCaller">PolKitCaller</link> *caller,
+                                                         <link linkend="PolKitSession">PolKitSession</link> **out_session);</programlisting>
+<para>
+Get the callers session. Note that this may be <link linkend="NULL:CAPS"><type>NULL</type></link> if the caller
+is not in any session.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> The caller object 
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_session</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the session object. Caller shall not unref it.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value is returned
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-debug" role="function">
+<title>polkit_caller_debug ()</title>
+<indexterm zone="polkit-caller-debug"><primary>polkit_caller_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_caller_debug                 (<link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
+<para>
+Print debug details</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-caller-validate" role="function">
+<title>polkit_caller_validate ()</title>
+<indexterm zone="polkit-caller-validate"><primary>polkit_caller_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_caller_validate              (<link linkend="PolKitCaller">PolKitCaller</link> *caller);</programlisting>
+<para>
+Validate the object</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>caller</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> iff the object is valid.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

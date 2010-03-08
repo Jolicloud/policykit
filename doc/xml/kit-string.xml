@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-string">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-string.top_of_page">String utilities</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>String utilities</refname>
+<refpurpose>String utilities</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-string.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="char">char</link>*               <link linkend="kit-strdup">kit_strdup</link>                          (const <link linkend="char">char</link> *s);
+<link linkend="char">char</link>*               <link linkend="kit-strndup">kit_strndup</link>                         (const <link linkend="char">char</link> *s,
+                                                         <link linkend="size-t">size_t</link> n);
+<link linkend="char">char</link>*               <link linkend="kit-strdup-printf">kit_strdup_printf</link>                   (const <link linkend="char">char</link> *format,
+                                                         ...);
+<link linkend="char">char</link>*               <link linkend="kit-strdup-vprintf">kit_strdup_vprintf</link>                  (const <link linkend="char">char</link> *format,
+                                                         <link linkend="va-list">va_list</link> args);
+<link linkend="char">char</link>*               <link linkend="kit-str-append">kit_str_append</link>                      (<link linkend="char">char</link> *s,
+                                                         const <link linkend="char">char</link> *s2);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-str-has-prefix">kit_str_has_prefix</link>                  (const <link linkend="char">char</link> *s,
+                                                         const <link linkend="char">char</link> *prefix);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-str-has-suffix">kit_str_has_suffix</link>                  (const <link linkend="char">char</link> *s,
+                                                         const <link linkend="char">char</link> *suffix);
+<link linkend="char">char</link>**              <link linkend="kit-strsplit">kit_strsplit</link>                        (const <link linkend="char">char</link> *s,
+                                                         <link linkend="char">char</link> delim,
+                                                         <link linkend="size-t">size_t</link> *num_tokens);
+<link linkend="void">void</link>                <link linkend="kit-strfreev">kit_strfreev</link>                        (<link linkend="char">char</link> **str_array);
+<link linkend="size-t">size_t</link>              <link linkend="kit-strv-length">kit_strv_length</link>                     (<link linkend="char">char</link> **str_array);
+<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitStringEntryParseFunc">*KitStringEntryParseFunc</link>)          (const <link linkend="char">char</link> *key,
+                                                         const <link linkend="char">char</link> *value,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-string-entry-parse">kit_string_entry_parse</link>              (const <link linkend="char">char</link> *entry,
+                                                         <link linkend="KitStringEntryParseFunc">KitStringEntryParseFunc</link> func,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-string-percent-decode">kit_string_percent_decode</link>           (<link linkend="char">char</link> *s);
+<link linkend="size-t">size_t</link>              <link linkend="kit-string-percent-encode">kit_string_percent_encode</link>           (<link linkend="char">char</link> *buf,
+                                                         <link linkend="size-t">size_t</link> buf_size,
+                                                         const <link linkend="char">char</link> *s);
+<link linkend="size-t">size_t</link>              <link linkend="kit-string-entry-create">kit_string_entry_create</link>             (<link linkend="char">char</link> *buf,
+                                                         <link linkend="size-t">size_t</link> buf_size,
+                                                         ...);
+<link linkend="size-t">size_t</link>              <link linkend="kit-string-entry-createv">kit_string_entry_createv</link>            (<link linkend="char">char</link> *buf,
+                                                         <link linkend="size-t">size_t</link> buf_size,
+                                                         const <link linkend="char">char</link> *kv_pairs[]);
+                    <link linkend="KitString">KitString</link>;
+<link linkend="KitString">KitString</link>*          <link linkend="kit-string-new">kit_string_new</link>                      (const <link linkend="char">char</link> *init,
+                                                         <link linkend="size-t">size_t</link> len);
+<link linkend="char">char</link>*               <link linkend="kit-string-free">kit_string_free</link>                     (<link linkend="KitString">KitString</link> *s,
+                                                         <link linkend="kit-bool-t">kit_bool_t</link> free_segment,
+                                                         <link linkend="size-t">size_t</link> *out_segment_size);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-string-ensure-size">kit_string_ensure_size</link>              (<link linkend="KitString">KitString</link> *s,
+                                                         <link linkend="size-t">size_t</link> new_size);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-string-append-c">kit_string_append_c</link>                 (<link linkend="KitString">KitString</link> *s,
+                                                         <link linkend="char">char</link> c);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-string-append">kit_string_append</link>                   (<link linkend="KitString">KitString</link> *s,
+                                                         const <link linkend="char">char</link> *str);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-string.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various string utilities.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-string.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="kit-strdup" role="function">
+<title>kit_strdup ()</title>
+<indexterm zone="kit-strdup"><primary>kit_strdup</primary></indexterm><programlisting><link linkend="char">char</link>*               kit_strdup                          (const <link linkend="char">char</link> *s);</programlisting>
+<para>
+Duplicate a string. Similar to strdup(3).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Allocated memory or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-strndup" role="function">
+<title>kit_strndup ()</title>
+<indexterm zone="kit-strndup"><primary>kit_strndup</primary></indexterm><programlisting><link linkend="char">char</link>*               kit_strndup                         (const <link linkend="char">char</link> *s,
+                                                         <link linkend="size-t">size_t</link> n);</programlisting>
+<para>
+Duplicate a string but copy at most <parameter>n</parameter> characters. If <parameter>s</parameter> is longer
+than <parameter>n</parameter>, only <parameter>n</parameter> characters are copied, and a terminating null byte
+is added. Similar to strndup(3).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>n</parameter>&nbsp;:</term>
+<listitem><simpara> size
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Allocated memory or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-strdup-printf" role="function">
+<title>kit_strdup_printf ()</title>
+<indexterm zone="kit-strdup-printf"><primary>kit_strdup_printf</primary></indexterm><programlisting><link linkend="char">char</link>*               kit_strdup_printf                   (const <link linkend="char">char</link> *format,
+                                                         ...);</programlisting>
+<para>
+Similar to the standard C sprintf(3) function but safer, since it
+calculates the maximum space required and allocates memory to hold
+the result. The returned string should be freed when no longer
+needed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara> sprintf(3) format string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara>  the parameters to insert into the format string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly allocated string or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-strdup-vprintf" role="function">
+<title>kit_strdup_vprintf ()</title>
+<indexterm zone="kit-strdup-vprintf"><primary>kit_strdup_vprintf</primary></indexterm><programlisting><link linkend="char">char</link>*               kit_strdup_vprintf                  (const <link linkend="char">char</link> *format,
+                                                         <link linkend="va-list">va_list</link> args);</programlisting>
+<para>
+Similar to the standard C vsprintf(3) function but safer, since it
+calculates the maximum space required and allocates memory to hold
+the result. The returned string should be freed when no longer
+needed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara> printf(3) format string
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara> list of parameters to insert
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A newly allocated string or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-free"><function>kit_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-str-append" role="function">
+<title>kit_str_append ()</title>
+<indexterm zone="kit-str-append"><primary>kit_str_append</primary></indexterm><programlisting><link linkend="char">char</link>*               kit_str_append                      (<link linkend="char">char</link> *s,
+                                                         const <link linkend="char">char</link> *s2);</programlisting>
+<para>
+Append a string to an existing string.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> either <link linkend="NULL:CAPS"><literal>NULL</literal></link> or a string previously allocated on the heap
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>s2</parameter>&nbsp;:</term>
+<listitem><simpara> string to append
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> on OOM or the new string; possibly at the same
+location as <parameter>s</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-str-has-prefix" role="function">
+<title>kit_str_has_prefix ()</title>
+<indexterm zone="kit-str-has-prefix"><primary>kit_str_has_prefix</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_str_has_prefix                  (const <link linkend="char">char</link> *s,
+                                                         const <link linkend="char">char</link> *prefix);</programlisting>
+<para>
+Determines if a string has a given prefix.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>prefix</parameter>&nbsp;:</term>
+<listitem><simpara> prefix to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if <parameter>s</parameter> starts with <parameter>prefix</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-str-has-suffix" role="function">
+<title>kit_str_has_suffix ()</title>
+<indexterm zone="kit-str-has-suffix"><primary>kit_str_has_suffix</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_str_has_suffix                  (const <link linkend="char">char</link> *s,
+                                                         const <link linkend="char">char</link> *suffix);</programlisting>
+<para>
+Determines if a string has a given suffix.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string to check
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>suffix</parameter>&nbsp;:</term>
+<listitem><simpara> suffix to check for
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if <parameter>s</parameter> ends with <parameter>suffix</parameter>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-strsplit" role="function">
+<title>kit_strsplit ()</title>
+<indexterm zone="kit-strsplit"><primary>kit_strsplit</primary></indexterm><programlisting><link linkend="char">char</link>**              kit_strsplit                        (const <link linkend="char">char</link> *s,
+                                                         <link linkend="char">char</link> delim,
+                                                         <link linkend="size-t">size_t</link> *num_tokens);</programlisting>
+<para>
+Split a given string into components given a delimiter.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string to split
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>delim</parameter>&nbsp;:</term>
+<listitem><simpara> delimiter used for splitting
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_tokens</parameter>&nbsp;:</term>
+<listitem><simpara> return location for number of elements or <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A <link linkend="NULL:CAPS"><type>NULL</type></link> terminated array of strings. Free with <link linkend="kit-strfreev"><function>kit_strfreev()</function></link>. Returns <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-strfreev" role="function">
+<title>kit_strfreev ()</title>
+<indexterm zone="kit-strfreev"><primary>kit_strfreev</primary></indexterm><programlisting><link linkend="void">void</link>                kit_strfreev                        (<link linkend="char">char</link> **str_array);</programlisting>
+<para>
+Free a <link linkend="NULL:CAPS"><type>NULL</type></link> terminated string array.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>str_array</parameter>&nbsp;:</term>
+<listitem><simpara> string array
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-strv-length" role="function">
+<title>kit_strv_length ()</title>
+<indexterm zone="kit-strv-length"><primary>kit_strv_length</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              kit_strv_length                     (<link linkend="char">char</link> **str_array);</programlisting>
+<para>
+Compute number of elements in a <link linkend="NULL:CAPS"><type>NULL</type></link> terminated string array.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>str_array</parameter>&nbsp;:</term>
+<listitem><simpara> string array
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of elements not including the terminating <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitStringEntryParseFunc" role="function">
+<title>KitStringEntryParseFunc ()</title>
+<indexterm zone="KitStringEntryParseFunc"><primary>KitStringEntryParseFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitStringEntryParseFunc)          (const <link linkend="char">char</link> *key,
+                                                         const <link linkend="char">char</link> *value,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Type of callback function to use in <link linkend="kit-string-entry-parse"><function>kit_string_entry_parse()</function></link></para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>key</parameter>&nbsp;:</term>
+<listitem><simpara> key of one of the entries
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value of one of the entries
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data passed to <link linkend="kit-string-entry-parse"><function>kit_string_entry_parse()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> If <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> is returned the parsing will be aborted and
+<link linkend="kit-string-entry-parse"><function>kit_string_entry_parse()</function></link> will return FALSE.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-entry-parse" role="function">
+<title>kit_string_entry_parse ()</title>
+<indexterm zone="kit-string-entry-parse"><primary>kit_string_entry_parse</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_string_entry_parse              (const <link linkend="char">char</link> *entry,
+                                                         <link linkend="KitStringEntryParseFunc">KitStringEntryParseFunc</link> func,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Parse a line of the form
+<literal>key1=val1:key2=val2:key3=val3</literal>. 
+</para>
+<para>
+The given <parameter>entry</parameter> is said not to be wellformed if a) it doesn't
+follow this structure (for example
+<literal>key1=val1:key2:key3=val3</literal> is not well-formed
+because it's missing the '=' character) or the extracted key and
+value strings are not properly percent encoded.
+</para>
+<para>
+Both the key and value values are run through the
+<link linkend="kit-string-percent-decode"><function>kit_string_percent_decode()</function></link> function prior to being passed to
+<parameter>func</parameter>. Normally this function is used to decode strings produced
+with <link linkend="kit-string-entry-create"><function>kit_string_entry_create()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>entry</parameter>&nbsp;:</term>
+<listitem><simpara> line to parse
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to <parameter>func</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the line is wellformed and the callback didn't
+short-circuit the iteration. Returns <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> on OOM (and errno will
+be set to ENOMEM) or if <parameter>entry</parameter> is not wellformed (and errno will
+be set to EINVAL).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-percent-decode" role="function">
+<title>kit_string_percent_decode ()</title>
+<indexterm zone="kit-string-percent-decode"><primary>kit_string_percent_decode</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_string_percent_decode           (<link linkend="char">char</link> *s);</programlisting>
+<para>
+Percent-decodes a string in place. See <link linkend="kit-string-percent-encode"><function>kit_string_percent_encode()</function></link>
+for details on the encoding format.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string to modify in place
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if string is not properly encoded (and errno will be set to EINVAL)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-percent-encode" role="function">
+<title>kit_string_percent_encode ()</title>
+<indexterm zone="kit-string-percent-encode"><primary>kit_string_percent_encode</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              kit_string_percent_encode           (<link linkend="char">char</link> *buf,
+                                                         <link linkend="size-t">size_t</link> buf_size,
+                                                         const <link linkend="char">char</link> *s);</programlisting>
+<para>
+Percent encodes a string; each occurence of an ASCII characters in
+the set <literal>" !*'();:@&amp;=+$,/?%#[]\n\r\t"</literal> will be
+replaced by a three character sequence started by the percent sign
+"%" and then the hexidecimal representation of the ASCII character
+in question.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> return location for output
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> string to encode
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> This function do not write more than <parameter>buf_size</parameter> bytes
+(including the trailing zero). If the output was truncated due to
+this limit then the return value is the number of characters (not
+including the trailing zero) which would have been written to the
+final string if enough space had been available. Thus, a return
+value of <parameter>buf_size</parameter> or more means that the output was truncated.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-entry-create" role="function">
+<title>kit_string_entry_create ()</title>
+<indexterm zone="kit-string-entry-create"><primary>kit_string_entry_create</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              kit_string_entry_create             (<link linkend="char">char</link> *buf,
+                                                         <link linkend="size-t">size_t</link> buf_size,
+                                                         ...);</programlisting>
+<para>
+See <link linkend="kit-string-entry-create"><function>kit_string_entry_create()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> return location for output
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>...</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of key/value pairs.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See <link linkend="kit-string-entry-create"><function>kit_string_entry_create()</function></link>. Up to 64 pairs can be
+passed; if there are more pairs, this function will return zero and
+errno will be set to EOVERFLOW.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-entry-createv" role="function">
+<title>kit_string_entry_createv ()</title>
+<indexterm zone="kit-string-entry-createv"><primary>kit_string_entry_createv</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              kit_string_entry_createv            (<link linkend="char">char</link> *buf,
+                                                         <link linkend="size-t">size_t</link> buf_size,
+                                                         const <link linkend="char">char</link> *kv_pairs[]);</programlisting>
+<para>
+Takes an array of key/value pairs and generates a string
+<literal>"k1=v1:k2=v2:...:k_n=v_n"</literal> where
+<literal>k_i</literal> and <literal>v_i</literal> are percent
+encoded representations of the given key/value pairs.
+</para>
+<para>
+The string can later be parsed with <link linkend="kit-string-entry-parse"><function>kit_string_entry_parse()</function></link> to get
+the exact same list of key/value pairs back.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> return location for output
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>kv_pairs</parameter>&nbsp;:</term>
+<listitem><simpara> <link linkend="NULL:CAPS"><literal>NULL</literal></link> terminated array of key/value pairs.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> This function do not write more than <parameter>buf_size</parameter> bytes
+(including the trailing zero). If the output was truncated due to
+this limit then the return value is the number of characters (not
+including the trailing zero) which would have been written to the
+final string if enough space had been available. Thus, a return
+value of <parameter>buf_size</parameter> or more means that the output was truncated.
+
+If an uneven number of strings are given, this function will return
+zero and errno will be set to EINVAL.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitString" role="struct">
+<title>KitString</title>
+<indexterm zone="KitString"><primary>KitString</primary></indexterm><programlisting>typedef struct _KitString KitString;</programlisting>
+<para>
+String buffer that grows automatically as text is added.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="kit-string-new" role="function">
+<title>kit_string_new ()</title>
+<indexterm zone="kit-string-new"><primary>kit_string_new</primary></indexterm><programlisting><link linkend="KitString">KitString</link>*          kit_string_new                      (const <link linkend="char">char</link> *init,
+                                                         <link linkend="size-t">size_t</link> len);</programlisting>
+<para>
+Initialize a new <link linkend="KitString"><type>KitString</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>init</parameter>&nbsp;:</term>
+<listitem><simpara> String to initialize with or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>len</parameter>&nbsp;:</term>
+<listitem><simpara> Initial size of buffer; pass zero to use the default size
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> The new object or <link linkend="NULL:CAPS"><literal>NULL</literal></link> on OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-free" role="function">
+<title>kit_string_free ()</title>
+<indexterm zone="kit-string-free"><primary>kit_string_free</primary></indexterm><programlisting><link linkend="char">char</link>*               kit_string_free                     (<link linkend="KitString">KitString</link> *s,
+                                                         <link linkend="kit-bool-t">kit_bool_t</link> free_segment,
+                                                         <link linkend="size-t">size_t</link> *out_segment_size);</programlisting>
+<para>
+Free resources used by a <link linkend="KitString"><type>KitString</type></link> object</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="KitString"><type>KitString</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>free_segment</parameter>&nbsp;:</term>
+<listitem><simpara> whether to free the string data itself
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_segment_size</parameter>&nbsp;:</term>
+<listitem><simpara> return location for size of string or <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> If <parameter>free_segment</parameter> is <link linkend="TRUE:CAPS"><literal>TRUE</literal></link>, returns the segment (will
+always be zero terminated), must be freed with <link linkend="kit-free"><function>kit_free()</function></link>,
+otherwise <link linkend="NULL:CAPS"><literal>NULL</literal></link>
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-ensure-size" role="function">
+<title>kit_string_ensure_size ()</title>
+<indexterm zone="kit-string-ensure-size"><primary>kit_string_ensure_size</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_string_ensure_size              (<link linkend="KitString">KitString</link> *s,
+                                                         <link linkend="size-t">size_t</link> new_size);</programlisting>
+<para>
+Ensure that the given <link linkend="KitString"><type>KitString</type></link> object can hold at least <parameter>new_size</parameter>
+characters.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> String object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>new_size</parameter>&nbsp;:</term>
+<listitem><simpara> The size to check for.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> if the given <link linkend="KitString"><type>KitString</type></link> object can hold at least
+<parameter>new_size</parameter> characters. <link linkend="FALSE:CAPS"><literal>FALSE</literal></link> if OOM.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-append-c" role="function">
+<title>kit_string_append_c ()</title>
+<indexterm zone="kit-string-append-c"><primary>kit_string_append_c</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_string_append_c                 (<link linkend="KitString">KitString</link> *s,
+                                                         <link linkend="char">char</link> c);</programlisting>
+<para>
+Append a character to a <link linkend="KitString"><type>KitString</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="KitString"><type>KitString</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>c</parameter>&nbsp;:</term>
+<listitem><simpara> character to append
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> unless OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-string-append" role="function">
+<title>kit_string_append ()</title>
+<indexterm zone="kit-string-append"><primary>kit_string_append</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_string_append                   (<link linkend="KitString">KitString</link> *s,
+                                                         const <link linkend="char">char</link> *str);</programlisting>
+<para>
+Append a string to a <link linkend="KitString"><type>KitString</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="KitString"><type>KitString</type></link> object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>str</parameter>&nbsp;:</term>
+<listitem><simpara> string to append
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> unless OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,50 @@
+<!-- ##### SECTION Title ##### -->
+polkit-sysdeps
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION polkit_sysdeps_get_start_time_for_pid ##### -->
+<para>
+
+</para>
+
+@pid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_sysdeps_get_exe_for_pid ##### -->
+<para>
+
+</para>
+
+@pid: 
+@out_buf: 
+@buf_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_sysdeps_get_exe_for_pid_with_helper ##### -->
+<para>
+
+</para>
+
+@pid: 
+@out_buf: 
+@buf_size: 
+@Returns: 
+
+

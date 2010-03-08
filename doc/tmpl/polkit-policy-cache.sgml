@@ -1,0 +1,103 @@
+<!-- ##### SECTION Title ##### -->
+polkit-policy-cache
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitPolicyCache ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION PolKitPolicyCacheForeachFunc ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@entry: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_ref ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_unref ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_debug ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_get_entry ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@action: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_get_entry_by_id ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@action_id: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_get_entry_by_annotation ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@annotation_key: 
+@annotation_value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_policy_cache_foreach ##### -->
+<para>
+
+</para>
+
+@policy_cache: 
+@callback: 
+@user_data: 
+@Returns: 
+
+

@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-action">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-action.top_of_page">Actions</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Actions</refname>
+<refpurpose>Models what a caller is attempting to do.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-action.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="PolKitAction">PolKitAction</link>;
+<link linkend="PolKitAction">PolKitAction</link>*       <link linkend="polkit-action-new">polkit_action_new</link>                   (void);
+<link linkend="PolKitAction">PolKitAction</link>*       <link linkend="polkit-action-ref">polkit_action_ref</link>                   (<link linkend="PolKitAction">PolKitAction</link> *action);
+<link linkend="void">void</link>                <link linkend="polkit-action-unref">polkit_action_unref</link>                 (<link linkend="PolKitAction">PolKitAction</link> *action);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-action-set-action-id">polkit_action_set_action_id</link>         (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         const <link linkend="char">char</link> *action_id);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-action-get-action-id">polkit_action_get_action_id</link>         (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="char">char</link> **out_action_id);
+<link linkend="void">void</link>                <link linkend="polkit-action-debug">polkit_action_debug</link>                 (<link linkend="PolKitAction">PolKitAction</link> *action);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-action-validate">polkit_action_validate</link>              (<link linkend="PolKitAction">PolKitAction</link> *action);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-action-validate-id">polkit_action_validate_id</link>           (const <link linkend="char">char</link> *action_id);
+<link linkend="polkit-bool-t">polkit_bool_t</link>       <link linkend="polkit-action-equal">polkit_action_equal</link>                 (<link linkend="PolKitAction">PolKitAction</link> *a,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *b);
+const <link linkend="char">char</link>*         <link linkend="polkit-action-to-string-representation">polkit_action_to_string_representation</link>
+                                                        (<link linkend="PolKitAction">PolKitAction</link> *action);
+<link linkend="PolKitAction">PolKitAction</link>*       <link linkend="polkit-action-new-from-string-representation">polkit_action_new_from_string_representation</link>
+                                                        (const <link linkend="char">char</link> *str);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-action.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class is used to represent a PolicyKit action.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-action.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="PolKitAction" role="struct">
+<title>PolKitAction</title>
+<indexterm zone="PolKitAction"><primary>PolKitAction</primary></indexterm><programlisting>typedef struct _PolKitAction PolKitAction;</programlisting>
+<para>
+Objects of this class are used to record information about an action.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-action-new" role="function">
+<title>polkit_action_new ()</title>
+<indexterm zone="polkit-action-new"><primary>polkit_action_new</primary></indexterm><programlisting><link linkend="PolKitAction">PolKitAction</link>*       polkit_action_new                   (void);</programlisting>
+<para>
+Create a new <link linkend="PolKitAction"><type>PolKitAction</type></link> object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-ref" role="function">
+<title>polkit_action_ref ()</title>
+<indexterm zone="polkit-action-ref"><primary>polkit_action_ref</primary></indexterm><programlisting><link linkend="PolKitAction">PolKitAction</link>*       polkit_action_ref                   (<link linkend="PolKitAction">PolKitAction</link> *action);</programlisting>
+<para>
+Increase reference count.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-unref" role="function">
+<title>polkit_action_unref ()</title>
+<indexterm zone="polkit-action-unref"><primary>polkit_action_unref</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_action_unref                 (<link linkend="PolKitAction">PolKitAction</link> *action);</programlisting>
+<para>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-set-action-id" role="function">
+<title>polkit_action_set_action_id ()</title>
+<indexterm zone="polkit-action-set-action-id"><primary>polkit_action_set_action_id</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_action_set_action_id         (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         const <link linkend="char">char</link> *action_id);</programlisting>
+<para>
+Set the action identifier</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>action_id</parameter>&nbsp;:</term>
+<listitem><simpara> action identifier
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the value validated and was set
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-get-action-id" role="function">
+<title>polkit_action_get_action_id ()</title>
+<indexterm zone="polkit-action-get-action-id"><primary>polkit_action_get_action_id</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_action_get_action_id         (<link linkend="PolKitAction">PolKitAction</link> *action,
+                                                         <link linkend="char">char</link> **out_action_id);</programlisting>
+<para>
+Get the action identifier.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action object
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_action_id</parameter>&nbsp;:</term>
+<listitem><simpara> Returns the action identifier. The caller shall not free this string.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> TRUE iff the value was returned.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-debug" role="function">
+<title>polkit_action_debug ()</title>
+<indexterm zone="polkit-action-debug"><primary>polkit_action_debug</primary></indexterm><programlisting><link linkend="void">void</link>                polkit_action_debug                 (<link linkend="PolKitAction">PolKitAction</link> *action);</programlisting>
+<para>
+Print debug details</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-validate" role="function">
+<title>polkit_action_validate ()</title>
+<indexterm zone="polkit-action-validate"><primary>polkit_action_validate</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_action_validate              (<link linkend="PolKitAction">PolKitAction</link> *action);</programlisting>
+<para>
+Validate the object</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> iff the object is valid.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-validate-id" role="function">
+<title>polkit_action_validate_id ()</title>
+<indexterm zone="polkit-action-validate-id"><primary>polkit_action_validate_id</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_action_validate_id           (const <link linkend="char">char</link> *action_id);</programlisting>
+<para>
+Validate whether an action identifier is well formed. To be well
+formed, an action identifier needs to start with a lower case ASCII
+character and can only contain the characters "[a-z][0-9].-". It
+must be less than or equal 256 bytes in length including the
+terminating NUL character.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action_id</parameter>&nbsp;:</term>
+<listitem><simpara> the action identifier to validate
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> iff the action identifier is well formed
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="polkit-action-equal" role="function" condition="since:0.8">
+<title>polkit_action_equal ()</title>
+<indexterm zone="polkit-action-equal" role="0.8"><primary>polkit_action_equal</primary></indexterm><programlisting><link linkend="polkit-bool-t">polkit_bool_t</link>       polkit_action_equal                 (<link linkend="PolKitAction">PolKitAction</link> *a,
+                                                         <link linkend="PolKitAction">PolKitAction</link> *b);</programlisting>
+<para>
+Test if <parameter>a</parameter> and <parameter>b</parameter> refer to the same action.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara> first action
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara> second action
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> iff <parameter>a</parameter> and <parameter>b</parameter> refer to the same action.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="polkit-action-to-string-representation" role="function" condition="since:0.8">
+<title>polkit_action_to_string_representation ()</title>
+<indexterm zone="polkit-action-to-string-representation" role="0.8"><primary>polkit_action_to_string_representation</primary></indexterm><programlisting>const <link linkend="char">char</link>*         polkit_action_to_string_representation
+                                                        (<link linkend="PolKitAction">PolKitAction</link> *action);</programlisting>
+<para>
+Serializes <parameter>action</parameter> into a textual form that can be transferred from
+process to process or saved on disk. Use
+<link linkend="polkit-action-new-from-string-representation"><function>polkit_action_new_from_string_representation()</function></link> to deserialize it.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>action</parameter>&nbsp;:</term>
+<listitem><simpara> the action object
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A string representation of <parameter>action</parameter> or <link linkend="NULL:CAPS"><type>NULL</type></link> if the action
+is not valid. String is valid until <parameter>action</parameter> is freed.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+<refsect2 id="polkit-action-new-from-string-representation" role="function" condition="since:0.8">
+<title>polkit_action_new_from_string_representation ()</title>
+<indexterm zone="polkit-action-new-from-string-representation" role="0.8"><primary>polkit_action_new_from_string_representation</primary></indexterm><programlisting><link linkend="PolKitAction">PolKitAction</link>*       polkit_action_new_from_string_representation
+                                                        (const <link linkend="char">char</link> *str);</programlisting>
+<para>
+Creates a new <link linkend="PolKitAction"><type>PolKitAction</type></link> object from a textual representation.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>str</parameter>&nbsp;:</term>
+<listitem><simpara> textual representation of an action; typically obtained from
+<link linkend="polkit-action-to-string-representation"><function>polkit_action_to_string_representation()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A new <link linkend="PolKitAction"><type>PolKitAction</type></link> object or <link linkend="NULL:CAPS"><type>NULL</type></link> if OOM or if the
+representation isn't valid. Caller must free this object with
+<link linkend="polkit-action-unref"><function>polkit_action_unref()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

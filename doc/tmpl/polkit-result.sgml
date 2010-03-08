@@ -1,0 +1,56 @@
+<!-- ##### SECTION Title ##### -->
+polkit-result
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM PolKitResult ##### -->
+<para>
+
+</para>
+
+@POLKIT_RESULT_UNKNOWN: 
+@POLKIT_RESULT_NO: 
+@POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH: 
+@POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_SESSION: 
+@POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_KEEP_ALWAYS: 
+@POLKIT_RESULT_ONLY_VIA_SELF_AUTH: 
+@POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_SESSION: 
+@POLKIT_RESULT_ONLY_VIA_SELF_AUTH_KEEP_ALWAYS: 
+@POLKIT_RESULT_YES: 
+@POLKIT_RESULT_ONLY_VIA_ADMIN_AUTH_ONE_SHOT: 
+@POLKIT_RESULT_ONLY_VIA_SELF_AUTH_ONE_SHOT: 
+@POLKIT_RESULT_N_RESULTS: 
+
+<!-- ##### FUNCTION polkit_result_to_string_representation ##### -->
+<para>
+
+</para>
+
+@result: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_result_from_string_representation ##### -->
+<para>
+
+</para>
+
+@string: 
+@out_result: 
+@Returns: 
+
+

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-types">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-types.top_of_page">Basic types</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Basic types</refname>
+<refpurpose>Type definitions for common primitive types.</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-types.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+#define             <link linkend="POLKIT-BEGIN-DECLS:CAPS">POLKIT_BEGIN_DECLS</link>
+#define             <link linkend="POLKIT-END-DECLS:CAPS">POLKIT_END_DECLS</link>
+#define             <link linkend="POLKIT-GNUC-DEPRECATED:CAPS">POLKIT_GNUC_DEPRECATED</link>
+typedef             <link linkend="polkit-bool-t">polkit_bool_t</link>;
+typedef             <link linkend="polkit-uint32-t">polkit_uint32_t</link>;
+typedef             <link linkend="polkit-uint64-t">polkit_uint64_t</link>;
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-types.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Type definitions for common primitive types.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-types.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="POLKIT-BEGIN-DECLS:CAPS" role="macro">
+<title>POLKIT_BEGIN_DECLS</title>
+<indexterm zone="POLKIT-BEGIN-DECLS:CAPS"><primary>POLKIT_BEGIN_DECLS</primary></indexterm><programlisting>#define             POLKIT_BEGIN_DECLS</programlisting>
+<para>
+C++ include header guard.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="POLKIT-END-DECLS:CAPS" role="macro">
+<title>POLKIT_END_DECLS</title>
+<indexterm zone="POLKIT-END-DECLS:CAPS"><primary>POLKIT_END_DECLS</primary></indexterm><programlisting>#define             POLKIT_END_DECLS</programlisting>
+<para>
+C++ include header guard.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="POLKIT-GNUC-DEPRECATED:CAPS" role="macro">
+<title>POLKIT_GNUC_DEPRECATED</title>
+<indexterm zone="POLKIT-GNUC-DEPRECATED:CAPS"><primary>POLKIT_GNUC_DEPRECATED</primary></indexterm><programlisting>#define             POLKIT_GNUC_DEPRECATED</programlisting>
+<para>
+Used in front of deprecated functions.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-bool-t" role="typedef">
+<title>polkit_bool_t</title>
+<indexterm zone="polkit-bool-t"><primary>polkit_bool_t</primary></indexterm><programlisting>typedef int polkit_bool_t;
+</programlisting>
+<para>
+A boolean, valid values are <link linkend="TRUE:CAPS"><type>TRUE</type></link> and <link linkend="FALSE:CAPS"><type>FALSE</type></link>.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-uint32-t" role="typedef">
+<title>polkit_uint32_t</title>
+<indexterm zone="polkit-uint32-t"><primary>polkit_uint32_t</primary></indexterm><programlisting>typedef unsigned int polkit_uint32_t;
+</programlisting>
+<para>
+Type for unsigned 32 bit integer.</para>
+<para>
+
+</para></refsect2>
+<refsect2 id="polkit-uint64-t" role="typedef">
+<title>polkit_uint64_t</title>
+<indexterm zone="polkit-uint64-t"><primary>polkit_uint64_t</primary></indexterm><programlisting>typedef unsigned long long polkit_uint64_t;
+</programlisting>
+<para>
+Type for unsigned 64 bit integer.</para>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

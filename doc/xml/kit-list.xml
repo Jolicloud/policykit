@@ -1,0 +1,234 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-list">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-list.top_of_page">Doubly-linked lists</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Doubly-linked lists</refname>
+<refpurpose>Doubly-linked lists</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-list.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="KitList">KitList</link>;
+<link linkend="kit-bool-t">kit_bool_t</link>          (<link linkend="KitListForeachFunc">*KitListForeachFunc</link>)               (<link linkend="void">void</link> *data,
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitList">KitList</link> *list);
+<link linkend="KitList">KitList</link>*            <link linkend="kit-list-append">kit_list_append</link>                     (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="void">void</link> *data);
+<link linkend="KitList">KitList</link>*            <link linkend="kit-list-prepend">kit_list_prepend</link>                    (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="void">void</link> *data);
+<link linkend="void">void</link>                <link linkend="kit-list-free">kit_list_free</link>                       (<link linkend="KitList">KitList</link> *list);
+<link linkend="KitList">KitList</link>*            <link linkend="kit-list-delete-link">kit_list_delete_link</link>                (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="KitList">KitList</link> *link);
+<link linkend="size-t">size_t</link>              <link linkend="kit-list-length">kit_list_length</link>                     (<link linkend="KitList">KitList</link> *list);
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-list-foreach">kit_list_foreach</link>                    (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="KitListForeachFunc">KitListForeachFunc</link> func,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="KitList">KitList</link>*            <link linkend="kit-list-copy">kit_list_copy</link>                       (<link linkend="KitList">KitList</link> *list);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-list.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+This class provides support for doubly-linked lists.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-list.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="KitList" role="struct">
+<title>KitList</title>
+<indexterm zone="KitList"><primary>KitList</primary></indexterm><programlisting>typedef struct {
+        void *data;
+        KitList *next;
+        KitList *prev;
+} KitList;
+</programlisting>
+<para>
+Public members of the <link linkend="KitList"><type>KitList</type></link> data structure</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="void">void</link>&nbsp;*<structfield>data</structfield>;</term>
+<listitem><simpara> the value passed in <link linkend="kit-list-append"><function>kit_list_append()</function></link> and <link linkend="kit-list-prepend"><function>kit_list_prepend()</function></link>
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="KitList">KitList</link>&nbsp;*<structfield>next</structfield>;</term>
+<listitem><simpara> the next element in the list or <link linkend="NULL:CAPS"><type>NULL</type></link> if this is the last element
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="KitList">KitList</link>&nbsp;*<structfield>prev</structfield>;</term>
+<listitem><simpara> the previous element in the list or <link linkend="NULL:CAPS"><type>NULL</type></link> if this is the last element
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="KitListForeachFunc" role="function">
+<title>KitListForeachFunc ()</title>
+<indexterm zone="KitListForeachFunc"><primary>KitListForeachFunc</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          (*KitListForeachFunc)               (<link linkend="void">void</link> *data,
+                                                         <link linkend="void">void</link> *user_data,
+                                                         <link linkend="KitList">KitList</link> *list);</programlisting>
+<para>
+Type signature for callback function used in <link linkend="kit-list-foreach"><function>kit_list_foreach()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data of link entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data passed to <link linkend="kit-list-foreach"><function>kit_list_foreach()</function></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> the list
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Return <link linkend="TRUE:CAPS"><type>TRUE</type></link> to short-circuit, e.g. stop the iteration.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-append" role="function">
+<title>kit_list_append ()</title>
+<indexterm zone="kit-list-append"><primary>kit_list_append</primary></indexterm><programlisting><link linkend="KitList">KitList</link>*            kit_list_append                     (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="void">void</link> *data);</programlisting>
+<para>
+Append an entry to a list.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> existing list or <link linkend="NULL:CAPS"><type>NULL</type></link> to create a new list
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to append to the list
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the head of the new list or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-prepend" role="function">
+<title>kit_list_prepend ()</title>
+<indexterm zone="kit-list-prepend"><primary>kit_list_prepend</primary></indexterm><programlisting><link linkend="KitList">KitList</link>*            kit_list_prepend                    (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="void">void</link> *data);</programlisting>
+<para>
+Prepend an entry to a list.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> existing list or <link linkend="NULL:CAPS"><type>NULL</type></link> to create a new list
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> data to prepend to the list
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the head of the new list or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-free" role="function">
+<title>kit_list_free ()</title>
+<indexterm zone="kit-list-free"><primary>kit_list_free</primary></indexterm><programlisting><link linkend="void">void</link>                kit_list_free                       (<link linkend="KitList">KitList</link> *list);</programlisting>
+<para>
+Frees all links in a list</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> the list
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-delete-link" role="function">
+<title>kit_list_delete_link ()</title>
+<indexterm zone="kit-list-delete-link"><primary>kit_list_delete_link</primary></indexterm><programlisting><link linkend="KitList">KitList</link>*            kit_list_delete_link                (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="KitList">KitList</link> *link);</programlisting>
+<para>
+Delete a link from a list.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> existing list, cannot be <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>link</parameter>&nbsp;:</term>
+<listitem><simpara> link to delete, cannot be <link linkend="NULL:CAPS"><type>NULL</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the new head of the list or <link linkend="NULL:CAPS"><type>NULL</type></link> if the list is empty after deletion.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-length" role="function">
+<title>kit_list_length ()</title>
+<indexterm zone="kit-list-length"><primary>kit_list_length</primary></indexterm><programlisting><link linkend="size-t">size_t</link>              kit_list_length                     (<link linkend="KitList">KitList</link> *list);</programlisting>
+<para>
+Compute the length of a list.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> the list
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of entries in list
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-foreach" role="function">
+<title>kit_list_foreach ()</title>
+<indexterm zone="kit-list-foreach"><primary>kit_list_foreach</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_list_foreach                    (<link linkend="KitList">KitList</link> *list,
+                                                         <link linkend="KitListForeachFunc">KitListForeachFunc</link> func,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Iterate over all entries in a list.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> the list
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> user data to pass to callback
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><type>TRUE</type></link> only if the callback short-circuited the iteration
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-list-copy" role="function">
+<title>kit_list_copy ()</title>
+<indexterm zone="kit-list-copy"><primary>kit_list_copy</primary></indexterm><programlisting><link linkend="KitList">KitList</link>*            kit_list_copy                       (<link linkend="KitList">KitList</link> *list);</programlisting>
+<para>
+Makes a copy of a list. It is not a deep copy.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>list</parameter>&nbsp;:</term>
+<listitem><simpara> existing list
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> A copy of the new list or <link linkend="NULL:CAPS"><type>NULL</type></link> on OOM. Free with <link linkend="kit-list-free"><function>kit_list_free()</function></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

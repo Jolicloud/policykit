@@ -1,0 +1,42 @@
+<!-- ##### SECTION Title ##### -->
+kit-file
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION kit_file_get_contents ##### -->
+<para>
+
+</para>
+
+@path: 
+@out_contents: 
+@out_contents_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_file_set_contents ##### -->
+<para>
+
+</para>
+
+@path: 
+@mode: 
+@contents: 
+@contents_size: 
+@Returns: 
+
+

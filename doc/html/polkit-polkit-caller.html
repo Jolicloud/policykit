@@ -1,0 +1,691 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Caller</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-session.html" title="Session">
+<link rel="next" href="polkit-polkit-dbus.html" title="Caller Determination">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-session.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-dbus.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-caller.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-caller.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-caller"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-caller.top_of_page"></a>Caller</span></h2>
+<p>Caller — Represents a process requesting a mechanism to do something.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-caller.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>;
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-new"
+>polkit_caller_new</a>                   (void);
+<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-ref"
+>polkit_caller_ref</a>                   (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+void                <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-unref"
+>polkit_caller_unref</a>                 (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-set-dbus-name"
+>polkit_caller_set_dbus_name</a>         (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         const char *dbus_name);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-set-uid"
+>polkit_caller_set_uid</a>               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         uid_t uid);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-set-pid"
+>polkit_caller_set_pid</a>               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         pid_t pid);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-set-selinux-context"
+>polkit_caller_set_selinux_context</a>   (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         const char *selinux_context);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-set-ck-session"
+>polkit_caller_set_ck_session</a>        (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-get-dbus-name"
+>polkit_caller_get_dbus_name</a>         (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         char **out_dbus_name);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-get-uid"
+>polkit_caller_get_uid</a>               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         uid_t *out_uid);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-get-pid"
+>polkit_caller_get_pid</a>               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         pid_t *out_pid);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-get-selinux-context"
+>polkit_caller_get_selinux_context</a>   (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         char **out_selinux_context);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-get-ck-session"
+>polkit_caller_get_ck_session</a>        (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> **out_session);
+void                <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-debug"
+>polkit_caller_debug</a>                 (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-caller.html#polkit-caller-validate"
+>polkit_caller_validate</a>              (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-caller.description"></a><h2>Description</h2>
+<p>
+This class is used to represent a caller in another process that is
+calling into a mechanism to make the mechanism do something.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-caller.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitCaller"></a><h3>PolKitCaller</h3>
+<pre class="programlisting">typedef struct _PolKitCaller PolKitCaller;</pre>
+<p>
+Objects of this class are used to record information about a caller
+in another process.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-new"></a><h3>polkit_caller_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_caller_new                   (void);</pre>
+<p>
+Creates a new <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-ref"></a><h3>polkit_caller_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a>*       polkit_caller_ref                   (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-unref"></a><h3>polkit_caller_unref ()</h3>
+<pre class="programlisting">void                polkit_caller_unref                 (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-set-dbus-name"></a><h3>polkit_caller_set_dbus_name ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_set_dbus_name         (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         const char *dbus_name);</pre>
+<p>
+Set the callers unique system bus connection name.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dbus_name</code></em>:</span></p></td>
+<td> unique system bus connection name
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the value validated and was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-set-uid"></a><h3>polkit_caller_set_uid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_set_uid               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         uid_t uid);</pre>
+<p>
+Set the callers UNIX user id.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>uid</code></em>:</span></p></td>
+<td> UNIX user id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the value validated and was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-set-pid"></a><h3>polkit_caller_set_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_set_pid               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         pid_t pid);</pre>
+<p>
+Set the callers UNIX process id.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> UNIX process id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the value validated and was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-set-selinux-context"></a><h3>polkit_caller_set_selinux_context ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_set_selinux_context   (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         const char *selinux_context);</pre>
+<p>
+Set the callers SELinux security context.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>selinux_context</code></em>:</span></p></td>
+<td> SELinux security context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the value validated and was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-set-ck-session"></a><h3>polkit_caller_set_ck_session ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_set_ck_session        (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);</pre>
+<p>
+Set the callers session. The reference count on the given object
+will be increased by one. If an existing session object was set
+already, the reference count on that one will be decreased by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em>:</span></p></td>
+<td> a session object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the value validated and was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-get-dbus-name"></a><h3>polkit_caller_get_dbus_name ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_get_dbus_name         (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         char **out_dbus_name);</pre>
+<p>
+Get the callers unique system bus connection name.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_dbus_name</code></em>:</span></p></td>
+<td> Returns the unique system bus connection name. The caller shall not free this string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE iff the value is returned
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-get-uid"></a><h3>polkit_caller_get_uid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_get_uid               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         uid_t *out_uid);</pre>
+<p>
+Get the callers UNIX user id.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_uid</code></em>:</span></p></td>
+<td> Returns the UNIX user id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE iff the value is returned
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-get-pid"></a><h3>polkit_caller_get_pid ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_get_pid               (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         pid_t *out_pid);</pre>
+<p>
+Get the callers UNIX process id.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_pid</code></em>:</span></p></td>
+<td> Returns the UNIX process id
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE iff the value is returned
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-get-selinux-context"></a><h3>polkit_caller_get_selinux_context ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_get_selinux_context   (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         char **out_selinux_context);</pre>
+<p>
+Get the callers SELinux security context. Note that this may be
+<a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if SELinux is not available on the system.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_selinux_context</code></em>:</span></p></td>
+<td> Returns the SELinux security context. The caller shall not free this string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE iff the value is returned
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-get-ck-session"></a><h3>polkit_caller_get_ck_session ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_get_ck_session        (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> **out_session);</pre>
+<p>
+Get the callers session. Note that this may be <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if the caller
+is not in any session.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> The caller object 
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_session</code></em>:</span></p></td>
+<td> Returns the session object. Caller shall not unref it.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE iff the value is returned
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-debug"></a><h3>polkit_caller_debug ()</h3>
+<pre class="programlisting">void                polkit_caller_debug                 (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Print debug details</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-caller-validate"></a><h3>polkit_caller_validate ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_caller_validate              (<a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<p>
+Validate the object</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> iff the object is valid.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

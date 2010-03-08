@@ -1,0 +1,106 @@
+<!-- ##### SECTION Title ##### -->
+kit-list
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT KitList ##### -->
+<para>
+
+</para>
+
+@data: 
+@next: 
+@prev: 
+
+<!-- ##### USER_FUNCTION KitListForeachFunc ##### -->
+<para>
+
+</para>
+
+@data: 
+@user_data: 
+@list: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_list_append ##### -->
+<para>
+
+</para>
+
+@list: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_list_prepend ##### -->
+<para>
+
+</para>
+
+@list: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_list_free ##### -->
+<para>
+
+</para>
+
+@list: 
+
+
+<!-- ##### FUNCTION kit_list_delete_link ##### -->
+<para>
+
+</para>
+
+@list: 
+@link: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_list_length ##### -->
+<para>
+
+</para>
+
+@list: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_list_foreach ##### -->
+<para>
+
+</para>
+
+@list: 
+@func: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_list_copy ##### -->
+<para>
+
+</para>
+
+@list: 
+@Returns: 
+
+

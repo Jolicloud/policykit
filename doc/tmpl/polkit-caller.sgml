@@ -1,0 +1,167 @@
+<!-- ##### SECTION Title ##### -->
+polkit-caller
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitCaller ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_caller_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_ref ##### -->
+<para>
+
+</para>
+
+@caller: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_unref ##### -->
+<para>
+
+</para>
+
+@caller: 
+
+
+<!-- ##### FUNCTION polkit_caller_set_dbus_name ##### -->
+<para>
+
+</para>
+
+@caller: 
+@dbus_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_set_uid ##### -->
+<para>
+
+</para>
+
+@caller: 
+@uid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_set_pid ##### -->
+<para>
+
+</para>
+
+@caller: 
+@pid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_set_selinux_context ##### -->
+<para>
+
+</para>
+
+@caller: 
+@selinux_context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_set_ck_session ##### -->
+<para>
+
+</para>
+
+@caller: 
+@session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_get_dbus_name ##### -->
+<para>
+
+</para>
+
+@caller: 
+@out_dbus_name: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_get_uid ##### -->
+<para>
+
+</para>
+
+@caller: 
+@out_uid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_get_pid ##### -->
+<para>
+
+</para>
+
+@caller: 
+@out_pid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_get_selinux_context ##### -->
+<para>
+
+</para>
+
+@caller: 
+@out_selinux_context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_get_ck_session ##### -->
+<para>
+
+</para>
+
+@caller: 
+@out_session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_debug ##### -->
+<para>
+
+</para>
+
+@caller: 
+
+
+<!-- ##### FUNCTION polkit_caller_validate ##### -->
+<para>
+
+</para>
+
+@caller: 
+@Returns: 
+
+

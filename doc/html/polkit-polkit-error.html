@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Error reporting</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-simple.html" title="Simple convenience interface">
+<link rel="next" href="polkit-polkit-result.html" title="Results">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-simple.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-result.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-error.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-error.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-error"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-error.top_of_page"></a>Error reporting</span></h2>
+<p>Error reporting — Representation of recoverable errors.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-error.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+>PolKitErrorCode</a>;
+                    <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a>;
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-error.html#polkit-error-is-set"
+>polkit_error_is_set</a>                 (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);
+const char*         <a
+href="../polkit/polkit-polkit-error.html#polkit-error-get-error-name"
+>polkit_error_get_error_name</a>         (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);
+<a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+>PolKitErrorCode</a>     <a
+href="../polkit/polkit-polkit-error.html#polkit-error-get-error-code"
+>polkit_error_get_error_code</a>         (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);
+const char*         <a
+href="../polkit/polkit-polkit-error.html#polkit-error-get-error-message"
+>polkit_error_get_error_message</a>      (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);
+void                <a
+href="../polkit/polkit-polkit-error.html#polkit-error-free"
+>polkit_error_free</a>                   (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-error.html#polkit-error-set-error"
+>polkit_error_set_error</a>              (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+>PolKitErrorCode</a> error_code,
+                                                         const char *format,
+                                                         ...);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-error.description"></a><h2>Description</h2>
+<p>
+Error codes from PolicyKit.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-error.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitErrorCode"></a><h3>enum PolKitErrorCode</h3>
+<pre class="programlisting">typedef enum
+{      
+        POLKIT_ERROR_OUT_OF_MEMORY,
+        POLKIT_ERROR_POLICY_FILE_INVALID,
+        POLKIT_ERROR_GENERAL_ERROR,
+        POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS,
+        POLKIT_ERROR_NOT_AUTHORIZED_TO_REVOKE_AUTHORIZATIONS_FROM_OTHER_USERS,
+        POLKIT_ERROR_NOT_AUTHORIZED_TO_GRANT_AUTHORIZATION,
+        POLKIT_ERROR_AUTHORIZATION_ALREADY_EXISTS,
+        POLKIT_ERROR_NOT_SUPPORTED,
+        POLKIT_ERROR_NOT_AUTHORIZED_TO_MODIFY_DEFAULTS,
+
+        POLKIT_ERROR_NUM_ERROR_CODES
+} PolKitErrorCode;
+</pre>
+<p>
+Errors returned by PolicyKit</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="POLKIT-ERROR-OUT-OF-MEMORY:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_OUT_OF_MEMORY</code></span></p></td>
+<td> Out of memory
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-POLICY-FILE-INVALID:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_POLICY_FILE_INVALID</code></span></p></td>
+<td> There was an error parsing the given policy file
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-GENERAL-ERROR:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_GENERAL_ERROR</code></span></p></td>
+<td> A general error code typically
+indicating problems with the installation of PolicyKit,
+e.g. helpers missing or wrong owner / permission.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-NOT-AUTHORIZED-TO-READ-AUTHORIZATIONS-FOR-OTHER-USERS:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</code></span></p></td>
+<td>
+An attempt was made to read authorizations for other users and the
+calling process is not authorized.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-NOT-AUTHORIZED-TO-REVOKE-AUTHORIZATIONS-FROM-OTHER-USERS:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_NOT_AUTHORIZED_TO_REVOKE_AUTHORIZATIONS_FROM_OTHER_USERS</code></span></p></td>
+<td>
+An attempt was made to revoke authorizations for other users and the
+calling process is not authorized.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-NOT-AUTHORIZED-TO-GRANT-AUTHORIZATION:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_NOT_AUTHORIZED_TO_GRANT_AUTHORIZATION</code></span></p></td>
+<td> An attempt was
+made to grant an authorization and the calling process is not
+authorized.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-AUTHORIZATION-ALREADY-EXISTS:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_AUTHORIZATION_ALREADY_EXISTS</code></span></p></td>
+<td> Subject already has an
+similar authorization already (modulo time of grant and who granted).
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-NOT-SUPPORTED:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_NOT_SUPPORTED</code></span></p></td>
+<td> The operation is not supported by the
+authorization database backend
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-NOT-AUTHORIZED-TO-MODIFY-DEFAULTS:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_NOT_AUTHORIZED_TO_MODIFY_DEFAULTS</code></span></p></td>
+<td> An attempt was
+made to modify the defaults for implicit authorizations and the
+calling process is not authorized.
+</td>
+</tr>
+<tr>
+<td><p><a name="POLKIT-ERROR-NUM-ERROR-CODES:CAPS"></a><span class="term"><code class="literal">POLKIT_ERROR_NUM_ERROR_CODES</code></span></p></td>
+<td> Number of error codes. This may change
+from version to version; do not rely on it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitError"></a><h3>PolKitError</h3>
+<pre class="programlisting">typedef struct _PolKitError PolKitError;</pre>
+<p>
+Objects of this class are used for error reporting.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-error-is-set"></a><h3>polkit_error_is_set ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_error_is_set                 (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);</pre>
+<p>
+Determine if an error set</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> if, and only if, the error is set
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-error-get-error-name"></a><h3>polkit_error_get_error_name ()</h3>
+<pre class="programlisting">const char*         polkit_error_get_error_name         (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);</pre>
+<p>
+Get the CamelCase name for the error;
+e.g. <span class="type">POLKIT_ERROR_OUT_OF_MEMORY</span> maps to "OutOfMemory" and so on.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the string
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-error-get-error-code"></a><h3>polkit_error_get_error_code ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+>PolKitErrorCode</a>     polkit_error_get_error_code         (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);</pre>
+<p>
+Returns the error code.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the error object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A value from the <a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+><span class="type">PolKitErrorCode</span></a> enumeration.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-error-get-error-message"></a><h3>polkit_error_get_error_message ()</h3>
+<pre class="programlisting">const char*         polkit_error_get_error_message      (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);</pre>
+<p>
+Get the error message.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the error object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A string describing the error. Caller shall not free this string.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-error-free"></a><h3>polkit_error_free ()</h3>
+<pre class="programlisting">void                polkit_error_free                   (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> *error);</pre>
+<p>
+Free an error.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the error
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-error-set-error"></a><h3>polkit_error_set_error ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_error_set_error              (<a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+>PolKitErrorCode</a> error_code,
+                                                         const char *format,
+                                                         ...);</pre>
+<p>
+Sets an error. If OOM, the error will be set to a pre-allocated OOM error.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the error object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error_code</code></em>:</span></p></td>
+<td> A value from the <a
+href="../polkit/polkit-polkit-error.html#PolKitErrorCode"
+><span class="type">PolKitErrorCode</span></a> enumeration.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em>:</span></p></td>
+<td> printf style formatting string
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em>:</span></p></td>
+<td> printf style arguments
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE if the error was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

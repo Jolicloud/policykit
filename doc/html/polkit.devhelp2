@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="PolicyKit Library Reference Manual" link="index.html" author="David Zeuthen" name="polkit" version="2">
+  <chapters>
+    <sub name="Design Overview" link="ref-design.html">
+      <sub name="Introduction" link="introduction.html">
+        <sub name="About" link="introduction.html#intro-about"/>
+        <sub name="History and Prior Art" link="polkit-spec-history.html"/>
+        <sub name="Defining the Problem" link="intro-define-problem.html"/>
+      </sub>
+      <sub name="PolicyKit Model" link="model.html">
+        <sub name="Mechanims vs. Policy" link="model.html#model-mechanism-vs-policy"/>
+        <sub name="Concepts" link="model-concepts.html"/>
+        <sub name="Theory of Operation" link="model-theory-of-operation.html"/>
+        <sub name="Authentication Agent" link="model-authentication-agent.html"/>
+      </sub>
+      <sub name="PolicyKit configuration" link="polkit-conf.html">
+        <sub name="Declaring Actions" link="polkit-conf.html#conf-declaring-actions"/>
+        <sub name="Beyond the Defaults" link="beyond-defaults.html"/>
+      </sub>
+    </sub>
+    <sub name="Core API Reference" link="ref-core.html">
+      <sub name="Basic types" link="polkit-polkit-types.html"/>
+      <sub name="System Dependencies" link="polkit-polkit-sysdeps.html"/>
+      <sub name="Simple convenience interface" link="polkit-polkit-simple.html"/>
+      <sub name="Error reporting" link="polkit-polkit-error.html"/>
+      <sub name="Results" link="polkit-polkit-result.html"/>
+      <sub name="Actions" link="polkit-polkit-action.html"/>
+      <sub name="Seat" link="polkit-polkit-seat.html"/>
+      <sub name="Session" link="polkit-polkit-session.html"/>
+      <sub name="Caller" link="polkit-polkit-caller.html"/>
+      <sub name="Caller Determination" link="polkit-polkit-dbus.html"/>
+      <sub name="Context" link="polkit-polkit-context.html"/>
+      <sub name="Configuration" link="polkit-polkit-config.html"/>
+      <sub name="Policy Definition Files" link="polkit-polkit-policy-file.html"/>
+      <sub name="Policy File Entry" link="polkit-polkit-policy-file-entry.html"/>
+      <sub name="Defaults" link="polkit-polkit-policy-default.html"/>
+      <sub name="Policy Cache" link="polkit-polkit-policy-cache.html"/>
+      <sub name="Authorization Entry" link="polkit-polkit-authorization.html"/>
+      <sub name="Authorization Constraints" link="polkit-polkit-authorization-constraint.html"/>
+      <sub name="Authorization Database" link="polkit-polkit-authorization-db.html"/>
+      <sub name="Authorizations and Authentication" link="polkit-polkit-grant.html"/>
+    </sub>
+    <sub name="Tools and file formats" link="tools-fileformats.html">
+      <sub name="PolicyKit" link="PolicyKit.8.html"/>
+      <sub name="PolicyKit.conf" link="PolicyKit.conf.5.html"/>
+      <sub name="polkit-auth" link="polkit-auth.1.html"/>
+      <sub name="polkit-action" link="polkit-action.1.html"/>
+      <sub name="polkit-policy-file-validate" link="polkit-policy-file-validate.1.html"/>
+      <sub name="polkit-config-file-validate" link="polkit-config-file-validate.1.html"/>
+    </sub>
+    <sub name="Index of deprecated symbols" link="ix01.html"/>
+    <sub name="Index of new symbols in 0.7" link="ix02.html"/>
+    <sub name="Index of new symbols in 0.8" link="ix03.html"/>
+    <sub name="Index" link="ix04.html"/>
+    <sub name="License" link="license.html"/>
+  </chapters>
+  <functions>
+    <keyword type="macro" name="POLKIT_BEGIN_DECLS" link="polkit-polkit-types.html#POLKIT-BEGIN-DECLS:CAPS"/>
+    <keyword type="macro" name="POLKIT_END_DECLS" link="polkit-polkit-types.html#POLKIT-END-DECLS:CAPS"/>
+    <keyword type="macro" name="POLKIT_GNUC_DEPRECATED" link="polkit-polkit-types.html#POLKIT-GNUC-DEPRECATED:CAPS"/>
+    <keyword type="typedef" name="polkit_bool_t" link="polkit-polkit-types.html#polkit-bool-t"/>
+    <keyword type="typedef" name="polkit_uint32_t" link="polkit-polkit-types.html#polkit-uint32-t"/>
+    <keyword type="typedef" name="polkit_uint64_t" link="polkit-polkit-types.html#polkit-uint64-t"/>
+    <keyword type="function" name="polkit_sysdeps_get_start_time_for_pid ()" link="polkit-polkit-sysdeps.html#polkit-sysdeps-get-start-time-for-pid" since="0.7"/>
+    <keyword type="function" name="polkit_sysdeps_get_exe_for_pid ()" link="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid" since="0.7"/>
+    <keyword type="function" name="polkit_sysdeps_get_exe_for_pid_with_helper ()" link="polkit-polkit-sysdeps.html#polkit-sysdeps-get-exe-for-pid-with-helper" since="0.8"/>
+    <keyword type="function" name="polkit_check_auth ()" link="polkit-polkit-simple.html#polkit-check-auth" since="0.7"/>
+    <keyword type="function" name="polkit_check_authv ()" link="polkit-polkit-simple.html#polkit-check-authv" since="0.7"/>
+    <keyword type="function" name="polkit_auth_obtain ()" link="polkit-polkit-simple.html#polkit-auth-obtain" since="0.7"/>
+    <keyword type="function" name="polkit_dbus_error_generate ()" link="polkit-polkit-simple.html#polkit-dbus-error-generate" since="0.8"/>
+    <keyword type="function" name="polkit_dbus_error_parse ()" link="polkit-polkit-simple.html#polkit-dbus-error-parse" since="0.8"/>
+    <keyword type="function" name="polkit_dbus_error_parse_from_strings ()" link="polkit-polkit-simple.html#polkit-dbus-error-parse-from-strings" since="0.8"/>
+    <keyword type="enum" name="enum PolKitErrorCode" link="polkit-polkit-error.html#PolKitErrorCode"/>
+    <keyword type="struct" name="PolKitError" link="polkit-polkit-error.html#PolKitError"/>
+    <keyword type="function" name="polkit_error_is_set ()" link="polkit-polkit-error.html#polkit-error-is-set" since="0.7"/>
+    <keyword type="function" name="polkit_error_get_error_name ()" link="polkit-polkit-error.html#polkit-error-get-error-name" since="0.7"/>
+    <keyword type="function" name="polkit_error_get_error_code ()" link="polkit-polkit-error.html#polkit-error-get-error-code"/>
+    <keyword type="function" name="polkit_error_get_error_message ()" link="polkit-polkit-error.html#polkit-error-get-error-message"/>
+    <keyword type="function" name="polkit_error_free ()" link="polkit-polkit-error.html#polkit-error-free"/>
+    <keyword type="function" name="polkit_error_set_error ()" link="polkit-polkit-error.html#polkit-error-set-error"/>
+    <keyword type="enum" name="enum PolKitResult" link="polkit-polkit-result.html#PolKitResult"/>
+    <keyword type="function" name="polkit_result_to_string_representation ()" link="polkit-polkit-result.html#polkit-result-to-string-representation"/>
+    <keyword type="function" name="polkit_result_from_string_representation ()" link="polkit-polkit-result.html#polkit-result-from-string-representation"/>
+    <keyword type="struct" name="PolKitAction" link="polkit-polkit-action.html#PolKitAction"/>
+    <keyword type="function" name="polkit_action_new ()" link="polkit-polkit-action.html#polkit-action-new"/>
+    <keyword type="function" name="polkit_action_ref ()" link="polkit-polkit-action.html#polkit-action-ref"/>
+    <keyword type="function" name="polkit_action_unref ()" link="polkit-polkit-action.html#polkit-action-unref"/>
+    <keyword type="function" name="polkit_action_set_action_id ()" link="polkit-polkit-action.html#polkit-action-set-action-id"/>
+    <keyword type="function" name="polkit_action_get_action_id ()" link="polkit-polkit-action.html#polkit-action-get-action-id"/>
+    <keyword type="function" name="polkit_action_debug ()" link="polkit-polkit-action.html#polkit-action-debug"/>
+    <keyword type="function" name="polkit_action_validate ()" link="polkit-polkit-action.html#polkit-action-validate"/>
+    <keyword type="function" name="polkit_action_validate_id ()" link="polkit-polkit-action.html#polkit-action-validate-id"/>
+    <keyword type="function" name="polkit_action_equal ()" link="polkit-polkit-action.html#polkit-action-equal" since="0.8"/>
+    <keyword type="function" name="polkit_action_to_string_representation ()" link="polkit-polkit-action.html#polkit-action-to-string-representation" since="0.8"/>
+    <keyword type="function" name="polkit_action_new_from_string_representation ()" link="polkit-polkit-action.html#polkit-action-new-from-string-representation" since="0.8"/>
+    <keyword type="struct" name="PolKitSeat" link="polkit-polkit-seat.html#PolKitSeat"/>
+    <keyword type="function" name="polkit_seat_new ()" link="polkit-polkit-seat.html#polkit-seat-new"/>
+    <keyword type="function" name="polkit_seat_ref ()" link="polkit-polkit-seat.html#polkit-seat-ref"/>
+    <keyword type="function" name="polkit_seat_unref ()" link="polkit-polkit-seat.html#polkit-seat-unref"/>
+    <keyword type="function" name="polkit_seat_set_ck_objref ()" link="polkit-polkit-seat.html#polkit-seat-set-ck-objref"/>
+    <keyword type="function" name="polkit_seat_get_ck_objref ()" link="polkit-polkit-seat.html#polkit-seat-get-ck-objref"/>
+    <keyword type="function" name="polkit_seat_debug ()" link="polkit-polkit-seat.html#polkit-seat-debug"/>
+    <keyword type="function" name="polkit_seat_validate ()" link="polkit-polkit-seat.html#polkit-seat-validate"/>
+    <keyword type="struct" name="PolKitSession" link="polkit-polkit-session.html#PolKitSession"/>
+    <keyword type="function" name="polkit_session_new ()" link="polkit-polkit-session.html#polkit-session-new"/>
+    <keyword type="function" name="polkit_session_ref ()" link="polkit-polkit-session.html#polkit-session-ref"/>
+    <keyword type="function" name="polkit_session_unref ()" link="polkit-polkit-session.html#polkit-session-unref"/>
+    <keyword type="function" name="polkit_session_set_uid ()" link="polkit-polkit-session.html#polkit-session-set-uid"/>
+    <keyword type="function" name="polkit_session_set_seat ()" link="polkit-polkit-session.html#polkit-session-set-seat"/>
+    <keyword type="function" name="polkit_session_set_ck_objref ()" link="polkit-polkit-session.html#polkit-session-set-ck-objref"/>
+    <keyword type="function" name="polkit_session_set_ck_is_active ()" link="polkit-polkit-session.html#polkit-session-set-ck-is-active"/>
+    <keyword type="function" name="polkit_session_set_ck_is_local ()" link="polkit-polkit-session.html#polkit-session-set-ck-is-local"/>
+    <keyword type="function" name="polkit_session_set_ck_remote_host ()" link="polkit-polkit-session.html#polkit-session-set-ck-remote-host"/>
+    <keyword type="function" name="polkit_session_get_uid ()" link="polkit-polkit-session.html#polkit-session-get-uid"/>
+    <keyword type="function" name="polkit_session_get_seat ()" link="polkit-polkit-session.html#polkit-session-get-seat"/>
+    <keyword type="function" name="polkit_session_get_ck_objref ()" link="polkit-polkit-session.html#polkit-session-get-ck-objref"/>
+    <keyword type="function" name="polkit_session_get_ck_is_active ()" link="polkit-polkit-session.html#polkit-session-get-ck-is-active"/>
+    <keyword type="function" name="polkit_session_get_ck_is_local ()" link="polkit-polkit-session.html#polkit-session-get-ck-is-local"/>
+    <keyword type="function" name="polkit_session_get_ck_remote_host ()" link="polkit-polkit-session.html#polkit-session-get-ck-remote-host"/>
+    <keyword type="function" name="polkit_session_debug ()" link="polkit-polkit-session.html#polkit-session-debug"/>
+    <keyword type="function" name="polkit_session_validate ()" link="polkit-polkit-session.html#polkit-session-validate"/>
+    <keyword type="struct" name="PolKitCaller" link="polkit-polkit-caller.html#PolKitCaller"/>
+    <keyword type="function" name="polkit_caller_new ()" link="polkit-polkit-caller.html#polkit-caller-new"/>
+    <keyword type="function" name="polkit_caller_ref ()" link="polkit-polkit-caller.html#polkit-caller-ref"/>
+    <keyword type="function" name="polkit_caller_unref ()" link="polkit-polkit-caller.html#polkit-caller-unref"/>
+    <keyword type="function" name="polkit_caller_set_dbus_name ()" link="polkit-polkit-caller.html#polkit-caller-set-dbus-name"/>
+    <keyword type="function" name="polkit_caller_set_uid ()" link="polkit-polkit-caller.html#polkit-caller-set-uid"/>
+    <keyword type="function" name="polkit_caller_set_pid ()" link="polkit-polkit-caller.html#polkit-caller-set-pid"/>
+    <keyword type="function" name="polkit_caller_set_selinux_context ()" link="polkit-polkit-caller.html#polkit-caller-set-selinux-context"/>
+    <keyword type="function" name="polkit_caller_set_ck_session ()" link="polkit-polkit-caller.html#polkit-caller-set-ck-session"/>
+    <keyword type="function" name="polkit_caller_get_dbus_name ()" link="polkit-polkit-caller.html#polkit-caller-get-dbus-name"/>
+    <keyword type="function" name="polkit_caller_get_uid ()" link="polkit-polkit-caller.html#polkit-caller-get-uid"/>
+    <keyword type="function" name="polkit_caller_get_pid ()" link="polkit-polkit-caller.html#polkit-caller-get-pid"/>
+    <keyword type="function" name="polkit_caller_get_selinux_context ()" link="polkit-polkit-caller.html#polkit-caller-get-selinux-context"/>
+    <keyword type="function" name="polkit_caller_get_ck_session ()" link="polkit-polkit-caller.html#polkit-caller-get-ck-session"/>
+    <keyword type="function" name="polkit_caller_debug ()" link="polkit-polkit-caller.html#polkit-caller-debug"/>
+    <keyword type="function" name="polkit_caller_validate ()" link="polkit-polkit-caller.html#polkit-caller-validate"/>
+    <keyword type="function" name="polkit_session_new_from_objpath ()" link="polkit-polkit-dbus.html#polkit-session-new-from-objpath"/>
+    <keyword type="function" name="polkit_session_new_from_cookie ()" link="polkit-polkit-dbus.html#polkit-session-new-from-cookie"/>
+    <keyword type="function" name="polkit_caller_new_from_dbus_name ()" link="polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"/>
+    <keyword type="function" name="polkit_caller_new_from_pid ()" link="polkit-polkit-dbus.html#polkit-caller-new-from-pid"/>
+    <keyword type="function" name="polkit_is_authorization_relevant ()" link="polkit-polkit-dbus.html#polkit-is-authorization-relevant" since="0.7"/>
+    <keyword type="struct" name="PolKitTracker" link="polkit-polkit-dbus.html#PolKitTracker"/>
+    <keyword type="function" name="polkit_tracker_new ()" link="polkit-polkit-dbus.html#polkit-tracker-new" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_ref ()" link="polkit-polkit-dbus.html#polkit-tracker-ref" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_unref ()" link="polkit-polkit-dbus.html#polkit-tracker-unref" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_set_system_bus_connection ()" link="polkit-polkit-dbus.html#polkit-tracker-set-system-bus-connection" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_init ()" link="polkit-polkit-dbus.html#polkit-tracker-init" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_dbus_func ()" link="polkit-polkit-dbus.html#polkit-tracker-dbus-func" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_get_caller_from_dbus_name ()" link="polkit-polkit-dbus.html#polkit-tracker-get-caller-from-dbus-name" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_get_caller_from_pid ()" link="polkit-polkit-dbus.html#polkit-tracker-get-caller-from-pid" since="0.7"/>
+    <keyword type="function" name="polkit_tracker_is_authorization_relevant ()" link="polkit-polkit-dbus.html#polkit-tracker-is-authorization-relevant" since="0.7"/>
+    <keyword type="struct" name="PolKitContext" link="polkit-polkit-context.html#PolKitContext"/>
+    <keyword type="function" name="PolKitContextConfigChangedCB ()" link="polkit-polkit-context.html#PolKitContextConfigChangedCB"/>
+    <keyword type="function" name="PolKitContextAddIOWatch ()" link="polkit-polkit-context.html#PolKitContextAddIOWatch"/>
+    <keyword type="function" name="PolKitContextRemoveIOWatch ()" link="polkit-polkit-context.html#PolKitContextRemoveIOWatch"/>
+    <keyword type="function" name="polkit_context_new ()" link="polkit-polkit-context.html#polkit-context-new"/>
+    <keyword type="function" name="polkit_context_set_config_changed ()" link="polkit-polkit-context.html#polkit-context-set-config-changed"/>
+    <keyword type="function" name="polkit_context_set_io_watch_functions ()" link="polkit-polkit-context.html#polkit-context-set-io-watch-functions"/>
+    <keyword type="function" name="polkit_context_set_load_descriptions ()" link="polkit-polkit-context.html#polkit-context-set-load-descriptions"/>
+    <keyword type="function" name="polkit_context_init ()" link="polkit-polkit-context.html#polkit-context-init"/>
+    <keyword type="function" name="polkit_context_ref ()" link="polkit-polkit-context.html#polkit-context-ref"/>
+    <keyword type="function" name="polkit_context_unref ()" link="polkit-polkit-context.html#polkit-context-unref"/>
+    <keyword type="function" name="polkit_context_force_reload ()" link="polkit-polkit-context.html#polkit-context-force-reload" since="0.7"/>
+    <keyword type="function" name="polkit_context_io_func ()" link="polkit-polkit-context.html#polkit-context-io-func"/>
+    <keyword type="function" name="polkit_context_get_policy_cache ()" link="polkit-polkit-context.html#polkit-context-get-policy-cache"/>
+    <keyword type="function" name="polkit_context_can_session_do_action ()" link="polkit-polkit-context.html#polkit-context-can-session-do-action" deprecated="0.7: use polkit_context_is_session_authorized() instead."/>
+    <keyword type="function" name="polkit_context_can_caller_do_action ()" link="polkit-polkit-context.html#polkit-context-can-caller-do-action" deprecated="0.7: use polkit_context_is_caller_authorized() instead."/>
+    <keyword type="function" name="polkit_context_get_config ()" link="polkit-polkit-context.html#polkit-context-get-config"/>
+    <keyword type="function" name="polkit_context_is_caller_authorized ()" link="polkit-polkit-context.html#polkit-context-is-caller-authorized" since="0.7"/>
+    <keyword type="function" name="polkit_context_is_session_authorized ()" link="polkit-polkit-context.html#polkit-context-is-session-authorized" since="0.7"/>
+    <keyword type="function" name="polkit_context_get_authorization_db ()" link="polkit-polkit-context.html#polkit-context-get-authorization-db"/>
+    <keyword type="struct" name="PolKitConfig" link="polkit-polkit-config.html#PolKitConfig"/>
+    <keyword type="function" name="polkit_config_new ()" link="polkit-polkit-config.html#polkit-config-new"/>
+    <keyword type="function" name="polkit_config_ref ()" link="polkit-polkit-config.html#polkit-config-ref"/>
+    <keyword type="function" name="polkit_config_unref ()" link="polkit-polkit-config.html#polkit-config-unref"/>
+    <keyword type="function" name="polkit_config_can_session_do_action ()" link="polkit-polkit-config.html#polkit-config-can-session-do-action"/>
+    <keyword type="function" name="polkit_config_can_caller_do_action ()" link="polkit-polkit-config.html#polkit-config-can-caller-do-action"/>
+    <keyword type="enum" name="enum PolKitConfigAdminAuthType" link="polkit-polkit-config.html#PolKitConfigAdminAuthType"/>
+    <keyword type="function" name="polkit_config_determine_admin_auth_type ()" link="polkit-polkit-config.html#polkit-config-determine-admin-auth-type"/>
+    <keyword type="struct" name="PolKitPolicyFile" link="polkit-polkit-policy-file.html#PolKitPolicyFile"/>
+    <keyword type="function" name="PolKitPolicyFileEntryForeachFunc ()" link="polkit-polkit-policy-file.html#PolKitPolicyFileEntryForeachFunc"/>
+    <keyword type="function" name="polkit_policy_file_new ()" link="polkit-polkit-policy-file.html#polkit-policy-file-new"/>
+    <keyword type="function" name="polkit_policy_file_ref ()" link="polkit-polkit-policy-file.html#polkit-policy-file-ref"/>
+    <keyword type="function" name="polkit_policy_file_unref ()" link="polkit-polkit-policy-file.html#polkit-policy-file-unref"/>
+    <keyword type="function" name="polkit_policy_file_entry_foreach ()" link="polkit-polkit-policy-file.html#polkit-policy-file-entry-foreach"/>
+    <keyword type="struct" name="PolKitPolicyFileEntry" link="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntry"/>
+    <keyword type="function" name="PolKitPolicyFileEntryAnnotationsForeachFunc ()" link="polkit-polkit-policy-file-entry.html#PolKitPolicyFileEntryAnnotationsForeachFunc"/>
+    <keyword type="function" name="polkit_policy_file_entry_ref ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-ref"/>
+    <keyword type="function" name="polkit_policy_file_entry_unref ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-unref"/>
+    <keyword type="function" name="polkit_policy_file_entry_debug ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-debug"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_id ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-id"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_default ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-default"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_action_description ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-description"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_action_message ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-message"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_action_vendor ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-vendor" since="0.7"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_action_vendor_url ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-vendor-url" since="0.7"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_action_icon_name ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-action-icon-name" since="0.7"/>
+    <keyword type="function" name="polkit_policy_file_entry_annotations_foreach ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-annotations-foreach"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_annotation ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-annotation"/>
+    <keyword type="function" name="polkit_policy_file_entry_get_default_factory ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-get-default-factory" since="0.7"/>
+    <keyword type="function" name="polkit_policy_file_entry_set_default ()" link="polkit-polkit-policy-file-entry.html#polkit-policy-file-entry-set-default" since="0.7"/>
+    <keyword type="struct" name="PolKitPolicyDefault" link="polkit-polkit-policy-default.html#PolKitPolicyDefault"/>
+    <keyword type="function" name="polkit_policy_default_new ()" link="polkit-polkit-policy-default.html#polkit-policy-default-new" since="0.7"/>
+    <keyword type="function" name="polkit_policy_default_ref ()" link="polkit-polkit-policy-default.html#polkit-policy-default-ref"/>
+    <keyword type="function" name="polkit_policy_default_unref ()" link="polkit-polkit-policy-default.html#polkit-policy-default-unref"/>
+    <keyword type="function" name="polkit_policy_default_debug ()" link="polkit-polkit-policy-default.html#polkit-policy-default-debug"/>
+    <keyword type="function" name="polkit_policy_default_clone ()" link="polkit-polkit-policy-default.html#polkit-policy-default-clone" since="0.7"/>
+    <keyword type="function" name="polkit_policy_default_equals ()" link="polkit-polkit-policy-default.html#polkit-policy-default-equals"/>
+    <keyword type="function" name="polkit_policy_default_can_session_do_action ()" link="polkit-polkit-policy-default.html#polkit-policy-default-can-session-do-action"/>
+    <keyword type="function" name="polkit_policy_default_can_caller_do_action ()" link="polkit-polkit-policy-default.html#polkit-policy-default-can-caller-do-action"/>
+    <keyword type="function" name="polkit_policy_default_get_allow_any ()" link="polkit-polkit-policy-default.html#polkit-policy-default-get-allow-any"/>
+    <keyword type="function" name="polkit_policy_default_get_allow_inactive ()" link="polkit-polkit-policy-default.html#polkit-policy-default-get-allow-inactive"/>
+    <keyword type="function" name="polkit_policy_default_get_allow_active ()" link="polkit-polkit-policy-default.html#polkit-policy-default-get-allow-active"/>
+    <keyword type="function" name="polkit_policy_default_set_allow_any ()" link="polkit-polkit-policy-default.html#polkit-policy-default-set-allow-any"/>
+    <keyword type="function" name="polkit_policy_default_set_allow_inactive ()" link="polkit-polkit-policy-default.html#polkit-policy-default-set-allow-inactive"/>
+    <keyword type="function" name="polkit_policy_default_set_allow_active ()" link="polkit-polkit-policy-default.html#polkit-policy-default-set-allow-active"/>
+    <keyword type="struct" name="PolKitPolicyCache" link="polkit-polkit-policy-cache.html#PolKitPolicyCache"/>
+    <keyword type="function" name="PolKitPolicyCacheForeachFunc ()" link="polkit-polkit-policy-cache.html#PolKitPolicyCacheForeachFunc"/>
+    <keyword type="function" name="polkit_policy_cache_ref ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-ref"/>
+    <keyword type="function" name="polkit_policy_cache_unref ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-unref"/>
+    <keyword type="function" name="polkit_policy_cache_debug ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-debug"/>
+    <keyword type="function" name="polkit_policy_cache_get_entry ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-get-entry"/>
+    <keyword type="function" name="polkit_policy_cache_get_entry_by_id ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-get-entry-by-id"/>
+    <keyword type="function" name="polkit_policy_cache_get_entry_by_annotation ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-get-entry-by-annotation" since="0.7"/>
+    <keyword type="function" name="polkit_policy_cache_foreach ()" link="polkit-polkit-policy-cache.html#polkit-policy-cache-foreach"/>
+    <keyword type="struct" name="PolKitAuthorization" link="polkit-polkit-authorization.html#PolKitAuthorization" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_ref ()" link="polkit-polkit-authorization.html#polkit-authorization-ref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_unref ()" link="polkit-polkit-authorization.html#polkit-authorization-unref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_debug ()" link="polkit-polkit-authorization.html#polkit-authorization-debug" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_validate ()" link="polkit-polkit-authorization.html#polkit-authorization-validate" since="0.7"/>
+    <keyword type="enum" name="enum PolKitAuthorizationScope" link="polkit-polkit-authorization.html#PolKitAuthorizationScope" since="0.7"/>
+    <keyword type="enum" name="enum PolKitAuthorizationType" link="polkit-polkit-authorization.html#PolKitAuthorizationType" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_type ()" link="polkit-polkit-authorization.html#polkit-authorization-type" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_get_action_id ()" link="polkit-polkit-authorization.html#polkit-authorization-get-action-id" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_get_uid ()" link="polkit-polkit-authorization.html#polkit-authorization-get-uid" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_get_time_of_grant ()" link="polkit-polkit-authorization.html#polkit-authorization-get-time-of-grant" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_get_scope ()" link="polkit-polkit-authorization.html#polkit-authorization-get-scope" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_scope_process_get_pid ()" link="polkit-polkit-authorization.html#polkit-authorization-scope-process-get-pid" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_scope_session_get_ck_objref ()" link="polkit-polkit-authorization.html#polkit-authorization-scope-session-get-ck-objref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_was_granted_via_defaults ()" link="polkit-polkit-authorization.html#polkit-authorization-was-granted-via-defaults" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_was_granted_explicitly ()" link="polkit-polkit-authorization.html#polkit-authorization-was-granted-explicitly" since="0.7"/>
+    <keyword type="function" name="PolKitAuthorizationConstraintsForeachFunc ()" link="polkit-polkit-authorization.html#PolKitAuthorizationConstraintsForeachFunc"/>
+    <keyword type="function" name="polkit_authorization_constraints_foreach ()" link="polkit-polkit-authorization.html#polkit-authorization-constraints-foreach" since="0.7"/>
+    <keyword type="enum" name="enum PolKitAuthorizationConstraintType" link="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraintType"/>
+    <keyword type="struct" name="PolKitAuthorizationConstraint" link="polkit-polkit-authorization-constraint.html#PolKitAuthorizationConstraint" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_require_local ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-require-local" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_require_active ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-require-active" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_require_exe ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-require-exe" since="0.8"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_require_selinux_context ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-require-selinux-context" since="0.8"/>
+    <keyword type="function" name="polkit_authorization_constraint_ref ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-ref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_unref ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-unref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_debug ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-debug" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_validate ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-validate" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_type ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-type" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_exe ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-exe" since="0.8"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_selinux_context ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-selinux-context" since="0.8"/>
+    <keyword type="function" name="polkit_authorization_constraint_check_session ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-check-session" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_check_caller ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-check-caller" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_to_string ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-to-string" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_from_string ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-from-string"/>
+    <keyword type="function" name="polkit_authorization_constraint_get_from_caller ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-get-from-caller" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_constraint_equal ()" link="polkit-polkit-authorization-constraint.html#polkit-authorization-constraint-equal" since="0.7"/>
+    <keyword type="struct" name="PolKitAuthorizationDB" link="polkit-polkit-authorization-db.html#PolKitAuthorizationDB" since="0.7"/>
+    <keyword type="enum" name="enum PolKitAuthorizationDBCapability" link="polkit-polkit-authorization-db.html#PolKitAuthorizationDBCapability" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_get_capabilities ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-get-capabilities" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_ref ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-ref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_unref ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-unref" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_debug ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-debug" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_validate ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-validate" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_is_session_authorized ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-is-session-authorized" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_is_caller_authorized ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-is-caller-authorized" since="0.7"/>
+    <keyword type="function" name="PolKitAuthorizationDBForeach ()" link="polkit-polkit-authorization-db.html#PolKitAuthorizationDBForeach" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_foreach ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-foreach" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_foreach_for_uid ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-foreach-for-uid" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_foreach_for_action ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-foreach-for-action" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_foreach_for_action_for_uid ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-foreach-for-action-for-uid" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_add_entry_process_one_shot ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-add-entry-process-one-shot" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_add_entry_process ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-add-entry-process" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_add_entry_session ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-add-entry-session" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_add_entry_always ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-add-entry-always" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_grant_to_uid ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-grant-to-uid" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_grant_negative_to_uid ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-grant-negative-to-uid" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_revoke_entry ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-revoke-entry" since="0.7"/>
+    <keyword type="function" name="polkit_authorization_db_is_uid_blocked_by_self ()" link="polkit-polkit-authorization-db.html#polkit-authorization-db-is-uid-blocked-by-self" since="0.7"/>
+    <keyword type="struct" name="PolKitGrant" link="polkit-polkit-grant.html#PolKitGrant"/>
+    <keyword type="function" name="PolKitGrantType ()" link="polkit-polkit-grant.html#PolKitGrantType"/>
+    <keyword type="function" name="PolKitGrantSelectAdminUser ()" link="polkit-polkit-grant.html#PolKitGrantSelectAdminUser"/>
+    <keyword type="function" name="PolKitGrantConversationPromptEchoOff ()" link="polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOff"/>
+    <keyword type="function" name="PolKitGrantConversationPromptEchoOn ()" link="polkit-polkit-grant.html#PolKitGrantConversationPromptEchoOn"/>
+    <keyword type="function" name="PolKitGrantConversationErrorMessage ()" link="polkit-polkit-grant.html#PolKitGrantConversationErrorMessage"/>
+    <keyword type="function" name="PolKitGrantConversationTextInfo ()" link="polkit-polkit-grant.html#PolKitGrantConversationTextInfo"/>
+    <keyword type="function" name="PolKitGrantOverrideGrantType ()" link="polkit-polkit-grant.html#PolKitGrantOverrideGrantType"/>
+    <keyword type="function" name="PolKitGrantDone ()" link="polkit-polkit-grant.html#PolKitGrantDone"/>
+    <keyword type="function" name="PolKitGrantAddChildWatch ()" link="polkit-polkit-grant.html#PolKitGrantAddChildWatch"/>
+    <keyword type="function" name="PolKitGrantAddIOWatch ()" link="polkit-polkit-grant.html#PolKitGrantAddIOWatch"/>
+    <keyword type="function" name="PolKitGrantRemoveWatch ()" link="polkit-polkit-grant.html#PolKitGrantRemoveWatch"/>
+    <keyword type="function" name="polkit_grant_new ()" link="polkit-polkit-grant.html#polkit-grant-new"/>
+    <keyword type="function" name="polkit_grant_ref ()" link="polkit-polkit-grant.html#polkit-grant-ref"/>
+    <keyword type="function" name="polkit_grant_unref ()" link="polkit-polkit-grant.html#polkit-grant-unref"/>
+    <keyword type="function" name="polkit_grant_set_functions ()" link="polkit-polkit-grant.html#polkit-grant-set-functions"/>
+    <keyword type="function" name="polkit_grant_initiate_auth ()" link="polkit-polkit-grant.html#polkit-grant-initiate-auth"/>
+    <keyword type="function" name="polkit_grant_cancel_auth ()" link="polkit-polkit-grant.html#polkit-grant-cancel-auth"/>
+    <keyword type="function" name="polkit_grant_io_func ()" link="polkit-polkit-grant.html#polkit-grant-io-func"/>
+    <keyword type="function" name="polkit_grant_child_func ()" link="polkit-polkit-grant.html#polkit-grant-child-func"/>
+    <keyword type="" name="config" link="PolicyKit.conf.5.html#id397037"/>
+    <keyword type="" name="match" link="PolicyKit.conf.5.html#id375576"/>
+    <keyword type="" name="return" link="PolicyKit.conf.5.html#id368821"/>
+    <keyword type="" name="define_admin_auth" link="PolicyKit.conf.5.html#id398226"/>
+    <keyword type="" name="ALLOW EVERYTHING" link="PolicyKit.conf.5.html#id386250"/>
+    <keyword type="" name="MOUNTING FIXED DRIVES" link="PolicyKit.conf.5.html#id386265"/>
+    <keyword type="" name="AVOIDING THE ROOT PASSWORD" link="PolicyKit.conf.5.html#id387218"/>
+  </functions>
+</book>

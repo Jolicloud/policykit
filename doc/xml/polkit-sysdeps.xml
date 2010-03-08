@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-polkit-sysdeps">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-polkit-sysdeps.top_of_page">System Dependencies</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>System Dependencies</refname>
+<refpurpose>Various platform specific utility functions</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-polkit-sysdeps.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="polkit-uint64-t">polkit_uint64_t</link>     <link linkend="polkit-sysdeps-get-start-time-for-pid">polkit_sysdeps_get_start_time_for_pid</link>
+                                                        (<link linkend="pid-t">pid_t</link> pid);
+<link linkend="int">int</link>                 <link linkend="polkit-sysdeps-get-exe-for-pid">polkit_sysdeps_get_exe_for_pid</link>      (<link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="char">char</link> *out_buf,
+                                                         <link linkend="size-t">size_t</link> buf_size);
+<link linkend="int">int</link>                 <link linkend="polkit-sysdeps-get-exe-for-pid-with-helper">polkit_sysdeps_get_exe_for_pid_with_helper</link>
+                                                        (<link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="char">char</link> *out_buf,
+                                                         <link linkend="size-t">size_t</link> buf_size);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-polkit-sysdeps.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Various platform specific utility functions.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-polkit-sysdeps.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="polkit-sysdeps-get-start-time-for-pid" role="function" condition="since:0.7">
+<title>polkit_sysdeps_get_start_time_for_pid ()</title>
+<indexterm zone="polkit-sysdeps-get-start-time-for-pid" role="0.7"><primary>polkit_sysdeps_get_start_time_for_pid</primary></indexterm><programlisting><link linkend="polkit-uint64-t">polkit_uint64_t</link>     polkit_sysdeps_get_start_time_for_pid
+                                                        (<link linkend="pid-t">pid_t</link> pid);</programlisting>
+<para>
+Get when a process started.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> start time for the process or 0 if an error occured and errno will be set
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-sysdeps-get-exe-for-pid" role="function" condition="since:0.7">
+<title>polkit_sysdeps_get_exe_for_pid ()</title>
+<indexterm zone="polkit-sysdeps-get-exe-for-pid" role="0.7"><primary>polkit_sysdeps_get_exe_for_pid</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid      (<link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="char">char</link> *out_buf,
+                                                         <link linkend="size-t">size_t</link> buf_size);</programlisting>
+<para>
+Get the name of the binary a given process was started from.
+</para>
+<para>
+Note that this is not necessary reliable information and as such
+shouldn't be relied on 100% to make a security decision. In fact,
+this information is only trustworthy in situations where the given
+binary is securely locked down meaning that 1) it can't be
+<literal>ptrace(2)</literal>'d; 2) libc secure mode kicks in (e.g
+<literal>LD_PRELOAD</literal> won't work); 3) there are no other
+attack vectors (e.g. GTK_MODULES, X11, CORBA, D-Bus) to patch
+running code into the process.
+</para>
+<para>
+In other words: the risk of relying on constraining an
+authorization to the output of this function is high. Suppose that
+the program <literal>/usr/bin/gullible</literal> obtains an
+authorization via authentication for the action
+<literal>org.example.foo</literal>. We add a constraint to say that
+the gained authorization only applies to processes for whom
+<literal>/proc/pid/exe</literal> points to
+<literal>/usr/bin/gullible</literal>. Now enter
+<literal>/usr/bin/evil</literal>. It knows that the program
+<literal>/usr/bin/gullible</literal> is not "securely locked down"
+(per the definition in the above paragraph). So
+<literal>/usr/bin/evil</literal> simply sets
+<literal>LD_PRELOAD</literal> and execs
+<literal>/usr/bin/gullible</literal> and it can now run code in a
+process where <literal>/proc/pid/exe</literal> points to
+<literal>/usr/bin/gullible</literal>. Thus, the recently gained
+authorization for <literal>org.example.foo</literal> applies. Also,
+<literal>/usr/bin/evil</literal> could use a host of other attack
+vectors to run it's own code under the disguise of pretending to be
+<literal>/usr/bin/gullible</literal>.
+</para>
+<para>
+Specifically for interpreted languages like Python and Mono it is
+the case that <literal>/proc/pid/exe</literal> always points to
+<literal>/usr/bin/python</literal>
+resp. <literal>/usr/bin/mono</literal>. Thus, it's not very useful
+to rely on that the result for this function if you want to
+constrain an authorization to
+e.g. <literal>/usr/bin/tomboy</literal> or
+<literal>/usr/bin/banshee</literal>.
+</para>
+<para>
+If the information could not be obtained, such as if the given
+process is owned by another user than the caller, -1 is returned
+and out_buf will be set to "(unknown)". See also the function
+<link linkend="polkit-sysdeps-get-exe-for-pid-with-helper"><function>polkit_sysdeps_get_exe_for_pid_with_helper()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer to store the string representation in
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> Number of characters written (not including trailing
+'\0'). If the output was truncated due to the buffer being too
+small, buf_size will be returned. Thus, a return value of buf_size
+or more indicates that the output was truncated (see snprintf(3))
+or an error occured. If the name cannot be found, -1 will be
+returned.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.7
+</para></refsect2>
+<refsect2 id="polkit-sysdeps-get-exe-for-pid-with-helper" role="function" condition="since:0.8">
+<title>polkit_sysdeps_get_exe_for_pid_with_helper ()</title>
+<indexterm zone="polkit-sysdeps-get-exe-for-pid-with-helper" role="0.8"><primary>polkit_sysdeps_get_exe_for_pid_with_helper</primary></indexterm><programlisting><link linkend="int">int</link>                 polkit_sysdeps_get_exe_for_pid_with_helper
+                                                        (<link linkend="pid-t">pid_t</link> pid,
+                                                         <link linkend="char">char</link> *out_buf,
+                                                         <link linkend="size-t">size_t</link> buf_size);</programlisting>
+<para>
+Like <link linkend="polkit-sysdeps-get-exe-for-pid"><function>polkit_sysdeps_get_exe_for_pid()</function></link> but if the given process is
+owned by another user, a setuid root helper is used to obtain the
+information. This helper only works if 1) the caller is authorized
+for the org.freedesktop.policykit.read authorization; or 2) the
+calling user is polkituser; or 3) the calling user is setegid
+polkituser.
+</para>
+<para>
+So -1 might still be returned (the process might also have exited).</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>pid</parameter>&nbsp;:</term>
+<listitem><simpara> process id
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>out_buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer to store the string representation in
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf_size</parameter>&nbsp;:</term>
+<listitem><simpara> size of buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See <link linkend="polkit-sysdeps-get-exe-for-pid"><function>polkit_sysdeps_get_exe_for_pid()</function></link>.
+
+</simpara></listitem></varlistentry>
+</variablelist><para role="since">Since  0.8
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

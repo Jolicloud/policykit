@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-test">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-test.top_of_page">Unit testing</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Unit testing</refname>
+<refpurpose>Unit testing</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-test.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="KitTest">KitTest</link>;
+<link linkend="kit-bool-t">kit_bool_t</link>          <link linkend="kit-test-run">kit_test_run</link>                        (<link linkend="KitTest">KitTest</link> **tests,
+                                                         <link linkend="size-t">size_t</link> num_tests);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-test.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions used for unit testing.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-test.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="KitTest" role="struct">
+<title>KitTest</title>
+<indexterm zone="KitTest"><primary>KitTest</primary></indexterm><programlisting>typedef struct {
+        const char *name;
+        void (*setup) (void);
+        void (*teardown) (void);
+        kit_bool_t (*run) (void);
+} KitTest;
+</programlisting>
+<para>
+Test suite abstraction. See <link linkend="kit-test-run"><function>kit_test_run()</function></link> for details.</para>
+<para>
+
+</para><variablelist role="struct">
+<varlistentry>
+<term>const&nbsp;<link linkend="char">char</link>&nbsp;*<structfield>name</structfield>;</term>
+<listitem><simpara> name of the unit test
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>setup</structfield>&nbsp;()</term>
+<listitem><simpara> setup function
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>teardown</structfield>&nbsp;()</term>
+<listitem><simpara> teardown function
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><structfield>run</structfield>&nbsp;()</term>
+<listitem><simpara> actual test function.
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-test-run" role="function">
+<title>kit_test_run ()</title>
+<indexterm zone="kit-test-run"><primary>kit_test_run</primary></indexterm><programlisting><link linkend="kit-bool-t">kit_bool_t</link>          kit_test_run                        (<link linkend="KitTest">KitTest</link> **tests,
+                                                         <link linkend="size-t">size_t</link> num_tests);</programlisting>
+<para>
+Runs a number of tests simulating Out Of Memory. Checks for both
+memory and file descriptor leaks. 
+</para>
+<para>
+This function is only available if libkit have been built with
+KIT_BUILD_TESTS.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>tests</parameter>&nbsp;:</term>
+<listitem><simpara> array of <link linkend="KitTest"><type>KitTest</type></link> objects
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>num_tests</parameter>&nbsp;:</term>
+<listitem><simpara> size of <parameter>tests</parameter> array
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="TRUE:CAPS"><literal>TRUE</literal></link> only if all tests succeed without memory or file descriptor leaks
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,58 @@
+<!-- ##### SECTION Title ##### -->
+polkit-types
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### MACRO POLKIT_BEGIN_DECLS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO POLKIT_END_DECLS ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO POLKIT_GNUC_DEPRECATED ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### TYPEDEF polkit_bool_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF polkit_uint32_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF polkit_uint64_t ##### -->
+<para>
+
+</para>
+
+

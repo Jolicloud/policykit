@@ -1,0 +1,187 @@
+<!-- ##### SECTION Title ##### -->
+polkit-session
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitSession ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_session_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_ref ##### -->
+<para>
+
+</para>
+
+@session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_unref ##### -->
+<para>
+
+</para>
+
+@session: 
+
+
+<!-- ##### FUNCTION polkit_session_set_uid ##### -->
+<para>
+
+</para>
+
+@session: 
+@uid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_set_seat ##### -->
+<para>
+
+</para>
+
+@session: 
+@seat: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_set_ck_objref ##### -->
+<para>
+
+</para>
+
+@session: 
+@ck_objref: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_set_ck_is_active ##### -->
+<para>
+
+</para>
+
+@session: 
+@is_active: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_set_ck_is_local ##### -->
+<para>
+
+</para>
+
+@session: 
+@is_local: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_set_ck_remote_host ##### -->
+<para>
+
+</para>
+
+@session: 
+@remote_host: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_get_uid ##### -->
+<para>
+
+</para>
+
+@session: 
+@out_uid: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_get_seat ##### -->
+<para>
+
+</para>
+
+@session: 
+@out_seat: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_get_ck_objref ##### -->
+<para>
+
+</para>
+
+@session: 
+@out_ck_objref: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_get_ck_is_active ##### -->
+<para>
+
+</para>
+
+@session: 
+@out_is_active: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_get_ck_is_local ##### -->
+<para>
+
+</para>
+
+@session: 
+@out_is_local: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_get_ck_remote_host ##### -->
+<para>
+
+</para>
+
+@session: 
+@out_remote_host: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_debug ##### -->
+<para>
+
+</para>
+
+@session: 
+
+
+<!-- ##### FUNCTION polkit_session_validate ##### -->
+<para>
+
+</para>
+
+@session: 
+@Returns: 
+
+

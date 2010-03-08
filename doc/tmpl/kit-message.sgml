@@ -1,0 +1,37 @@
+<!-- ##### SECTION Title ##### -->
+kit-message
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION kit_debug ##### -->
+<para>
+
+</para>
+
+@format: 
+@Varargs: 
+
+
+<!-- ##### FUNCTION kit_warning ##### -->
+<para>
+
+</para>
+
+@format: 
+@Varargs: 
+
+

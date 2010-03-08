@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PolicyKit.conf</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="prev" href="PolicyKit.8.html" title="PolicyKit">
+<link rel="next" href="polkit-auth.1.html" title="polkit-auth">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="PolicyKit.8.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="tools-fileformats.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-auth.1.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="PolicyKit.conf.5"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">PolicyKit.conf</span></h2>
+<p>PolicyKit.conf — PolicyKit configuration file</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsect1" lang="en">
+<a name="id397094"></a><h2>DESCRIPTION</h2>
+<p>
+      The <code class="filename">/etc/PolicyKit/PolicyKit.conf</code>
+      configuration file provides a way for system administrators to
+      override policy for mechanisms that use the PolicyKit library to
+      determine whether a caller is allowed to use the mechanism.
+    </p>
+<p>
+      Changes to this configuration file are immediately propagated to
+      running processes using the PolicyKit library. If the
+      configuration file is invalid, processes using this library will
+      log this fact to the system logger and the library will only
+      only return <span class="emphasis"><em>no</em></span> as the answer to processes
+      using it.
+    </p>
+<p>
+      The <span class="citerefentry"><span class="refentrytitle">polkit-config-file-validate</span>(1)</span>
+      tool can be used to verify that the configuration file is
+      valid.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id397081"></a><h2>FILE FORMAT</h2>
+<p>
+      The configuration file is an XML document. It must have the
+      following doctype declaration:
+    </p>
+<pre class="programlisting">
+      
+&lt;!DOCTYPE pkconfig PUBLIC 
+ "-//freedesktop//DTD PolicyKit Configuration 1.0//EN"
+ "http://hal.freedesktop.org/releases/PolicyKit/1.0/config.dtd"&gt;
+
+    </pre>
+<p>
+      The following elements may be present in the configuration file:
+    </p>
+<div class="refsect2" lang="en">
+<a name="id397037"></a><h3>config</h3>
+<p>
+        This is the root element. A single
+        attribute <span class="emphasis"><em>version</em></span> must be present and
+        must be set to "0.1" at this point. There can only be one
+        <span class="emphasis"><em>config</em></span> element in the configuration file.
+      </p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id375576"></a><h3>match</h3>
+<p>
+        This element is for matching information related to the
+        decision making process and includes values describing both
+        the caller and the action. This element can be embedded in
+        both <span class="emphasis"><em>config</em></span> and
+        other <span class="emphasis"><em>match</em></span> elements (hence allowing for
+        nested matching).
+      </p>
+<p>
+        There can only be a single attribute in
+        each <span class="emphasis"><em>match</em></span> element and POSIX Extended
+        Regular Expression syntax are supported in the value part. The
+        following attributes are supported:
+      </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>user</em></span></span></p></td>
+<td><p>
+              This matches on the users login name.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>action</em></span></span></p></td>
+<td><p>
+              For matching on the given action being queried for, for
+              example
+              <span class="emphasis"><em>action="org.foo.*"</em></span> will match
+              on all actions whose action identifier begins with
+              the string "org.foo.".
+            </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id368821"></a><h3>return</h3>
+<p>
+        This element is for used to specify what result the PolicyKit
+        library will return. It can only be embedded in
+        <span class="emphasis"><em>config</em></span> and <span class="emphasis"><em>match</em></span>
+        elements and can embed no elements
+        itself. The <span class="emphasis"><em>return</em></span> element is
+        typically used deeply inside a number
+        of <span class="emphasis"><em>match</em></span> elements. A single attribute,
+        <span class="emphasis"><em>result</em></span> is supported and it can assume
+        the following values:
+      </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>no</em></span></span></p></td>
+<td><p>
+              Access denied.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>auth_self</em></span></span></p></td>
+<td><p>
+              Access denied, but authentication of the caller as
+              himself will grant access to only that caller.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>auth_self_keep_session</em></span></span></p></td>
+<td><p>
+              Access denied, but authentication of the caller as
+              himself will grant access to any caller in the
+              session of the caller belongs to.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>auth_self_keep_always</em></span></span></p></td>
+<td><p>
+              Access denied, but authentication of the caller as
+              himself will grant access any caller with the given
+              uid in the future.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>auth_admin</em></span></span></p></td>
+<td><p>
+              Access denied, but authentication of the caller as
+              an administrative user will grant access to only
+              that caller.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>auth_admin_keep_session</em></span></span></p></td>
+<td><p>
+              Access denied, but authentication of the caller as
+              an administrative user will grant access to any caller
+              in the session of the caller belongs to.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>auth_admin_keep_always</em></span></span></p></td>
+<td><p>
+              Access denied, but authentication of the caller as
+              an administrative user will grant access any caller
+              with the given uid in the future.
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>yes</em></span></span></p></td>
+<td><p>
+              Access granted.
+            </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id398226"></a><h3>define_admin_auth</h3>
+<p>
+        This element is used to specify the meaning of
+        <span class="emphasis"><em>"authenticate as administrator"</em></span>. It
+        is normally used at the top-level but can also be used
+        deep inside a number of
+        <span class="emphasis"><em>match</em></span> elements for conditional
+        behavior.
+      </p>
+<p>
+        There can only be a single attribute in
+        each <span class="emphasis"><em>define_admin_auth</em></span> element. POSIX
+        Extended Regular Expression syntax
+        is <span class="emphasis"><em>not</em></span> supported in the value part,
+        however multiple values to match on can be separated with
+        the bar (|) character. The following attributes are
+        supported:
+      </p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>user</em></span></span></p></td>
+<td><p>
+              Administrator authentication means authenticate as
+              the given user(s). If
+              no <span class="emphasis"><em>define_admin_auth</em></span> element is
+              given, the default is to
+              use <span class="emphasis"><em>user="root"</em></span>
+              e.g. administrator authentication mean authenticate
+              as the super user.                  
+            </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>group</em></span></span></p></td>
+<td><p>
+              Administrator authentication means that any user in
+              the groups matching the given value can be used to
+              authenticate. Typically, on a system with the root
+              account disabled one wants to use something like
+              <span class="emphasis"><em>group="wheel"</em></span> to e.g. enable
+              all UNIX users in the UNIX group
+              <span class="emphasis"><em>wheel</em></span> to be able to
+              authentication whenever administrator authentication
+              is required.
+            </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id391817"></a><h2>EXAMPLES</h2>
+<p>
+      For brevity, the standard XML and DOCTYPE headers as well as
+      the top-level <span class="emphasis"><em>config</em></span> are omitted in the
+      following configuration file examples. The actions used may
+      also be fictional,
+      use <span class="citerefentry"><span class="refentrytitle">polkit-action</span>(1)</span>,
+      to learn about the actions available on your system.
+    </p>
+<div class="refsect2" lang="en">
+<a name="id386250"></a><h3>ALLOW EVERYTHING</h3>
+<p>
+        The users "davidz" and "bateman" are allowed to do any
+        action:
+      </p>
+<pre class="programlisting">
+        
+&lt;match user="davidz|bateman"&gt;
+  &lt;return result="yes"/&gt;
+&lt;/match&gt;
+
+      </pre>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id386265"></a><h3>MOUNTING FIXED DRIVES</h3>
+<p>
+        Suppose the
+        action <span class="emphasis"><em>org.freedesktop.hal.storage.mount-fixed</em></span>
+        is used to determine whether mounting internal hard drives
+        are allowed. Then this configuration file
+        
+      </p>
+<pre class="programlisting">
+        
+&lt;match action="org.freedesktop.hal.storage.mount-fixed"&gt;
+  &lt;match user="davidz"&gt;
+    &lt;return result="yes"/&gt;
+  &lt;/match&gt;
+  &lt;match user="freddy"&gt;
+    &lt;return result="no"/&gt;
+  &lt;/match&gt;
+&lt;/match&gt;
+
+      </pre>
+<p>
+        specifies that user "davidz" is always allowed to do the
+        action, while user "freddy" is never allowed to do the
+        action. Other users will be subject to the defaults
+        results specified in the <span class="emphasis"><em>.policy</em></span> file
+        describing the action.
+      </p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="id387218"></a><h3>AVOIDING THE ROOT PASSWORD</h3>
+<p>
+        Suppose the group <span class="emphasis"><em>wheel</em></span> contains the
+        users on a system who are allowed to carry out administrative
+        tasks (ie. tasks that would usually require the root password)
+        on a system where the root account is disabled. Then
+      </p>
+<pre class="programlisting">
+        
+&lt;define_admin_auth group="wheel"/&gt;
+
+      </pre>
+<p>
+        can be used to specify that users in said group can
+        authenticate using their own password in instances where the
+        system would normally prompt for the root password.
+      </p>
+</div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id387244"></a><h2>AUTHOR</h2>
+<p>
+      Written by David Zeuthen <code class="email">&lt;<a class="email" href="mailto:david@fubar.dk">david@fubar.dk</a>&gt;</code> with
+      a lot of help from many others.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id387076"></a><h2>BUGS</h2>
+<p>
+      Please send bug reports to either the distribution or the
+      hal mailing list,
+      see <a class="ulink" href="http://lists.freedesktop.org/mailman/listinfo/hal" target="_top">http://lists.freedesktop.org/mailman/listinfo/hal</a>.
+      to subscribe.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id387090"></a><h2>SEE ALSO</h2>
+<p>
+      <span class="citerefentry"><span class="refentrytitle">PolicyKit</span>(8)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">polkit-config-file-validate</span>(1)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">polkit-action</span>(1)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">polkit-auth</span>(1)</span>
+    </p>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

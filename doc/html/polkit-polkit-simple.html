@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Simple convenience interface</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-sysdeps.html" title="System Dependencies">
+<link rel="next" href="polkit-polkit-error.html" title="Error reporting">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-sysdeps.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-error.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-simple.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-simple.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-simple"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-simple.top_of_page"></a>Simple convenience interface</span></h2>
+<p>Simple convenience interface — Simple convenience interface</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-simple.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+<a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a>     <a
+href="../polkit/polkit-polkit-simple.html#polkit-check-auth"
+>polkit_check_auth</a>                   (pid_t pid,
+                                                         ...);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a>     <a
+href="../polkit/polkit-polkit-simple.html#polkit-check-authv"
+>polkit_check_authv</a>                  (pid_t pid,
+                                                         const char **action_ids);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-simple.html#polkit-auth-obtain"
+>polkit_auth_obtain</a>                  (const char *action_id,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-uint32-t"
+>polkit_uint32_t</a> xid,
+                                                         pid_t pid,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-generate"
+>polkit_dbus_error_generate</a>          (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> result,
+                                                         DBusError *error);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-parse"
+>polkit_dbus_error_parse</a>             (DBusError *error,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> **action,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *result);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-parse-from-strings"
+>polkit_dbus_error_parse_from_strings</a>
+                                                        (const char *error_name,
+                                                         const char *error_message,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> **action,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *result);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-simple.description"></a><h2>Description</h2>
+<p>
+Simple convenience interface</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-simple.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="polkit-check-auth"></a><h3>polkit_check_auth ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a>     polkit_check_auth                   (pid_t pid,
+                                                         ...);</pre>
+<p>
+A simple convenience function to check whether a given process is
+authorized for a number of actions. 
+</p>
+<p>
+This is useful for programs that just wants to check whether they
+should carry out some action. Note that the user identity used for
+the purpose of checking authorizations is the Real one compared to
+the e.g. Effective one (e.g. <code class="function">getuid()</code>, <code class="function">getgid()</code> is used instead of
+e.g. <code class="function">geteuid()</code>, <code class="function">getegid()</code>). This is typically what one wants in a
+setuid root program if the setuid root program is designed to do
+work on behalf of the unprivileged user who invoked it (for
+example, the PulseAudio sound server is setuid root only so it can
+become a real time process; after that it drops all privileges).
+</p>
+<p>
+It varies whether one wants to pass <code class="function">getpid()</code> or <code class="function">getppid()</code> as the
+process id to this function. For example, in the PulseAudio case it
+is the right thing to pass <code class="function">getpid()</code>. However, in a setup where the
+process is a privileged helper, one wants to pass the process id of
+the parent. Beware though, if the parent dies, <code class="function">getppid()</code> will
+return 1 (the process id of <code class="literal">/sbin/init</code>) which is
+almost certainly guaranteed to be privileged as it is running as
+uid 0.
+</p>
+<p>
+Note that this function will open a connection to the system
+message bus and query ConsoleKit for details. In addition, it will
+load PolicyKit specific files and spawn privileged helpers if
+necessary. As such, there is a bit of IPC, context switching,
+syscall overhead and I/O involved in using this function. If you
+are planning on calling this function multiple times (e.g. from a
+daemon) on a frequent basis and/or need more detail you should use
+the <a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+><span class="type">PolKitContext</span></a> and <a
+href="../polkit/polkit-polkit-dbus.html#PolKitTracker"
+><span class="type">PolKitTracker</span></a> classes instead as these are
+designed to aggresively cache information.
+</p>
+<p>
+The return value is a bit mask indicating whether the given process
+is authorized for the given actions. Bit 0 represents the first
+action; bit 1 represents the 2nd action and so forth. A bit is set
+to 1 if, and only if, the caller is authorized for the given
+action. If the given action is unknown zero will be returned as well.
+</p>
+<p>
+If the function succeeds, errno will be set to 0. If an error
+occurs 0 is returned and errno will be set:
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>
+<code class="literal">ENOMEM</code>: Out of memory.</li>
+<li>
+<code class="literal">ENOENT</code>: Failed to connect to either the system message bus or ConsoleKit.</li>
+</ul></div>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> process to check for; typically you want to pass the result of <code class="function">getpid()</code> here
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>...</code></em>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated list of action identifiers to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> See above
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-check-authv"></a><h3>polkit_check_authv ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-uint64-t"
+>polkit_uint64_t</a>     polkit_check_authv                  (pid_t pid,
+                                                         const char **action_ids);</pre>
+<p>
+This function is similar to <a
+href="../polkit/polkit-polkit-simple.html#polkit-check-auth"
+><code class="function">polkit_check_auth()</code></a> but takes an <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+terminated array instead of being a varadic function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> See docs for <a
+href="../polkit/polkit-polkit-simple.html#polkit-check-auth"
+><code class="function">polkit_check_auth()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action_ids</code></em>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a> terminated array of action id's
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> See docs for <a
+href="../polkit/polkit-polkit-simple.html#polkit-check-auth"
+><code class="function">polkit_check_auth()</code></a>
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-auth-obtain"></a><h3>polkit_auth_obtain ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_auth_obtain                  (const char *action_id,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-uint32-t"
+>polkit_uint32_t</a> xid,
+                                                         pid_t pid,
+                                                         DBusError *error);</pre>
+<p>
+Convenience function to prompt the user to authenticate to gain an
+authorization for the given action. First, an attempt to reach an
+Authentication Agent on the session message bus is made. If that
+doesn't work and stdout/stdin are both tty's, polkit-auth(1) is
+invoked.
+</p>
+<p>
+This is a blocking call. If you're using GTK+ see
+<a
+href="../polkit-gnome/polkit-gnome-polkit-gnome-auth.html#polkit-gnome-auth-obtain"
+><code class="function">polkit_gnome_auth_obtain()</code></a> for a non-blocking version.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action_id</code></em>:</span></p></td>
+<td> The action_id for the <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> to make the user
+authenticate for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>xid</code></em>:</span></p></td>
+<td> X11 window ID for the window that the dialog will be
+transient for. If there is no window, pass 0.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pid</code></em>:</span></p></td>
+<td> Process ID of process to grant authorization to. Normally one wants to pass result of <code class="function">getpid()</code>.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error; cannot be <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><code class="literal">NULL</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><code class="literal">TRUE</code></a> if, and only if, the user successfully
+authenticated. <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><code class="literal">FALSE</code></a> if the user failed to authenticate or if
+error is set
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-dbus-error-generate"></a><h3>polkit_dbus_error_generate ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_dbus_error_generate          (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> result,
+                                                         DBusError *error);</pre>
+<p>
+Convenience function to generate a <span class="type">DBusError</span> that encapsulates
+information that the caller is not authorized. This includes
+information such as <em class="parameter"><code>action</code></em> that describes what action the caller
+lacks an authorization for, as well as <em class="parameter"><code>result</code></em> that describes if
+the caller can obtain an authorization through authentication.
+</p>
+<p>
+Typically a privileged mechanism uses this function to generate
+errors. At the other end of the wire, the caller can use
+<a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-parse"
+><code class="function">polkit_dbus_error_parse()</code></a> to extract <em class="parameter"><code>action</code></em> and <em class="parameter"><code>result</code></em>.
+</p>
+<p>
+The form of the <span class="type">DBusError</span> is as follows. The name is
+set to
+<code class="literal">org.freedesktop.PolicyKit.Error.NotAuthorized</code>
+and the message consists of two strings separated by a single
+space: the string representation of the action
+(cf. <a
+href="../polkit/polkit-polkit-action.html#polkit-action-to-string-representation"
+><code class="function">polkit_action_to_string_representation()</code></a>) and the string
+representation of the result
+(cf. <a
+href="../polkit/polkit-polkit-result.html#polkit-result-to-string-representation"
+><code class="function">polkit_result_to_string_representation()</code></a>).
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the action that the caller needs an authorization for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em>:</span></p></td>
+<td> the result from e.g. <a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-caller-authorized"
+><code class="function">polkit_context_is_caller_authorized()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> the <span class="type">DBusError</span> to set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE if <em class="parameter"><code>error</code></em> was set. FALSE on error or OOM.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-dbus-error-parse"></a><h3>polkit_dbus_error_parse ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_dbus_error_parse             (DBusError *error,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> **action,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *result);</pre>
+<p>
+Parse an error received over D-Bus, typically generated by
+<a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-generate"
+><code class="function">polkit_dbus_error_generate()</code></a>, into what action an authorization is
+missing for and whether that authorization can be obtained.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> error to parse; must be set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> return location for <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em>:</span></p></td>
+<td> return location for <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE only if <em class="parameter"><code>error</code></em> was successfully parsed and <em class="parameter"><code>action</code></em>
+and <em class="parameter"><code>result</code></em> is set (and caller must free <em class="parameter"><code>action</code></em> using
+<a
+href="../polkit/polkit-polkit-action.html#polkit-action-unref"
+><code class="function">polkit_action_unref()</code></a>).
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-dbus-error-parse-from-strings"></a><h3>polkit_dbus_error_parse_from_strings ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_dbus_error_parse_from_strings
+                                                        (const char *error_name,
+                                                         const char *error_message,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> **action,
+                                                         <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a> *result);</pre>
+<p>
+Like <a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-parse"
+><code class="function">polkit_dbus_error_parse()</code></a>, only it takes the name and message
+instead of a <span class="type">DBusError</span>. This is useful when usings D-Bus bindings
+(such as dbus-glib) that don't expose the <span class="type">DBusError</span> object
+directly.
+</p>
+<p>
+This function is in <code class="literal">libpolkit-dbus</code>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error_name</code></em>:</span></p></td>
+<td> name of D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error_message</code></em>:</span></p></td>
+<td> message of D-Bus error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> return location for <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>result</code></em>:</span></p></td>
+<td> return location for <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> variable
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> See <a
+href="../polkit/polkit-polkit-simple.html#polkit-dbus-error-parse"
+><code class="function">polkit_dbus_error_parse()</code></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

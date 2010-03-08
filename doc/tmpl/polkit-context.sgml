@@ -1,0 +1,208 @@
+<!-- ##### SECTION Title ##### -->
+polkit-context
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitContext ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### USER_FUNCTION PolKitContextConfigChangedCB ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@user_data: 
+
+
+<!-- ##### USER_FUNCTION PolKitContextAddIOWatch ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@fd: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION PolKitContextRemoveIOWatch ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@watch_id: 
+
+
+<!-- ##### FUNCTION polkit_context_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_set_config_changed ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@cb: 
+@user_data: 
+
+
+<!-- ##### FUNCTION polkit_context_set_io_watch_functions ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@io_add_watch_func: 
+@io_remove_watch_func: 
+
+
+<!-- ##### FUNCTION polkit_context_set_load_descriptions ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+
+
+<!-- ##### FUNCTION polkit_context_init ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_ref ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_unref ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+
+
+<!-- ##### FUNCTION polkit_context_force_reload ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+
+
+<!-- ##### FUNCTION polkit_context_io_func ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@fd: 
+
+
+<!-- ##### FUNCTION polkit_context_get_policy_cache ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_can_session_do_action ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@action: 
+@session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_can_caller_do_action ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@action: 
+@caller: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_get_config ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_is_caller_authorized ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@action: 
+@caller: 
+@revoke_if_one_shot: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_is_session_authorized ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@action: 
+@session: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_context_get_authorization_db ##### -->
+<para>
+
+</para>
+
+@pk_context: 
+@Returns: 
+
+

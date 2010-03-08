@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>polkit-action</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="prev" href="polkit-auth.1.html" title="polkit-auth">
+<link rel="next" href="polkit-policy-file-validate.1.html" title="polkit-policy-file-validate">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="polkit-auth.1.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="tools-fileformats.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-policy-file-validate.1.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="refentry" lang="en">
+<a name="polkit-action.1"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle">polkit-action</span></h2>
+<p>polkit-action — List and modify registered PolicyKit actions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+<div class="cmdsynopsis"><p><code class="command">polkit-action</code>  [<code class="option">--action <em class="replaceable"><code>action</code></em></code>] [<code class="option">--reset-defaults <em class="replaceable"><code>action</code></em></code>] [<code class="option">--show-overrides</code>] [<code class="option">--set-defaults-any <em class="replaceable"><code>action</code></em> <em class="replaceable"><code>value</code></em></code>] [<code class="option">--set-defaults-inactive <em class="replaceable"><code>action</code></em> <em class="replaceable"><code>value</code></em></code>] [<code class="option">--set-defaults-active <em class="replaceable"><code>action</code></em> <em class="replaceable"><code>value</code></em></code>] [<code class="option">--version</code>] [<code class="option">--help</code>]</p></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id391897"></a><h2>DESCRIPTION</h2>
+<p>
+      polkit-action is used to list and modify the PolicyKit actions
+      that are registered on the system.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id391909"></a><h2>OPTIONS</h2>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><code class="option">--action <em class="replaceable"><code>action</code></em></code></span></p></td>
+<td><p>
+            Show detailed information about a specific action.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--reset-defaults <em class="replaceable"><code>action</code></em></code></span></p></td>
+<td><p>
+            Reset the defaults for the specified action to the factory
+            defaults. The authorization needed to do this is
+            <span class="emphasis"><em>org.freedesktop.policykit.modify-defaults</em></span>.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--show-overrides</code></span></p></td>
+<td><p>
+            Prints all actions for where the defaults are overridden.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--set-defaults-any <em class="replaceable"><code>action</code></em> <em class="replaceable"><code>value</code></em></code></span></p></td>
+<td><p>
+            Override the <span class="emphasis"><em>any</em></span> stanza for the given
+            action with the supplied value. The authorization needed
+            to do this is <span class="emphasis"><em>org.freedesktop.policykit.modify-defaults</em></span>.
+            Valid values for <span class="emphasis"><em>value</em></span> are
+            <span class="emphasis"><em>no</em></span>,
+            <span class="emphasis"><em>auth_admin_one_shot</em></span>,
+            <span class="emphasis"><em>auth_admin</em></span>,
+            <span class="emphasis"><em>auth_admin_keep_session</em></span>,
+            <span class="emphasis"><em>auth_admin_keep_always</em></span>,
+            <span class="emphasis"><em>auth_self_one_shot</em></span>,
+            <span class="emphasis"><em>auth_self</em></span>,
+            <span class="emphasis"><em>auth_self_keep_session</em></span>,
+            <span class="emphasis"><em>auth_self_keep_always</em></span>,
+            and <span class="emphasis"><em>yes</em></span>.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--set-defaults-inactive <em class="replaceable"><code>action</code></em> <em class="replaceable"><code>value</code></em></code></span></p></td>
+<td><p>
+            Override the <span class="emphasis"><em>inactive</em></span> stanza for the given
+            action with the supplied value. The authorization needed
+            to do this is <span class="emphasis"><em>org.freedesktop.policykit.modify-defaults</em></span>.
+            Valid values for <span class="emphasis"><em>value</em></span> are
+            <span class="emphasis"><em>no</em></span>,
+            <span class="emphasis"><em>auth_admin_one_shot</em></span>,
+            <span class="emphasis"><em>auth_admin</em></span>,
+            <span class="emphasis"><em>auth_admin_keep_session</em></span>,
+            <span class="emphasis"><em>auth_admin_keep_always</em></span>,
+            <span class="emphasis"><em>auth_self_one_shot</em></span>,
+            <span class="emphasis"><em>auth_self</em></span>,
+            <span class="emphasis"><em>auth_self_keep_session</em></span>,
+            <span class="emphasis"><em>auth_self_keep_always</em></span>,
+            and <span class="emphasis"><em>yes</em></span>.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--set-defaults-active <em class="replaceable"><code>action</code></em> <em class="replaceable"><code>value</code></em></code></span></p></td>
+<td><p>
+            Override the <span class="emphasis"><em>active</em></span> stanza for the given
+            action with the supplied value. The authorization needed
+            to do this is <span class="emphasis"><em>org.freedesktop.policykit.modify-defaults</em></span>.
+            Valid values for <span class="emphasis"><em>value</em></span> are
+            <span class="emphasis"><em>no</em></span>,
+            <span class="emphasis"><em>auth_admin_one_shot</em></span>,
+            <span class="emphasis"><em>auth_admin</em></span>,
+            <span class="emphasis"><em>auth_admin_keep_session</em></span>,
+            <span class="emphasis"><em>auth_admin_keep_always</em></span>,
+            <span class="emphasis"><em>auth_self_one_shot</em></span>,
+            <span class="emphasis"><em>auth_self</em></span>,
+            <span class="emphasis"><em>auth_self_keep_session</em></span>,
+            <span class="emphasis"><em>auth_self_keep_always</em></span>,
+            and <span class="emphasis"><em>yes</em></span>.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--version</code></span></p></td>
+<td><p>
+            Show version and exit.
+          </p></td>
+</tr>
+<tr>
+<td><p><span class="term"><code class="option">--help</code></span></p></td>
+<td><p>
+            Show usage information and exit.
+          </p></td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1" lang="en">
+<a name="id396392"></a><h2>COMPLETION</h2>
+<p>
+      PolicyKit ships with a collection of shell functions such that
+      completion on options, <span class="emphasis"><em>action</em></span>
+      and <span class="emphasis"><em>value</em></span> works when using the
+      <span class="citerefentry"><span class="refentrytitle">bash</span>(1)</span>
+      shell.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id396420"></a><h2>BUGS</h2>
+<p>
+      Please send bug reports to either the distribution or the
+      hal mailing list,
+      see <a class="ulink" href="http://lists.freedesktop.org/mailman/listinfo/hal" target="_top">http://lists.freedesktop.org/mailman/listinfo/hal</a>.
+      to subscribe.
+    </p>
+</div>
+<div class="refsect1" lang="en">
+<a name="id396434"></a><h2>SEE ALSO</h2>
+<p>
+      <span class="citerefentry"><span class="refentrytitle">PolicyKit</span>(8)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">PolicyKit.conf</span>(5)</span>, 
+      <span class="citerefentry"><span class="refentrytitle">polkit-auth</span>(1)</span>
+    </p>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

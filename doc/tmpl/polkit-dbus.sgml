@@ -1,0 +1,166 @@
+<!-- ##### SECTION Title ##### -->
+polkit-dbus
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION polkit_session_new_from_objpath ##### -->
+<para>
+
+</para>
+
+@con: 
+@objpath: 
+@uid: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_session_new_from_cookie ##### -->
+<para>
+
+</para>
+
+@con: 
+@cookie: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_new_from_dbus_name ##### -->
+<para>
+
+</para>
+
+@con: 
+@dbus_name: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_caller_new_from_pid ##### -->
+<para>
+
+</para>
+
+@con: 
+@pid: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_is_authorization_relevant ##### -->
+<para>
+
+</para>
+
+@con: 
+@auth: 
+@error: 
+@Returns: 
+
+
+<!-- ##### STRUCT PolKitTracker ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_tracker_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_tracker_ref ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_tracker_unref ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+
+
+<!-- ##### FUNCTION polkit_tracker_set_system_bus_connection ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+@con: 
+
+
+<!-- ##### FUNCTION polkit_tracker_init ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+
+
+<!-- ##### FUNCTION polkit_tracker_dbus_func ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+@message: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_tracker_get_caller_from_dbus_name ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+@dbus_name: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_tracker_get_caller_from_pid ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+@pid: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_tracker_is_authorization_relevant ##### -->
+<para>
+
+</para>
+
+@pk_tracker: 
+@auth: 
+@error: 
+@Returns: 
+
+

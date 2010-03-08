@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="polkit-kit-entity">
+<refmeta>
+<refentrytitle role="top_of_page" id="polkit-kit-entity.top_of_page">Entity management</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>POLKIT Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Entity management</refname>
+<refpurpose>Entity management</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="polkit-kit-entity.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+struct <link linkend="passwd">passwd</link>*      <link linkend="kit-getpwnam">kit_getpwnam</link>                        (const <link linkend="char">char</link> *username);
+struct <link linkend="passwd">passwd</link>*      <link linkend="kit-getpwuid">kit_getpwuid</link>                        (<link linkend="uid-t">uid_t</link> uid);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="polkit-kit-entity.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Functions used for entity management.</para>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="polkit-kit-entity.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="kit-getpwnam" role="function">
+<title>kit_getpwnam ()</title>
+<indexterm zone="kit-getpwnam"><primary>kit_getpwnam</primary></indexterm><programlisting>struct <link linkend="passwd">passwd</link>*      kit_getpwnam                        (const <link linkend="char">char</link> *username);</programlisting>
+<para>
+Like getpwnam(3) from the standard C library but tweaked for unit
+testing. TODO: explain how.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>username</parameter>&nbsp;:</term>
+<listitem><simpara> user name to look up
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See getpwnam(3)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="kit-getpwuid" role="function">
+<title>kit_getpwuid ()</title>
+<indexterm zone="kit-getpwuid"><primary>kit_getpwuid</primary></indexterm><programlisting>struct <link linkend="passwd">passwd</link>*      kit_getpwuid                        (<link linkend="uid-t">uid_t</link> uid);</programlisting>
+<para>
+Like getpwuid(3) from the standard C library but tweaked for unit
+testing. TODO: explain how.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>uid</parameter>&nbsp;:</term>
+<listitem><simpara> uid to look up
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> See getpwuid(3)
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

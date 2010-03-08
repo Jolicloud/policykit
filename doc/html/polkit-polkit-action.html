@@ -1,0 +1,505 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Actions</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-result.html" title="Results">
+<link rel="next" href="polkit-polkit-seat.html" title="Seat">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-result.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-seat.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-action.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-action.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-action"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-action.top_of_page"></a>Actions</span></h2>
+<p>Actions — Models what a caller is attempting to do.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-action.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>;
+<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>*       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-new"
+>polkit_action_new</a>                   (void);
+<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>*       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-ref"
+>polkit_action_ref</a>                   (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);
+void                <a
+href="../polkit/polkit-polkit-action.html#polkit-action-unref"
+>polkit_action_unref</a>                 (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-set-action-id"
+>polkit_action_set_action_id</a>         (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         const char *action_id);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-get-action-id"
+>polkit_action_get_action_id</a>         (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         char **out_action_id);
+void                <a
+href="../polkit/polkit-polkit-action.html#polkit-action-debug"
+>polkit_action_debug</a>                 (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-validate"
+>polkit_action_validate</a>              (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-validate-id"
+>polkit_action_validate_id</a>           (const char *action_id);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-equal"
+>polkit_action_equal</a>                 (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *a,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *b);
+const char*         <a
+href="../polkit/polkit-polkit-action.html#polkit-action-to-string-representation"
+>polkit_action_to_string_representation</a>
+                                                        (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);
+<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>*       <a
+href="../polkit/polkit-polkit-action.html#polkit-action-new-from-string-representation"
+>polkit_action_new_from_string_representation</a>
+                                                        (const char *str);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-action.description"></a><h2>Description</h2>
+<p>
+This class is used to represent a PolicyKit action.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-action.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitAction"></a><h3>PolKitAction</h3>
+<pre class="programlisting">typedef struct _PolKitAction PolKitAction;</pre>
+<p>
+Objects of this class are used to record information about an action.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-new"></a><h3>polkit_action_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>*       polkit_action_new                   (void);</pre>
+<p>
+Create a new <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the new object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-ref"></a><h3>polkit_action_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>*       polkit_action_ref                   (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the action object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-unref"></a><h3>polkit_action_unref ()</h3>
+<pre class="programlisting">void                polkit_action_unref                 (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the action object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-set-action-id"></a><h3>polkit_action_set_action_id ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_action_set_action_id         (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         const char *action_id);</pre>
+<p>
+Set the action identifier</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the action object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action_id</code></em>:</span></p></td>
+<td> action identifier
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> only if the value validated and was set
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-get-action-id"></a><h3>polkit_action_get_action_id ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_action_get_action_id         (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         char **out_action_id);</pre>
+<p>
+Get the action identifier.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the action object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>out_action_id</code></em>:</span></p></td>
+<td> Returns the action identifier. The caller shall not free this string.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> TRUE iff the value was returned.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-debug"></a><h3>polkit_action_debug ()</h3>
+<pre class="programlisting">void                polkit_action_debug                 (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);</pre>
+<p>
+Print debug details</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-validate"></a><h3>polkit_action_validate ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_action_validate              (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);</pre>
+<p>
+Validate the object</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> iff the object is valid.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-validate-id"></a><h3>polkit_action_validate_id ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_action_validate_id           (const char *action_id);</pre>
+<p>
+Validate whether an action identifier is well formed. To be well
+formed, an action identifier needs to start with a lower case ASCII
+character and can only contain the characters "[a-z][0-9].-". It
+must be less than or equal 256 bytes in length including the
+terminating NUL character.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action_id</code></em>:</span></p></td>
+<td> the action identifier to validate
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> iff the action identifier is well formed
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-equal"></a><h3>polkit_action_equal ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_action_equal                 (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *a,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *b);</pre>
+<p>
+Test if <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> refer to the same action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em>:</span></p></td>
+<td> first action
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em>:</span></p></td>
+<td> second action
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a> iff <em class="parameter"><code>a</code></em> and <em class="parameter"><code>b</code></em> refer to the same action.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-to-string-representation"></a><h3>polkit_action_to_string_representation ()</h3>
+<pre class="programlisting">const char*         polkit_action_to_string_representation
+                                                        (<a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action);</pre>
+<p>
+Serializes <em class="parameter"><code>action</code></em> into a textual form that can be transferred from
+process to process or saved on disk. Use
+<a
+href="../polkit/polkit-polkit-action.html#polkit-action-new-from-string-representation"
+><code class="function">polkit_action_new_from_string_representation()</code></a> to deserialize it.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the action object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A string representation of <em class="parameter"><code>action</code></em> or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if the action
+is not valid. String is valid until <em class="parameter"><code>action</code></em> is freed.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-action-new-from-string-representation"></a><h3>polkit_action_new_from_string_representation ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a>*       polkit_action_new_from_string_representation
+                                                        (const char *str);</pre>
+<p>
+Creates a new <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> object from a textual representation.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>str</code></em>:</span></p></td>
+<td> textual representation of an action; typically obtained from
+<a
+href="../polkit/polkit-polkit-action.html#polkit-action-to-string-representation"
+><code class="function">polkit_action_to_string_representation()</code></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A new <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> object or <a
+href="../glib/glib-Standard-Macros.html#NULL:CAPS"
+><span class="type">NULL</span></a> if OOM or if the
+representation isn't valid. Caller must free this object with
+<a
+href="../polkit/polkit-polkit-action.html#polkit-action-unref"
+><code class="function">polkit_action_unref()</code></a>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.8
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

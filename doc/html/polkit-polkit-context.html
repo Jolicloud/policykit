@@ -1,0 +1,1159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Context</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="ref-core.html" title="Core API Reference">
+<link rel="prev" href="polkit-polkit-dbus.html" title="Caller Determination">
+<link rel="next" href="polkit-polkit-config.html" title="Configuration">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="polkit-polkit-dbus.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ref-core.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-config.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#polkit-polkit-context.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#polkit-polkit-context.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="polkit-polkit-context"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="polkit-polkit-context.top_of_page"></a>Context</span></h2>
+<p>Context — The main interface used to query PolicyKit.</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="polkit-polkit-context.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a>;
+void                (<a
+href="../polkit/polkit-polkit-context.html#PolKitContextConfigChangedCB"
+>*PolKitContextConfigChangedCB</a>)     (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         void *user_data);
+int                 (<a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+>*PolKitContextAddIOWatch</a>)          (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         int fd);
+void                (<a
+href="../polkit/polkit-polkit-context.html#PolKitContextRemoveIOWatch"
+>*PolKitContextRemoveIOWatch</a>)       (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         int watch_id);
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a>*      <a
+href="../polkit/polkit-polkit-context.html#polkit-context-new"
+>polkit_context_new</a>                  (void);
+void                <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-config-changed"
+>polkit_context_set_config_changed</a>   (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-context.html#PolKitContextConfigChangedCB"
+>PolKitContextConfigChangedCB</a> cb,
+                                                         void *user_data);
+void                <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-io-watch-functions"
+>polkit_context_set_io_watch_functions</a>
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+>PolKitContextAddIOWatch</a> io_add_watch_func,
+                                                         <a
+href="../polkit/polkit-polkit-context.html#PolKitContextRemoveIOWatch"
+>PolKitContextRemoveIOWatch</a> io_remove_watch_func);
+void                <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-load-descriptions"
+>polkit_context_set_load_descriptions</a>
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);
+<a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       <a
+href="../polkit/polkit-polkit-context.html#polkit-context-init"
+>polkit_context_init</a>                 (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);
+<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a>*      <a
+href="../polkit/polkit-polkit-context.html#polkit-context-ref"
+>polkit_context_ref</a>                  (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);
+void                <a
+href="../polkit/polkit-polkit-context.html#polkit-context-unref"
+>polkit_context_unref</a>                (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);
+void                <a
+href="../polkit/polkit-polkit-context.html#polkit-context-force-reload"
+>polkit_context_force_reload</a>         (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);
+void                <a
+href="../polkit/polkit-polkit-context.html#polkit-context-io-func"
+>polkit_context_io_func</a>              (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         int fd);
+<a
+href="../polkit/polkit-polkit-policy-cache.html#PolKitPolicyCache"
+>PolKitPolicyCache</a>*  <a
+href="../polkit/polkit-polkit-context.html#polkit-context-get-policy-cache"
+>polkit_context_get_policy_cache</a>     (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-context.html#polkit-context-can-session-do-action"
+>polkit_context_can_session_do_action</a>
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-context.html#polkit-context-can-caller-do-action"
+>polkit_context_can_caller_do_action</a> (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);
+<a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>*       <a
+href="../polkit/polkit-polkit-context.html#polkit-context-get-config"
+>polkit_context_get_config</a>           (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-caller-authorized"
+>polkit_context_is_caller_authorized</a> (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> revoke_if_one_shot,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);
+<a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        <a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-session-authorized"
+>polkit_context_is_session_authorized</a>
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);
+<a
+href="../polkit/polkit-polkit-authorization-db.html#PolKitAuthorizationDB"
+>PolKitAuthorizationDB</a>* <a
+href="../polkit/polkit-polkit-context.html#polkit-context-get-authorization-db"
+>polkit_context_get_authorization_db</a>
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-context.description"></a><h2>Description</h2>
+<p>
+This class is used to represent the interface to PolicyKit - it is
+used by Mechanisms that use PolicyKit for making
+decisions. Typically, it's used as a singleton:
+</p>
+<p>
+</p>
+<div class="itemizedlist"><ul type="disc">
+<li>First, the Mechanism need to declare one or more PolicyKit Actions by dropping a <code class="literal">.policy</code> file into <code class="literal">/usr/share/PolicyKit/policy</code>. This is described in the PolicyKit specification.</li>
+<li>The mechanism starts up and uses <a
+href="../polkit/polkit-polkit-context.html#polkit-context-new"
+><code class="function">polkit_context_new()</code></a> to create a new context</li>
+<li>If the mechanism is a long running daemon, it should use <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-config-changed"
+><code class="function">polkit_context_set_config_changed()</code></a> to register a callback when configuration changes. This is useful if, for example, the mechanism needs to revise decisions based on earlier answers from libpolkit. For example, a daemon that manages permissions on <code class="literal">/dev</code> may want to add/remove ACL's when configuration changes; for example, the system administrator could have changed the PolicyKit configuration file <code class="literal">/etc/PolicyKit/PolicyKit.conf</code> such that some user is now privileged to access a specific device.</li>
+<li>If <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-config-changed"
+><code class="function">polkit_context_set_config_changed()</code></a> is used, the mechanism must also use <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-io-watch-functions"
+><code class="function">polkit_context_set_io_watch_functions()</code></a> to integrate libpolkit into the mainloop.</li>
+<li>The mechanism needs to call <a
+href="../polkit/polkit-polkit-context.html#polkit-context-init"
+><code class="function">polkit_context_init()</code></a> such that libpolkit can load configuration files and properly initialize.</li>
+<li>Whenever the mechanism needs to make a decision whether a caller is allowed to make a perform some action, the mechanism prepares a <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+><span class="type">PolKitAction</span></a> and <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> object (or <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+><span class="type">PolKitSession</span></a> if applicable) and calls <a
+href="../polkit/polkit-polkit-context.html#polkit-context-can-caller-do-action"
+><code class="function">polkit_context_can_caller_do_action()</code></a> (or <a
+href="../polkit/polkit-polkit-context.html#polkit-context-can-session-do-action"
+><code class="function">polkit_context_can_session_do_action()</code></a> if applicable). The mechanism may use the libpolkit-dbus library (specifically the <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-dbus-name"
+><code class="function">polkit_caller_new_from_dbus_name()</code></a> or <a
+href="../polkit/polkit-polkit-dbus.html#polkit-caller-new-from-pid"
+><code class="function">polkit_caller_new_from_pid()</code></a> functions) but may opt, for performance reasons, to construct <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+><span class="type">PolKitCaller</span></a> (or <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+><span class="type">PolKitSession</span></a> if applicable) from it's own cache of information.</li>
+<li>The mechanism will get a <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> object back that describes whether it should carry out the action. This result stems from a number of sources, see the PolicyKit specification document for details.</li>
+<li>If the result is <span class="type">POLKIT_RESULT_YES</span>, the mechanism should carry out the action. If the result is not <span class="type">POLKIT_RESULT_YES</span> nor <span class="type">POLKIT_RESULT_UNKNOWN</span> (this would never be returned but is mentioned here for completeness), the mechanism should throw an expcetion to the caller detailing the <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> as a textual string using <a
+href="../polkit/polkit-polkit-result.html#polkit-result-to-string-representation"
+><code class="function">polkit_result_to_string_representation()</code></a>. For example, if the mechanism is using D-Bus it could throw an com.some-mechanism.DeniedByPolicy exception with the <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> textual representation in the detail field. Then the caller can interpret this exception and then act on it (for example it can attempt to gain that privilege).</li>
+</ul></div>
+<p>
+</p>
+<p>
+For more information about using PolicyKit in mechanisms and
+callers, refer to the PolicyKit-gnome project which includes a
+sample application on how to use this in the GNOME desktop.</p>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="polkit-polkit-context.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="PolKitContext"></a><h3>PolKitContext</h3>
+<pre class="programlisting">typedef struct _PolKitContext PolKitContext;</pre>
+<p>
+Context object for users of PolicyKit.</p>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitContextConfigChangedCB"></a><h3>PolKitContextConfigChangedCB ()</h3>
+<pre class="programlisting">void                (*PolKitContextConfigChangedCB)     (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         void *user_data);</pre>
+<p>
+The type of the callback function for when configuration changes.
+Mechanisms should use this callback to e.g. reconfigure all
+permissions / acl's they have set in response to policy decisions
+made from information provided by PolicyKit.
+</p>
+<p>
+The user must have set up watches using <a
+href="../polkit/polkit-polkit-context.html#polkit-context-set-io-watch-functions"
+><span class="type">polkit_context_set_io_watch_functions</span></a>
+for this to work.
+</p>
+<p>
+Note that this function may be called many times within a short
+interval due to how file monitoring works if e.g. the user is
+editing a configuration file (editors typically create back-up
+files). Mechanisms should use a "cool-off" timer (of, say, one
+second) to avoid doing many expensive operations (such as
+reconfiguring all ACL's for all devices) within a very short
+timeframe.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitContextAddIOWatch"></a><h3>PolKitContextAddIOWatch ()</h3>
+<pre class="programlisting">int                 (*PolKitContextAddIOWatch)          (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         int fd);</pre>
+<p>
+Type for function supplied by the application to integrate a watch
+on a file descriptor into the applications main loop. The
+application must call <a
+href="../polkit/polkit-polkit-context.html#polkit-context-io-func"
+><code class="function">polkit_context_io_func()</code></a> when there is data
+to read from the file descriptor.
+</p>
+<p>
+For glib mainloop, the function will typically look like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
+static gboolean
+io_watch_have_data (GIOChannel *channel, GIOCondition condition, gpointer user_data)
+{
+        int fd;
+        PolKitContext *pk_context = user_data;
+        fd = g_io_channel_unix_get_fd (channel);
+        polkit_context_io_func (pk_context, fd);
+        return TRUE;
+}
+
+static int 
+io_add_watch (PolKitContext *pk_context, int fd)
+{
+        guint id = 0;
+        GIOChannel *channel;
+        channel = g_io_channel_unix_new (fd);
+        if (channel == NULL)
+                goto out;
+        id = g_io_add_watch (channel, G_IO_IN, io_watch_have_data, pk_context);
+        if (id == 0) {
+                g_io_channel_unref (channel);
+                goto out;
+        }
+        g_io_channel_unref (channel);
+out:
+        return id;
+}
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the polkit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fd</code></em>:</span></p></td>
+<td> the file descriptor to watch
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> 0 if the watch couldn't be set up; otherwise an unique
+identifier for the watch.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="PolKitContextRemoveIOWatch"></a><h3>PolKitContextRemoveIOWatch ()</h3>
+<pre class="programlisting">void                (*PolKitContextRemoveIOWatch)       (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         int watch_id);</pre>
+<p>
+Type for function supplied by the application to remove a watch set
+up via the supplied function of type <a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+><span class="type">PolKitContextAddIOWatch</span></a>
+</p>
+<p>
+For the glib mainloop, the function will typically look like this:
+</p>
+<p>
+</p>
+<pre class="programlisting">
+static void 
+io_remove_watch (PolKitContext *pk_context, int watch_id)
+{
+        g_source_remove (watch_id);
+}
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>watch_id</code></em>:</span></p></td>
+<td> the id obtained from using the supplied function
+of type <a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+><span class="type">PolKitContextAddIOWatch</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-new"></a><h3>polkit_context_new ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a>*      polkit_context_new                  (void);</pre>
+<p>
+Create a new context</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-set-config-changed"></a><h3>polkit_context_set_config_changed ()</h3>
+<pre class="programlisting">void                polkit_context_set_config_changed   (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-context.html#PolKitContextConfigChangedCB"
+>PolKitContextConfigChangedCB</a> cb,
+                                                         void *user_data);</pre>
+<p>
+Register the callback function for when configuration changes.
+Mechanisms should use this callback to e.g. reconfigure all
+permissions / acl's they have set in response to policy decisions
+made from information provided by PolicyKit. 
+</p>
+<p>
+Note that this function may be called many times within a short
+interval due to how file monitoring works if e.g. the user is
+editing a configuration file (editors typically create back-up
+files). Mechanisms should use a "cool-off" timer (of, say, one
+second) to avoid doing many expensive operations (such as
+reconfiguring all ACL's for all devices) within a very short
+timeframe.
+</p>
+<p>
+This method must be called before <a
+href="../polkit/polkit-polkit-context.html#polkit-context-init"
+><code class="function">polkit_context_init()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>cb</code></em>:</span></p></td>
+<td> the callback to invoke
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em>:</span></p></td>
+<td> user data to pass to the callback
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-set-io-watch-functions"></a><h3>polkit_context_set_io_watch_functions ()</h3>
+<pre class="programlisting">void                polkit_context_set_io_watch_functions
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+>PolKitContextAddIOWatch</a> io_add_watch_func,
+                                                         <a
+href="../polkit/polkit-polkit-context.html#PolKitContextRemoveIOWatch"
+>PolKitContextRemoveIOWatch</a> io_remove_watch_func);</pre>
+<p>
+Register a functions that PolicyKit can use for watching IO descriptors.
+</p>
+<p>
+This method must be called before <a
+href="../polkit/polkit-polkit-context.html#polkit-context-init"
+><code class="function">polkit_context_init()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>io_add_watch_func</code></em>:</span></p></td>
+<td> the function that the PolicyKit library can invoke to start watching a file descriptor
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>io_remove_watch_func</code></em>:</span></p></td>
+<td> the function that the PolicyKit library can invoke to stop watching a file descriptor
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-set-load-descriptions"></a><h3>polkit_context_set_load_descriptions ()</h3>
+<pre class="programlisting">void                polkit_context_set_load_descriptions
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);</pre>
+<p>
+Set whether policy descriptions should be loaded. By default these
+are not loaded to keep memory use down. TODO: specify whether they
+are localized and how.
+</p>
+<p>
+This method must be called before <a
+href="../polkit/polkit-polkit-context.html#polkit-context-init"
+><code class="function">polkit_context_init()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-init"></a><h3>polkit_context_init ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a>       polkit_context_init                 (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);</pre>
+<p>
+Initializes a new context; loads PolicyKit files from
+/usr/share/PolicyKit/policy.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a> if <em class="parameter"><code>error</code></em> was set, otherwise <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-ref"></a><h3>polkit_context_ref ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a>*      polkit_context_ref                  (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);</pre>
+<p>
+Increase reference count.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the object
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-unref"></a><h3>polkit_context_unref ()</h3>
+<pre class="programlisting">void                polkit_context_unref                (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);</pre>
+<p>
+Decreases the reference count of the object. If it becomes zero,
+the object is freed. Before freeing, reference counts on embedded
+objects are decresed by one.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context object
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-force-reload"></a><h3>polkit_context_force_reload ()</h3>
+<pre class="programlisting">void                polkit_context_force_reload         (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);</pre>
+<p>
+Force a reload. 
+</p>
+<p>
+Note that there is no reason to call this method in response to a
+config changed callback.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> context
+</td>
+</tr></tbody>
+</table></div>
+<p class="since">Since  0.7 
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-io-func"></a><h3>polkit_context_io_func ()</h3>
+<pre class="programlisting">void                polkit_context_io_func              (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         int fd);</pre>
+<p>
+Method that the application must call when there is data to read
+from a file descriptor registered with the supplied function of
+type <a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+><span class="type">PolKitContextAddIOWatch</span></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the object
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>fd</code></em>:</span></p></td>
+<td> the file descriptor passed to the supplied function of type <a
+href="../polkit/polkit-polkit-context.html#PolKitContextAddIOWatch"
+><span class="type">PolKitContextAddIOWatch</span></a>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-get-policy-cache"></a><h3>polkit_context_get_policy_cache ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-policy-cache.html#PolKitPolicyCache"
+>PolKitPolicyCache</a>*  polkit_context_get_policy_cache     (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);</pre>
+<p>
+Get the <a
+href="../polkit/polkit-polkit-policy-cache.html#PolKitPolicyCache"
+><span class="type">PolKitPolicyCache</span></a> object that holds all the defined policies as well as their defaults.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> the <a
+href="../polkit/polkit-polkit-policy-cache.html#PolKitPolicyCache"
+><span class="type">PolKitPolicyCache</span></a> object. Caller shall not unref it.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-can-session-do-action"></a><h3>polkit_context_can_session_do_action ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_context_can_session_do_action
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">polkit_context_can_session_do_action</code> has been deprecated since version 0.7 and should not be used in newly-written code. use <a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-session-authorized"
+><code class="function">polkit_context_is_session_authorized()</code></a> instead.</p>
+</div>
+<p>
+Determine if a given session can do a given action.
+</p>
+<p>
+This can fail with the following errors: 
+<span class="type">POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</span></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em>:</span></p></td>
+<td> the session in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> - can only be one of
+<span class="type">POLKIT_RESULT_YES</span>, <span class="type">POLKIT_RESULT_NO</span>.
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-can-caller-do-action"></a><h3>polkit_context_can_caller_do_action ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_context_can_caller_do_action (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller);</pre>
+<div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Warning</h3>
+<p><code class="literal">polkit_context_can_caller_do_action</code> has been deprecated since version 0.7 and should not be used in newly-written code. use <a
+href="../polkit/polkit-polkit-context.html#polkit-context-is-caller-authorized"
+><code class="function">polkit_context_is_caller_authorized()</code></a> instead.</p>
+</div>
+<p>
+Determine if a given caller can do a given action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the caller in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> specifying if, and how, the caller can
+do a specific action
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-get-config"></a><h3>polkit_context_get_config ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+>PolKitConfig</a>*       polkit_context_get_config           (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);</pre>
+<p>
+Returns an object that provides access to the
+/etc/PolicyKit/PolicyKit.conf configuration files. Applications
+using PolicyKit should never use this method; it's only here for
+integration with other PolicyKit components.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> Return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-config.html#PolKitConfig"
+><span class="type">PolKitConfig</span></a> object or NULL if the configuration file
+is malformed. Caller should not unref this object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-is-caller-authorized"></a><h3>polkit_context_is_caller_authorized ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_context_is_caller_authorized (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-caller.html#PolKitCaller"
+>PolKitCaller</a> *caller,
+                                                         <a
+href="../polkit/polkit-polkit-types.html#polkit-bool-t"
+>polkit_bool_t</a> revoke_if_one_shot,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);</pre>
+<p>
+Determine if a given caller is authorized to do a given
+action. 
+</p>
+<p>
+It is important to understand how one-shot authorizations work.
+The revoke_if_one_shot parameter, if <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a>, specifies whether
+one-shot authorizations should be revoked if they are used
+to make the decision to return <span class="type">POLKIT_RESULT_YES</span>.
+</p>
+<p>
+UI applications wanting to hint whether a caller is authorized must
+pass <a
+href="../glib/glib-Standard-Macros.html#FALSE:CAPS"
+><span class="type">FALSE</span></a> here. Mechanisms that wants to check authorizations
+before carrying out work on behalf of a caller must pass <a
+href="../glib/glib-Standard-Macros.html#TRUE:CAPS"
+><span class="type">TRUE</span></a>
+here.
+</p>
+<p>
+As a side-effect, any process with the authorization
+org.freedesktop.policykit.read can revoke one-shot authorizations
+from other users. Even though the window for doing so is small
+(one-shot auths are typically used right away), be careful who you
+grant that authorization to.
+</p>
+<p>
+This can fail with the following errors: 
+<span class="type">POLKIT_ERROR_NOT_AUTHORIZED_TO_READ_AUTHORIZATIONS_FOR_OTHER_USERS</span></p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>caller</code></em>:</span></p></td>
+<td> the caller in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>revoke_if_one_shot</code></em>:</span></p></td>
+<td> Whether to revoke one-shot authorizations. See
+below for discussion.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> specifying if, and how, the caller can
+do a specific action. 
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-is-session-authorized"></a><h3>polkit_context_is_session_authorized ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+>PolKitResult</a>        polkit_context_is_session_authorized
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context,
+                                                         <a
+href="../polkit/polkit-polkit-action.html#PolKitAction"
+>PolKitAction</a> *action,
+                                                         <a
+href="../polkit/polkit-polkit-session.html#PolKitSession"
+>PolKitSession</a> *session,
+                                                         <a
+href="../polkit/polkit-polkit-error.html#PolKitError"
+>PolKitError</a> **error);</pre>
+<p>
+Determine if any caller from a giver session is authorized to do a
+given action.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>action</code></em>:</span></p></td>
+<td> the type of access to check for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>session</code></em>:</span></p></td>
+<td> the session in question
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>error</code></em>:</span></p></td>
+<td> return location for error
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-result.html#PolKitResult"
+><span class="type">PolKitResult</span></a> specifying if, and how, the caller can
+do a specific action. 
+
+</td>
+</tr>
+</tbody>
+</table></div>
+<p class="since">Since  0.7
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="polkit-context-get-authorization-db"></a><h3>polkit_context_get_authorization_db ()</h3>
+<pre class="programlisting"><a
+href="../polkit/polkit-polkit-authorization-db.html#PolKitAuthorizationDB"
+>PolKitAuthorizationDB</a>* polkit_context_get_authorization_db
+                                                        (<a
+href="../polkit/polkit-polkit-context.html#PolKitContext"
+>PolKitContext</a> *pk_context);</pre>
+<p>
+Returns an object that provides access to the authorization
+database. Applications using PolicyKit should never use this
+method; it's only here for integration with other PolicyKit
+components.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>pk_context</code></em>:</span></p></td>
+<td> the PolicyKit context
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span>:</span></p></td>
+<td> A <a
+href="../polkit/polkit-polkit-authorization-db.html#PolKitAuthorizationDB"
+><span class="type">PolKitAuthorizationDB</span></a> object. Caller should not unref
+this object.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

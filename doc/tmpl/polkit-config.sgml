@@ -1,0 +1,95 @@
+<!-- ##### SECTION Title ##### -->
+polkit-config
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitConfig ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_config_new ##### -->
+<para>
+
+</para>
+
+@path: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_config_ref ##### -->
+<para>
+
+</para>
+
+@pk_config: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_config_unref ##### -->
+<para>
+
+</para>
+
+@pk_config: 
+
+
+<!-- ##### FUNCTION polkit_config_can_session_do_action ##### -->
+<para>
+
+</para>
+
+@pk_config: 
+@action: 
+@session: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_config_can_caller_do_action ##### -->
+<para>
+
+</para>
+
+@pk_config: 
+@action: 
+@caller: 
+@Returns: 
+
+
+<!-- ##### ENUM PolKitConfigAdminAuthType ##### -->
+<para>
+
+</para>
+
+@POLKIT_CONFIG_ADMIN_AUTH_TYPE_USER: 
+@POLKIT_CONFIG_ADMIN_AUTH_TYPE_GROUP: 
+
+<!-- ##### FUNCTION polkit_config_determine_admin_auth_type ##### -->
+<para>
+
+</para>
+
+@pk_config: 
+@action: 
+@caller: 
+@out_admin_auth_type: 
+@out_data: 
+@Returns: 
+
+

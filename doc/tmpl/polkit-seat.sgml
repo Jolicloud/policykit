@@ -1,0 +1,87 @@
+<!-- ##### SECTION Title ##### -->
+polkit-seat
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT PolKitSeat ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION polkit_seat_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_seat_ref ##### -->
+<para>
+
+</para>
+
+@seat: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_seat_unref ##### -->
+<para>
+
+</para>
+
+@seat: 
+
+
+<!-- ##### FUNCTION polkit_seat_set_ck_objref ##### -->
+<para>
+
+</para>
+
+@seat: 
+@ck_objref: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_seat_get_ck_objref ##### -->
+<para>
+
+</para>
+
+@seat: 
+@out_ck_objref: 
+@Returns: 
+
+
+<!-- ##### FUNCTION polkit_seat_debug ##### -->
+<para>
+
+</para>
+
+@seat: 
+
+
+<!-- ##### FUNCTION polkit_seat_validate ##### -->
+<para>
+
+</para>
+
+@seat: 
+@Returns: 
+
+

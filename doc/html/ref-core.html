@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Core API Reference</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="up" href="index.html" title="PolicyKit Library Reference Manual">
+<link rel="prev" href="beyond-defaults.html" title="Beyond the Defaults">
+<link rel="next" href="polkit-polkit-types.html" title="Basic types">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="reference" href="ref-design.html" title="Design Overview">
+<link rel="chapter" href="introduction.html" title="Introduction">
+<link rel="chapter" href="model.html" title="PolicyKit Model">
+<link rel="chapter" href="polkit-conf.html" title="PolicyKit configuration">
+<link rel="reference" href="ref-core.html" title="Core API Reference">
+<link rel="reference" href="tools-fileformats.html" title="Tools and file formats">
+<link rel="index" href="ix01.html" title="Index of deprecated symbols">
+<link rel="index" href="ix02.html" title="Index of new symbols in 0.7">
+<link rel="index" href="ix03.html" title="Index of new symbols in 0.8">
+<link rel="index" href="ix04.html" title="Index">
+<link rel="appendix" href="license.html" title="Appendix A. License">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="beyond-defaults.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">PolicyKit Library Reference Manual</th>
+<td><a accesskey="n" href="polkit-polkit-types.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr></table>
+<div class="reference" lang="en">
+<div class="titlepage">
+<div><div><h1 class="title">
+<a name="ref-core"></a>Core API Reference</h1></div></div>
+<hr>
+</div>
+<div class="partintro" lang="en">
+<div></div>
+<p>
+	This part presents the class and function reference for the
+	core PolicyKit
+	libraries, <code class="literal">libpolkit</code>, <code class="literal">libpolkit-grant</code>
+	and <code class="literal">libpolkit-dbus</code>. Note that unless
+	explictly stated, a function belongs
+	to <code class="literal">libpolkit</code>. The split is arranged such
+	that mechanisms checking for authorizations only need to link
+	with <code class="literal">libpolkit</code>.
+      </p>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-types.html">Basic types</a></span><span class="refpurpose"> — Type definitions for common primitive types.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-sysdeps.html">System Dependencies</a></span><span class="refpurpose"> — Various platform specific utility functions</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-simple.html">Simple convenience interface</a></span><span class="refpurpose"> — Simple convenience interface</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-error.html">Error reporting</a></span><span class="refpurpose"> — Representation of recoverable errors.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-result.html">Results</a></span><span class="refpurpose"> — Definition of results of PolicyKit queries.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-action.html">Actions</a></span><span class="refpurpose"> — Models what a caller is attempting to do.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-seat.html">Seat</a></span><span class="refpurpose"> — Represents a ConsoleKit Seat.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-session.html">Session</a></span><span class="refpurpose"> — Represents a ConsoleKit Session.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-caller.html">Caller</a></span><span class="refpurpose"> — Represents a process requesting a mechanism to do something.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-dbus.html">Caller Determination</a></span><span class="refpurpose"> — Obtaining seat, session and caller information
+via D-Bus and ConsoleKit.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-context.html">Context</a></span><span class="refpurpose"> — The main interface used to query PolicyKit.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-config.html">Configuration</a></span><span class="refpurpose"> — Represents the system-wide <code class="literal">/etc/PolicyKit/PolicyKit.conf</code> file.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-file.html">Policy Definition Files</a></span><span class="refpurpose"> — Represents a set of declared actions.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-file-entry.html">Policy File Entry</a></span><span class="refpurpose"> — Represents a declared action in a policy file.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-default.html">Defaults</a></span><span class="refpurpose"> — Models the default policy for an action.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-policy-cache.html">Policy Cache</a></span><span class="refpurpose"> — Holds the actions defined on the system.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-authorization.html">Authorization Entry</a></span><span class="refpurpose"> — An entry in the autothorization database</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-authorization-constraint.html">Authorization Constraints</a></span><span class="refpurpose"> — Conditions that must be satisfied in
+order for an authorization to apply</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-authorization-db.html">Authorization Database</a></span><span class="refpurpose"> — Reading from and writing to the database storing authorizations</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="polkit-polkit-grant.html">Authorizations and Authentication</a></span><span class="refpurpose"> — Obtain authorizations through
+authentication.</span>
+</dt>
+</dl>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

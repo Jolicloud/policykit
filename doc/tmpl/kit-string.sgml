@@ -1,0 +1,237 @@
+<!-- ##### SECTION Title ##### -->
+kit-string
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION kit_strdup ##### -->
+<para>
+
+</para>
+
+@s: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_strndup ##### -->
+<para>
+
+</para>
+
+@s: 
+@n: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_strdup_printf ##### -->
+<para>
+
+</para>
+
+@format: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_strdup_vprintf ##### -->
+<para>
+
+</para>
+
+@format: 
+@args: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_str_append ##### -->
+<para>
+
+</para>
+
+@s: 
+@s2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_str_has_prefix ##### -->
+<para>
+
+</para>
+
+@s: 
+@prefix: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_str_has_suffix ##### -->
+<para>
+
+</para>
+
+@s: 
+@suffix: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_strsplit ##### -->
+<para>
+
+</para>
+
+@s: 
+@delim: 
+@num_tokens: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_strfreev ##### -->
+<para>
+
+</para>
+
+@str_array: 
+
+
+<!-- ##### FUNCTION kit_strv_length ##### -->
+<para>
+
+</para>
+
+@str_array: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION KitStringEntryParseFunc ##### -->
+<para>
+
+</para>
+
+@key: 
+@value: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_entry_parse ##### -->
+<para>
+
+</para>
+
+@entry: 
+@func: 
+@user_data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_percent_decode ##### -->
+<para>
+
+</para>
+
+@s: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_percent_encode ##### -->
+<para>
+
+</para>
+
+@buf: 
+@buf_size: 
+@s: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_entry_create ##### -->
+<para>
+
+</para>
+
+@buf: 
+@buf_size: 
+@Varargs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_entry_createv ##### -->
+<para>
+
+</para>
+
+@buf: 
+@buf_size: 
+@kv_pairs: 
+@Returns: 
+
+
+<!-- ##### STRUCT KitString ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION kit_string_new ##### -->
+<para>
+
+</para>
+
+@init: 
+@len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_free ##### -->
+<para>
+
+</para>
+
+@s: 
+@free_segment: 
+@out_segment_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_ensure_size ##### -->
+<para>
+
+</para>
+
+@s: 
+@new_size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_append_c ##### -->
+<para>
+
+</para>
+
+@s: 
+@c: 
+@Returns: 
+
+
+<!-- ##### FUNCTION kit_string_append ##### -->
+<para>
+
+</para>
+
+@s: 
+@str: 
+@Returns: 
+
+
