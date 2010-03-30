@@ -1,3 +1,11 @@
+policykit (0.9-5jolicloud1) robby; urgency=low
+
+  * Removed backup file of "test-valid-5-wrong-extension.policy" to fix
+    build quirk
+  * Rebuild against Jolicloud robby libraries
+
+ -- Adam McDaniel <adam@jolicloud.org>  Tue, 30 Mar 2010 13:34:20 -0600
+
 policykit (0.9-4ubuntu1) karmic; urgency=low
 
   * Merge from debian unstable, remaining changes:
